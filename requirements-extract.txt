@@ -1,0 +1,11 @@
+# The GPU pass only. torch and torchvision are deliberately absent: Colab and
+# Kaggle ship CUDA builds, and letting pip resolve them here replaces those with
+# a CPU-only wheel. Install these with --no-deps where noted in REPRODUCE.md.
+ftfy
+regex
+sentence-transformers
+transformers
+tokenizers
+huggingface-hub
+Pillow
+git+https://github.com/openai/CLIP.git

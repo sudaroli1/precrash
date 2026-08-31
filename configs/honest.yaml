@@ -1,0 +1,68 @@
+# PreCrash — corrected configuration
+#
+# Differences from default.yaml, and why each one matters:
+#
+#   temporal_alpha: 1.3 -> 1.0
+#       Disables time-axis compression. At 1.3 the pipeline emits, at frame t,
+#       the score computed at frame 1.3t — a future frame. That is not an
+#       optimisation, it is reading ahead, and it cannot run in a deployed
+#       system. Every TTA figure produced with alpha != 1.0 is unpublishable.
+#
+#   ensemble weights
+#       These were grid-searched on the full evaluation corpus (stated in §7.1
+#       of the paper), which contradicts the zero-shot claim in §4.1. Two
+#       acceptable options:
+#         (a) fix them a priori and never tune — set them by argument, not search;
+#         (b) tune on a development split and report on a test split you never touch.
+#       The weights below are equal by default, which is the honest a priori
+#       choice for an ensemble with no reason to prefer one modality. If you
+#       prefer the tuned values, move them to configs/tuned_on_dev.yaml and
+#       report which split they came from.
+#
+#   clamping
+#       Left enabled here, but scripts/evaluate.py reports every metric with
+#       and without it. Never present "100% STTA compliance" as a result: STTA
+#       requires staying above threshold, the clamp forces staying above
+#       threshold, so compliance measures only that the clamp executed.
+
+ensemble:
+  clip_weight: 0.3334    # equal weighting — a priori, not tuned on test data
+  flow_weight: 0.3333
+  nlp_weight: 0.3333
+
+clip:
+  model: "ViT-L/14"
+  danger_prompt: "dangerous accident collision crash"
+  safe_prompt: "normal safe driving no hazard"
+
+nlp:
+  model: "all-MiniLM-L6-v2"
+  sudden_anchor: "sudden collision impact crash"
+  gradual_anchor: "gradual risk build-up near miss"
+  rho1: 1.0
+  rho2: 0.5
+
+postprocess:
+  gaussian_sigma: 3
+  power_gamma: 1.8
+  temporal_alpha: 1.0    # 1.0 = disabled. Do not change this for published results.
+  threshold: 0.5
+  epsilon: 0.01
+  score_min: 0.001
+  score_max: 0.999
+
+video:
+  target_fps: 30         # override per dataset: DAD=20, CCD=10, MM-AU=30
+  num_frames: 150        # override per dataset: DAD=100, CCD=50, MM-AU=150
+  resize: [224, 224]
+  interpolation: "bicubic"
+  crop_top_frac: 0.20
+  crop_bottom_frac: 0.08
+  normalise: true
+
+flow:
+  use_raft: false
+  # The "~90% of RAFT sensitivity at 1% compute" claim in the paper cites an
+  # ablation that does not exist. FlowScorer already supports use_raft=True —
+  # run extract_features.py once with --use_raft and once without, compare AP,
+  # and either report the real number or delete the claim.
