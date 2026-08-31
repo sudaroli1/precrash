@@ -20,6 +20,25 @@ cd /d C:\Users\sudar\Desktop\Preparation\tier-a-prep\precrash-eval
   python directly, which avoids the activation problems entirely.
 
 
+STEP 1b - Log in to Kaggle, if the CLI says "Authentication required".
+
+  Run this:
+
+.venv\Scripts\python.exe -m kaggle auth login
+
+  A browser window opens. Approve it. The CLI caches the credentials
+  itself and you never handle a token.
+
+  This is only needed once. It failed this time because the earlier
+  submissions ran in a shell that had the credentials set for that
+  session only; they did not persist.
+
+  If the browser flow will not work, the fallback is a token file --
+  generate one at https://www.kaggle.com/settings/api and save it
+  yourself to C:\Users\sudar\.kaggle\access_token . Do not paste a
+  token into this chat; it is never needed here.
+
+
 STEP 2 - Submit the six diagnostics. Paste this whole block at once.
 
 .venv\Scripts\python.exe -m kaggle competitions submit -c zero-shot-taa -f submissions\d_step_at_075.csv -m "diag ref: step at 75"
