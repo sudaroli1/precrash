@@ -2,9 +2,19 @@
 STEP-BY-STEP. About five minutes. Six of your 100 daily slots.
 ================================================================
 
-STEP 1 - Open a terminal in the repo folder.
-  File Explorer -> C:\Users\sudar\Desktop\Preparation\tier-a-prep\precrash-eval
-  Click the address bar, type  cmd  , press Enter.
+STEP 1 - Open Command Prompt and go to the repo folder.
+
+  Press the Windows key. Type:  cmd
+  Press Enter. A black Command Prompt window opens.
+
+  (Do NOT type cmd into a File Explorer window - Explorer will just
+  search for files called "cmd". It has to be the Start menu.)
+
+  Now paste this one line to move into the repo folder:
+
+cd /d C:\Users\sudar\Desktop\Preparation\tier-a-prep\precrash-eval
+
+  The prompt should now end with  precrash-eval>
 
   You do NOT need to activate the venv. The commands below call its
   python directly, which avoids the activation problems entirely.
