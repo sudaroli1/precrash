@@ -1,0 +1,42 @@
+ref,fileName,date,description,status,publicScore,privateScore
+
+55908070,c_sigmoid_m0.70.csv,2026-08-31 05:29:10.353000,probe c_sigmoid_m0.70,SubmissionStatus.COMPLETE,0.55190,0.55763
+
+55908065,c_sigmoid_m0.60.csv,2026-08-31 05:28:57.810000,probe c_sigmoid_m0.60,SubmissionStatus.COMPLETE,0.84398,0.84840
+
+55908061,p_step_at_140.csv,2026-08-31 05:28:43.647000,probe p_step_at_140,SubmissionStatus.COMPLETE,0.35088,0.35105
+
+55908057,p_step_at_125.csv,2026-08-31 05:28:31.043000,probe p_step_at_125,SubmissionStatus.COMPLETE,0.37383,0.37967
+
+55908054,p_step_at_100.csv,2026-08-31 05:28:17.820000,probe p_step_at_100,SubmissionStatus.COMPLETE,0.68391,0.68822
+
+55908050,p_step_at_075.csv,2026-08-31 05:28:06.123000,probe p_step_at_075,SubmissionStatus.COMPLETE,1.10057,1.10445
+
+55908043,p_step_at_050.csv,2026-08-31 05:27:54.290000,probe p_step_at_050,SubmissionStatus.COMPLETE,1.51724,1.52088
+
+55908039,p_step_at_025.csv,2026-08-31 05:27:41.357000,probe p_step_at_025,SubmissionStatus.COMPLETE,1.93391,1.93732
+
+55908035,p_step_at_010.csv,2026-08-31 05:27:29.380000,probe p_step_at_010,SubmissionStatus.COMPLETE,2.18391,2.18624
+
+55908032,p_step_at_000.csv,2026-08-31 05:27:17.453000,probe p_step_at_000,SubmissionStatus.COMPLETE,2.35057,2.35291
+
+55908029,p_never_crosses.csv,2026-08-31 05:27:04.810000,probe p_never_crosses,SubmissionStatus.COMPLETE,0.35088,0.35105
+
+55908021,p_cross_then_drop.csv,2026-08-31 05:26:53.933000,probe p_cross_then_drop,SubmissionStatus.COMPLETE,1.22573,1.22698
+
+55908019,p_cross_then_dip.csv,2026-08-31 05:26:42.593000,probe p_cross_then_dip,SubmissionStatus.COMPLETE,1.85057,1.85347
+
+55908015,p_constant_0.99.csv,2026-08-31 05:26:30.913000,probe p_constant_0.99,SubmissionStatus.COMPLETE,2.35057,2.35291
+
+55908013,p_constant_0.51.csv,2026-08-31 05:26:17.603000,probe p_constant_0.51,SubmissionStatus.COMPLETE,2.35057,2.35291
+
+55907867,05_sigmoid_m040.csv,2026-08-31 05:17:14.190000,sigmoid midpoint 0.40 - video-blind,SubmissionStatus.COMPLETE,1.35057,1.35428
+
+55907863,04_step_at_half.csv,2026-08-31 05:17:00.743000,step at frame 75 - video-blind,SubmissionStatus.COMPLETE,1.10057,1.10442
+
+55907861,03_sigmoid_m050.csv,2026-08-31 05:16:49.990000,sigmoid midpoint 0.50 - video-blind,SubmissionStatus.COMPLETE,1.10057,1.10435
+
+55907856,02_linear_ramp.csv,2026-08-31 05:16:37.207000,linear ramp 0 to 1 - video-blind,SubmissionStatus.COMPLETE,1.06604,1.06725
+
+55907846,01_constant.csv,2026-08-31 05:16:17.970000,"constant 0.51 - video-blind control, reads no pixels",SubmissionStatus.COMPLETE,2.35057,2.35291
+

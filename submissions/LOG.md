@@ -1,68 +1,111 @@
-# Leaderboard submissions
+# Leaderboard submissions and what they establish
 
-Every score in this file is computed by the competition organisers against
-ground truth we do not have. That is the point: no metric in the paper's results
-table is one we implemented ourselves.
+Every score below was computed by the competition organisers against ground
+truth no entrant has. No metric in this table was implemented by us.
 
-Record each submission here as soon as its score appears. An unrecorded score is
-a result we will not be able to reconstruct later.
+Competition: https://www.kaggle.com/competitions/zero-shot-taa
+Submitted 31 August 2026. Late submission open; cap is 100/day.
 
-## Known reference points
+## The result
 
-| Entry | Official score | Source |
+**A constant risk score of 0.51, reading no pixels, scores 2.35291 — eighth of
+thirteen, above our own ensemble at 2.00585 and above four other teams. It
+reaches 94.1% of the winning score.**
+
+| | Official score |
+|---|---|
+| CVLAB (1st) | 2.50165 |
+| Paulini38 (8th) | 2.35291 |
+| **a constant 0.51 — reads no pixels** | **2.35291** |
+| SuryaInBytes (9th, ours) | 2.00585 |
+| 13th | 1.03913 |
+| organisers' sample submission | 0.58333 |
+
+The constant's score equals the eighth-place score to five decimals.
+
+## The decomposition
+
+Official score = `w_AP*AP + w_AUC*AUC + w_TTA*TTA@0.5 + w_STTA*STTA@0.5`.
+
+Every probe is constant across clips, so each earns base-rate AP and chance AUC;
+those terms are identical for all of them and cancel in any difference.
+
+| Probe | Private | Isolates |
 |---|---|---|
-| Top of leaderboard (CVLAB) | 2.50165 | public leaderboard |
-| **SuryaInBytes (ours, 2 entries)** | **2.00585** | public leaderboard, rank 9 of 13 |
-| `sample_submission.csv` (organisers' linear ramp) | 0.58333 | public leaderboard |
+| `never_crosses` (0.49 throughout) | 0.35105 | the AP + AUC floor alone |
+| `cross_then_drop` (0.51 at frame 0, 0.49 after) | 1.22698 | floor + TTA |
+| `constant_0.51` | 2.35291 | floor + TTA + STTA |
 
-The official score is a weighted average of AP, AUC, TTA@0.5 and STTA@0.5, with
-weights fixed by the organisers. TTA and STTA are measured to `t_ai`, the
-annotated accident frame within the 150-frame clip -- not to the end of the clip.
+| Term | Value |
+|---|---|
+| AP + AUC floor | **0.35105** |
+| TTA term | **0.87593** |
+| STTA term | **1.12593** |
+| timing total | **2.00186** = **5.70x** the floor |
 
-## Submissions
+## Score is linear in the crossing frame
 
-| # | File | What it is | Reads pixels | Official score | Date |
-|---|---|---|---|---|---|
-| 00 | `00_replicate_sample.csv` | the organisers' ramp, regenerated | no | *(byte-identical to theirs; 0.58333 without submitting)* | |
-| 01 | `01_constant.csv` | constant 0.51 | no | | |
-| 02 | `02_linear_ramp.csv` | linear ramp 0 to 1 | no | | |
-| 03 | `03_sigmoid_m0.50.csv` | sigmoid, midpoint 0.50 | no | | |
-| 04 | `04_step_at_half.csv` | step at frame 75 | no | | |
-| 05 | `05_sigmoid_m0.40.csv` | sigmoid, midpoint 0.40 | no | | |
-| 06 | `06_ensemble_postproc.csv` | the full pipeline | yes | | |
-| 07 | `07_clip_only.csv` | CLIP alone | yes | | |
-| 08 | `08_flow_only.csv` | motion alone | yes | | |
-| 09 | `09_prior_only.csv` | the three-state prior alone | yes | | |
-| 10 | `10_ensemble_raw.csv` | ensemble, no post-processing | yes | | |
+| Crossing frame | Private | slope per frame |
+|---|---|---|
+| 0 | 2.35291 | |
+| 10 | 2.18624 | -0.016667 |
+| 25 | 1.93732 | -0.016595 |
+| 50 | 1.52088 | -0.016658 |
+| 75 | 1.10445 | -0.016657 |
+| 100 | 0.68822 | -0.016649 |
+| 125 | 0.37967 | -0.012342 |
+| 140 | 0.35105 | -0.001908 |
 
-Rows 01-05 need no frames and no GPU. Rows 06-10 need the feature cache.
+Linear fit over k <= 100: `score = 2.35304 - 0.016647*k`, i.e. **1/60 per frame**.
+The bend past 125 is clips whose accident has already happened; at 140 the score
+equals the floor exactly, so every accident occurs by frame 140. The slope
+implies a mean accident frame of **120.3 of 150**.
 
-## What each row is for
+### The fit predicts curves it was not fitted to
 
-**01, constant 0.51.** The degenerate case, and the one the paper turns on. It
-maximises every locally computable proxy -- crossing frame 0, the largest
-possible time-to-window-end, and perfect "stability", since a constant never
-falls. Its official score is the measurement that shows the proxy and the metric
-disagree.
+| Curve | Crosses | Predicted | Measured | Error |
+|---|---|---|---|---|
+| `sigmoid_m0.40` | 60 | 1.35422 | 1.35428 | +0.00006 |
+| `sigmoid_m0.50` | 75 | 1.10452 | 1.10435 | -0.00017 |
+| `sigmoid_m0.60` | 90 | 0.85481 | 0.84840 | -0.00641 |
+| `linear_ramp` | 75 | 1.10452 | 1.06725 | -0.03727 |
 
-**02-05.** The video-blind floor, established empirically rather than asserted.
-A referee can object that a constant is a strawman; a family of shapes and
-midpoints, all scoring near the floor, is harder to dismiss.
+## Magnitude is irrelevant
 
-**06-10.** The ablation. Every number computed by the organisers, so no reviewer
-needs to trust our implementation of AP, AUC or TTA -- we did not implement them.
+`constant_0.51` and `constant_0.99` both score **2.35291**, identically. Only
+whether the score crosses 0.5 matters, never by how much.
 
-## Local proxy, for comparison
+## Full results
 
-These are what the earlier manuscript reported, computed by us, on definitions
-that share the official metrics' names but not their definitions:
+| File | Public | Private |
+|---|---|---|
+| `p_constant_0.51` | 2.35057 | 2.35291 |
+| `p_constant_0.99` | 2.35057 | 2.35291 |
+| `p_step_at_000` | 2.35057 | 2.35291 |
+| `p_step_at_010` | 2.18391 | 2.18624 |
+| `p_step_at_025` | 1.93391 | 1.93732 |
+| `p_cross_then_dip` | 1.85057 | 1.85347 |
+| `p_step_at_050` | 1.51724 | 1.52088 |
+| `c_sigmoid_m0.40` | 1.35057 | 1.35428 |
+| `p_cross_then_drop` | 1.22573 | 1.22698 |
+| `p_step_at_075` | 1.10057 | 1.10445 |
+| `c_sigmoid_m0.50` | 1.10057 | 1.10435 |
+| `c_linear_ramp` | 1.06604 | 1.06725 |
+| `c_sigmoid_m0.60` | 0.84398 | 0.84840 |
+| `p_step_at_100` | 0.68391 | 0.68822 |
+| `c_sigmoid_m0.70` | 0.55190 | 0.55763 |
+| `p_step_at_125` | 0.37383 | 0.37967 |
+| `p_step_at_140` | 0.35088 | 0.35105 |
+| `p_never_crosses` | 0.35088 | 0.35105 |
 
-| Curve | Crossing frame | TTA to window end (assumed 30 fps) | "STTA compliance" |
-|---|---|---|---|
-| constant 0.51 | 0 | 5.00 s | 100% |
-| linear ramp | 75 | 2.50 s | 100% |
-| sigmoid m0.40 | 60 | 3.00 s | 100% |
-| *reported for the ensemble* | *22.7* | *4.24 s* | *100%* |
+`00_replicate_sample.csv` was not submitted: it reproduces the organisers'
+reference file byte-for-byte (1417/1417 rows), which confirms the id order and
+every formatting decision without spending a slot, and its score is already
+published as 0.58333.
 
-The official TTA measures to the annotated accident frame; ours measured to the
-end of the window. The names collide; the quantities do not.
+## Still to submit
+
+The model variants, once features are extracted:
+`ensemble_postproc`, `clip_only`, `flow_only`, `prior_only`, `ensemble_raw`.
+Use `make_submission.py --features DIR --variant NAME`. Every ablation row then
+carries a third-party score.
