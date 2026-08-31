@@ -71,3 +71,84 @@ def test_absence_detection_uses_aliases():
     assert "target" in A.ALIASES["label"]
     assert "time_of_event" in A.ALIASES["event_time"]
     assert "time_of_alert" in A.ALIASES["alert_time"]
+
+
+# ----------------------------------------------------------------------
+# Submission building
+# ----------------------------------------------------------------------
+
+def test_submission_matches_the_reference_format(tmp_path):
+    """The competition names two failure modes: an id mismatch against test.csv,
+    and a risk array whose length is not 150. Both are checked before writing,
+    because a rejected submission costs a quota slot."""
+    import csv as _csv
+    import subprocess
+
+    ids = [f"11_00{i:04d}_1_151" for i in range(20)]
+    ramp = np.linspace(0.001, 0.999, 150)
+    risk = "[" + ",".join(f"{v:.6f}".rstrip("0").rstrip(".") for v in ramp) + "]"
+
+    test_csv = tmp_path / "test.csv"
+    with open(test_csv, "w", newline="", encoding="utf-8") as f:
+        w = _csv.DictWriter(f, fieldnames=["id", "video_id", "start_frame",
+                                           "end_frame", "caption"])
+        w.writeheader()
+        for i in ids:
+            w.writerow({"id": i, "video_id": "11/0001", "start_frame": 1,
+                        "end_frame": 151, "caption": "x"})
+
+    sample = tmp_path / "sample.csv"
+    with open(sample, "w", newline="", encoding="utf-8") as f:
+        w = _csv.DictWriter(f, fieldnames=["id", "risk"])
+        w.writeheader()
+        for i in ids:
+            w.writerow({"id": i, "risk": risk})
+
+    out = tmp_path / "sub.csv"
+    r = subprocess.run([sys.executable, "scripts/make_submission.py",
+                        "--test_csv", str(test_csv), "--sample_csv", str(sample),
+                        "--replicate_sample", "--out", str(out)],
+                       cwd=ROOT, capture_output=True, text=True)
+    assert r.returncode == 0, r.stderr[-1000:]
+    assert "byte-identical" in r.stdout, r.stdout
+
+    rows = list(_csv.DictReader(open(out, encoding="utf-8")))
+    assert [x["id"] for x in rows] == ids
+    assert all(len(A.parse_risk(x["risk"])) == 150 for x in rows)
+
+
+def test_submission_refuses_incomplete_feature_coverage(tmp_path):
+    """A submission must cover every id. Padding the gaps with a constant would
+    quietly mix a real method with a blind one -- which, in this paper above
+    all, must not be possible by accident."""
+    import csv as _csv
+    import subprocess
+
+    ids = [f"11_00{i:04d}_1_151" for i in range(5)]
+    ramp = np.linspace(0.001, 0.999, 150)
+    risk = "[" + ",".join(str(round(v, 6)) for v in ramp) + "]"
+    with open(tmp_path / "test.csv", "w", newline="", encoding="utf-8") as f:
+        w = _csv.DictWriter(f, fieldnames=["id", "video_id", "start_frame",
+                                           "end_frame", "caption"])
+        w.writeheader()
+        for i in ids:
+            w.writerow({"id": i, "video_id": "11/0001", "start_frame": 1,
+                        "end_frame": 151, "caption": "x"})
+    with open(tmp_path / "sample.csv", "w", newline="", encoding="utf-8") as f:
+        w = _csv.DictWriter(f, fieldnames=["id", "risk"])
+        w.writeheader()
+        for i in ids:
+            w.writerow({"id": i, "risk": risk})
+
+    feats = tmp_path / "feats"; feats.mkdir()
+    np.savez(feats / f"{ids[0]}.npz", p_clip=np.zeros(150), p_flow=np.zeros(150),
+             p_nlp=np.zeros(150))          # only 1 of 5 clips
+
+    r = subprocess.run([sys.executable, "scripts/make_submission.py",
+                        "--test_csv", str(tmp_path / "test.csv"),
+                        "--sample_csv", str(tmp_path / "sample.csv"),
+                        "--features", str(feats), "--out", str(tmp_path / "s.csv")],
+                       cwd=ROOT, capture_output=True, text=True)
+    assert r.returncode != 0
+    assert "have no features" in (r.stdout + r.stderr)
+    assert not (tmp_path / "s.csv").exists()

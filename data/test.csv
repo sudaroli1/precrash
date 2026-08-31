@@ -1,0 +1,1418 @@
+id,video_id,start_frame,end_frame,caption
+1_009334_14_164,1/009334,14,164,a pedestrian crosses the road
+1_009586_1_151,1/009586,1,151,a pedestrian crosses the road
+1_010374_1_151,1/010374,1,151,a motorbike runs red light
+1_011548_50_200,1/011548,50,200,a pedestrian runs red light
+1_011625_29_179,1/011625,29,179,a pedestrian crosses the road
+10_008485_18_168,10/008485,18,168,ego-car  goes straight crossing paths at non-signalized junctions
+10_009098_10_160,10/009098,10,160,ego-car  goes straight crossing paths at non-signalized junctions
+10_009099_20_170,10/009099,20,170,a vehicle  goes straight crossing paths at non-signalized junctions
+10_009100_3_153,10/009100,3,153,ego-car  goes straight crossing paths at non-signalized junctions
+10_009188_23_173,10/009188,23,173,ego-car  goes straight crossing paths at non-signalized junctions
+10_009225_6_156,10/009225,6,156,ego-car  goes straight crossing paths at non-signalized junctions
+10_009319_43_193,10/009319,43,193,a vehicle turns left across path at non-signalized junctions
+10_009381_44_194,10/009381,44,194,ego-car  goes straight crossing paths at non-signalized junctions
+10_009487_1_151,10/009487,1,151,a vehicle turns left across path at signalized junctions
+10_009537_19_169,10/009537,19,169,ego-car  goes straight crossing paths at non-signalized junctions
+10_009659_1_151,10/009659,1,151,ego-car  goes straight crossing paths at non-signalized junctions
+10_009666_50_200,10/009666,50,200,a vehicle turns on a road with the opposite direction to ego-car
+10_009729_40_190,10/009729,40,190,a vehicle turns left across path at signalized junctions
+10_009763_7_157,10/009763,7,157,a vehicle turns left across path at non-signalized junctions
+10_009806_130_280,10/009806,130,280,a vehicle turns left across path at signalized junctions
+10_009807_65_215,10/009807,65,215,ego-car goes straight at signalized junctions
+10_010022_30_180,10/010022,30,180,ego-car  goes straight crossing paths at non-signalized junctions
+10_010026_23_173,10/010026,23,173,a vehicle turns left across path at non-signalized junctions
+10_010109_20_170,10/010109,20,170,a vehicle turns on a road with the same direction to ego-car
+10_010121_20_170,10/010121,20,170,ego-car  goes straight crossing paths at non-signalized junctions
+10_010213_50_200,10/010213,50,200,ego-car  goes straight crossing paths at non-signalized junctions
+10_010224_50_200,10/010224,50,200,ego-car turns left across path at signalized junctions
+10_010236_25_175,10/010236,25,175,ego-car  turns right across path at non-signalized junctions
+10_010238_100_250,10/010238,100,250,ego-car  turns right across path at non-signalized junctions
+10_010262_23_173,10/010262,23,173,ego-car  goes straight crossing paths at non-signalized junctions
+10_010267_1_151,10/010267,1,151,ego-car  goes straight crossing paths at non-signalized junctions
+10_010343_1_151,10/010343,1,151,ego-car  goes straight crossing paths at non-signalized junctions
+10_010350_8_158,10/010350,8,158,ego-car  goes straight crossing paths at non-signalized junctions
+10_010420_57_207,10/010420,57,207,a vehicle turns on a road with the same direction to ego-car
+10_010436_25_175,10/010436,25,175,ego-car accelerates out of the underground park lot
+10_010451_70_220,10/010451,70,220,a vehicle turns on a road with the opposite direction to ego-car
+10_010466_5_155,10/010466,5,155,ego-car  goes straight crossing paths at non-signalized junctions
+10_010519_30_180,10/010519,30,180,a vehicle turns on a road with the same direction to ego-car
+10_010528_20_170,10/010528,20,170,ego-car  goes straight crossing paths at non-signalized junctions
+10_010561_33_183,10/010561,33,183,ego-car  turns right across path at non-signalized junctions
+10_010565_7_157,10/010565,7,157,a vehicle turns left across path at signalized junctions
+10_010608_60_210,10/010608,60,210,ego-car  turns right across path at non-signalized junctions
+10_010613_5_155,10/010613,5,155,a vehicle turns left across path at signalized junctions
+10_010615_70_220,10/010615,70,220,ego-car  goes straight crossing paths at non-signalized junctions
+10_010643_1_151,10/010643,1,151,ego-car  goes straight crossing paths at non-signalized junctions
+10_010676_1_151,10/010676,1,151,ego-car  goes straight crossing paths at non-signalized junctions
+10_010700_93_243,10/010700,93,243,a vehicle turns on a road with the opposite direction to ego-car
+10_010700_1_151,10/010700,1,151,a vehicle turns on a road with the opposite direction to ego-car
+10_010701_3_153,10/010701,3,153,ego-car  goes straight crossing paths at non-signalized junctions
+10_010719_1_151,10/010719,1,151,there is an object crash
+10_010723_8_158,10/010723,8,158,a vehicle turns around at non-signalized junctions
+10_010735_14_164,10/010735,14,164,a vehicle turns on a road with the opposite direction to ego-car
+10_010833_34_184,10/010833,34,184,a vehicle turns left across path at signalized junctions
+10_010841_15_165,10/010841,15,165,ego-car  goes straight crossing paths at non-signalized junctions
+10_010845_72_222,10/010845,72,222,a vehicle turns left across path at signalized junctions
+10_010866_3_153,10/010866,3,153,ego-car turns around at signalized junctions
+10_010867_20_170,10/010867,20,170,a vehicle turns right across path at non-signalized junctions
+10_010882_5_155,10/010882,5,155,ego-car goes straight at signalized junctions
+10_010959_50_200,10/010959,50,200,ego-car goes straight at signalized junctions
+10_010975_10_160,10/010975,10,160,ego-car  goes straight crossing paths at non-signalized junctions
+10_011013_1_151,10/011013,1,151,a vehicle turns right across path at non-signalized junctions
+10_011055_80_230,10/011055,80,230,ego-car makes a dodge action
+10_011056_20_170,10/011056,20,170,a vehicle turns left across path at non-signalized junctions
+10_011057_30_180,10/011057,30,180,a vehicle turns left across path at non-signalized junctions
+10_011058_15_165,10/011058,15,165,a vehicle turns left across path at non-signalized junctions
+10_011094_160_310,10/011094,160,310,ego-car  goes straight crossing paths at non-signalized junctions
+10_011123_1_151,10/011123,1,151,ego-car  goes straight crossing paths at non-signalized junctions
+10_011135_15_165,10/011135,15,165,ego-car  goes straight crossing paths at non-signalized junctions
+10_011142_50_200,10/011142,50,200,a vehicle turns on a road with the opposite direction to ego-car
+10_011209_36_186,10/011209,36,186,a vehicle turns left across path at non-signalized junctions
+10_011234_56_206,10/011234,56,206,a vehicle turns left across path at non-signalized junctions
+10_011234_1_151,10/011234,1,151,a vehicle turns left across path at non-signalized junctions
+10_011248_27_177,10/011248,27,177,ego-car  goes straight crossing paths at non-signalized junctions
+10_011251_1_151,10/011251,1,151,a vehicle turns left across path at non-signalized junctions
+10_011254_60_210,10/011254,60,210,a vehicle turns on a road with the same direction to another vehicle
+10_011254_1_151,10/011254,1,151,a vehicle turns on a road with the same direction to another vehicle
+10_011256_73_223,10/011256,73,223,a vehicle  goes straight crossing paths at non-signalized junctions
+10_011256_1_151,10/011256,1,151,a vehicle  goes straight crossing paths at non-signalized junctions
+10_011258_50_200,10/011258,50,200,a vehicle turns on a road with the same direction to another vehicle
+10_011258_1_151,10/011258,1,151,a vehicle turns on a road with the same direction to another vehicle
+10_011259_25_175,10/011259,25,175,a vehicle  goes straight crossing paths at non-signalized junctions
+10_011262_63_213,10/011262,63,213,ego-car runs red light
+10_011262_1_151,10/011262,1,151,ego-car runs red light
+10_011272_60_210,10/011272,60,210,a vehicle turns left across path at non-signalized junctions
+10_011272_1_151,10/011272,1,151,a vehicle turns left across path at non-signalized junctions
+10_011277_18_168,10/011277,18,168,a motorbike turns left across path at signalized junctions
+10_011278_14_164,10/011278,14,164,a vehicle turns left across path at non-signalized junctions
+10_011281_28_178,10/011281,28,178,a vehicle  goes straight crossing paths at non-signalized junctions
+10_011326_22_172,10/011326,22,172,a vehicle turns on a road with the same direction to another vehicle
+10_011330_19_169,10/011330,19,169,ego-car  goes straight crossing paths at non-signalized junctions
+10_011340_17_167,10/011340,17,167,a vehicle turns right across path at non-signalized junctions
+10_011365_127_277,10/011365,127,277,ego-car goes straight at non-signalized junctions
+10_011365_1_151,10/011365,1,151,ego-car goes straight at non-signalized junctions
+10_011366_56_206,10/011366,56,206,a vehicle turns left across path at signalized junctions
+10_011368_10_160,10/011368,10,160,a vehicle  goes straight crossing paths at non-signalized junctions
+10_011413_3_153,10/011413,3,153,a vehicle turns left across path at non-signalized junctions
+10_011430_1_151,10/011430,1,151,ego-car turns right across path at signalized junctions
+10_011468_55_205,10/011468,55,205,a vehicle turns left across path at signalized junctions
+10_011478_19_169,10/011478,19,169,ego-car accelerately goes straight at non-signalized junctions
+10_011479_10_160,10/011479,10,160,ego-car goes straight at signalized junctions
+10_011489_23_173,10/011489,23,173,a vehicle  goes straight at signalized junctions
+10_011510_7_157,10/011510,7,157,vehicles  meet on the road
+10_011511_39_189,10/011511,39,189,a vehicle changes lanes with the same direction to ego-car
+10_011529_72_222,10/011529,72,222,ego-car turns left across path at signalized junctions
+10_011533_12_162,10/011533,12,162,a vehicle accelerately goes straight at non-signalized junctions
+10_011536_30_180,10/011536,30,180,a vehicle turns on a road with the opposite direction to ego-car
+10_011545_1_151,10/011545,1,151,ego-car turns left across path at non-signalized junctions
+10_011611_15_165,10/011611,15,165,a vehicle turns right across path at non-signalized junctions
+10_011615_12_162,10/011615,12,162,a vehicle drives away from the edge of the road
+10_011628_10_160,10/011628,10,160,a vehicle  goes straight crossing paths at non-signalized junctions
+10_011635_18_168,10/011635,18,168,a vehicle  goes straight crossing paths at non-signalized junctions
+10_011660_58_208,10/011660,58,208,a vehicle  goes straight at signalized junctions
+10_011660_1_151,10/011660,1,151,a vehicle  goes straight at signalized junctions
+10_011735_40_190,10/011735,40,190,ego-car  goes straight crossing paths at non-signalized junctions
+10_011735_1_151,10/011735,1,151,ego-car  goes straight crossing paths at non-signalized junctions
+11_004370_143_293,11/004370,143,293,a vehicle controls loss
+11_004370_1_151,11/004370,1,151,a vehicle controls loss
+11_007344_1_151,11/007344,1,151,ego-car  goes straight crossing paths at non-signalized junctions
+11_007893_40_190,11/007893,40,190,lead vehicle stops
+11_007928_33_183,11/007928,33,183,a vehicle retrogrades
+11_007937_4_154,11/007937,4,154,a vehicle turns left across path at non-signalized junctions
+11_007939_5_155,11/007939,5,155,lead vehicle stops
+11_007972_38_188,11/007972,38,188,lead vehicle stops
+11_007972_1_151,11/007972,1,151,lead vehicle stops
+11_008005_38_188,11/008005,38,188,a vehicle turns on a road with the same direction to ego-car
+11_008005_1_151,11/008005,1,151,a vehicle turns on a road with the same direction to ego-car
+11_008010_1_151,11/008010,1,151,a vehicle turns on a road with the same direction to ego-car
+11_008091_3_153,11/008091,3,153,a vehicle turns on a road with the same direction to ego-car
+11_008169_43_193,11/008169,43,193,a vehicle changes lanes with the same direction to ego-car
+11_008169_1_151,11/008169,1,151,a vehicle changes lanes with the same direction to ego-car
+11_008177_59_209,11/008177,59,209,a vehicle turns on a road with the same direction to ego-car
+11_008198_3_153,11/008198,3,153,a vehicle turns on a road with the same direction to ego-car
+11_008212_4_154,11/008212,4,154,a vehicle changes lanes with the same direction to ego-car
+11_008268_42_192,11/008268,42,192,lead vehicle stops
+11_008286_22_172,11/008286,22,172,a vehicle retrogrades
+11_008289_16_166,11/008289,16,166,lead vehicle stops
+11_008304_98_248,11/008304,98,248,a vehicle turns on a road with the same direction to another vehicle
+11_008304_1_151,11/008304,1,151,a vehicle turns on a road with the same direction to another vehicle
+11_008394_4_154,11/008394,4,154,lead vehicle stops
+11_008491_10_160,11/008491,10,160,a vehicle retrogrades
+11_008492_1_151,11/008492,1,151,a vehicle retrogrades
+11_008493_86_236,11/008493,86,236,a vehicle turns on a road with the same direction to another vehicle
+11_008493_1_151,11/008493,1,151,a vehicle turns on a road with the same direction to another vehicle
+11_008563_9_159,11/008563,9,159,ego-car drives slowly on congested road
+11_008597_80_230,11/008597,80,230,a vehicle changes lanes with the same direction to ego-car
+11_008605_23_173,11/008605,23,173,vehicles  meet on the road
+11_008655_4_154,11/008655,4,154,ego-car turns left across path at signalized junctions
+11_008664_3_153,11/008664,3,153,a vehicle changes lanes with the same direction to ego-car
+11_008681_18_168,11/008681,18,168,lead vehicle stops
+11_008700_22_172,11/008700,22,172,a vehicle changes lanes with the same direction to ego-car
+11_008805_47_197,11/008805,47,197,ego-car makes a dodge action
+11_008808_132_282,11/008808,132,282,lead vehicle stops
+11_008850_9_159,11/008850,9,159,a vehicle turns on a road with the same direction to ego-car
+11_008877_90_240,11/008877,90,240,a vehicle retrogrades
+11_008877_1_151,11/008877,1,151,a vehicle retrogrades
+11_008937_16_166,11/008937,16,166,a vehicle turns on a road with the same direction to ego-car
+11_009003_70_220,11/009003,70,220,lead vehicle stops
+11_009052_36_186,11/009052,36,186,a vehicle  goes straight crossing paths at non-signalized junctions
+11_009054_55_205,11/009054,55,205,vehicles  meet on the road
+11_009054_1_151,11/009054,1,151,vehicles  meet on the road
+11_009055_15_165,11/009055,15,165,a vehicle turns right across path at non-signalized junctions
+11_009057_55_205,11/009057,55,205,lead vehicle stops
+11_009057_1_151,11/009057,1,151,lead vehicle stops
+11_009062_35_185,11/009062,35,185,lead vehicle stops
+11_009063_350_500,11/009063,350,500,a vehicle turns on a road with the same direction to ego-car
+11_009063_1_151,11/009063,1,151,a vehicle turns on a road with the same direction to ego-car
+11_009065_51_201,11/009065,51,201,lead vehicle stops
+11_009065_1_151,11/009065,1,151,lead vehicle stops
+11_009071_18_168,11/009071,18,168,lead vehicle stops
+11_009074_33_183,11/009074,33,183,a vehicle turns left across path at non-signalized junctions
+11_009074_1_151,11/009074,1,151,a vehicle turns left across path at non-signalized junctions
+11_009077_11_161,11/009077,11,161,a vehicle turns on a road with the same direction to ego-car
+11_009084_5_155,11/009084,5,155,lead vehicle stops
+11_009087_26_176,11/009087,26,176,a vehicle makes a dodge action
+11_009090_50_200,11/009090,50,200,ego-car  goes straight crossing paths at non-signalized junctions
+11_009090_1_151,11/009090,1,151,ego-car  goes straight crossing paths at non-signalized junctions
+11_009093_62_212,11/009093,62,212,lead vehicle stops
+11_009094_66_216,11/009094,66,216,a vehicle controls loss
+11_009094_1_151,11/009094,1,151,a vehicle controls loss
+11_009096_42_192,11/009096,42,192,a vehicle retrogrades
+11_009096_1_151,11/009096,1,151,a vehicle retrogrades
+11_009106_193_343,11/009106,193,343,a vehicle retrogrades
+11_009106_1_151,11/009106,1,151,a vehicle retrogrades
+11_009108_14_164,11/009108,14,164,lead vehicle stops
+11_009111_164_314,11/009111,164,314,a vehicle turns on a road with the same direction to ego-car
+11_009111_1_151,11/009111,1,151,a vehicle turns on a road with the same direction to ego-car
+11_009120_10_160,11/009120,10,160,an vehicle turns around at non-signalized junctions
+11_009122_8_158,11/009122,8,158,a vehicle turns on a road with the same direction to ego-car
+11_009142_39_189,11/009142,39,189,ego-car controls loss
+11_009142_1_151,11/009142,1,151,ego-car controls loss
+11_009143_20_170,11/009143,20,170,vehicles  meet on the road
+11_009146_63_213,11/009146,63,213,ego-car makes a dodge action
+11_009146_1_151,11/009146,1,151,ego-car makes a dodge action
+11_009148_15_165,11/009148,15,165,a vehicle turns on a road with the opposite direction to ego-car
+11_009155_2_152,11/009155,2,152,a vehicle controls loss
+11_009156_161_311,11/009156,161,311,lead vehicle stops
+11_009156_1_151,11/009156,1,151,lead vehicle stops
+11_009159_115_265,11/009159,115,265,a vehicle retrogrades
+11_009159_1_151,11/009159,1,151,a vehicle retrogrades
+11_009160_63_213,11/009160,63,213,a vehicle controls loss
+11_009174_18_168,11/009174,18,168,lead vehicle stops
+11_009190_36_186,11/009190,36,186,a vehicle turns on a road with the same direction to ego-car
+11_009194_53_203,11/009194,53,203,lead vehicle stops
+11_009194_1_151,11/009194,1,151,lead vehicle stops
+11_009200_54_204,11/009200,54,204,ego-car makes a dodge action
+11_009200_1_151,11/009200,1,151,ego-car makes a dodge action
+11_009215_24_174,11/009215,24,174,ego-car  goes straight crossing paths at non-signalized junctions
+11_009216_32_182,11/009216,32,182,a vehicle turns on a road with the same direction to ego-car
+11_009236_10_160,11/009236,10,160,lead vehicle stops
+11_009239_44_194,11/009239,44,194,lead vehicle stops
+11_009240_90_240,11/009240,90,240,a vehicle turns on a road with the same direction to ego-car
+11_009240_1_151,11/009240,1,151,a vehicle turns on a road with the same direction to ego-car
+11_009244_90_240,11/009244,90,240,vehicles  meet on the road
+11_009246_1_151,11/009246,1,151,ego-car  goes straight crossing paths at non-signalized junctions
+11_009252_1_151,11/009252,1,151,a vehicle turns on a road with the same direction to ego-car
+11_009259_12_162,11/009259,12,162,vehicles  meet on the road
+11_009272_36_186,11/009272,36,186,lead vehicle stops
+11_009272_1_151,11/009272,1,151,lead vehicle stops
+11_009283_58_208,11/009283,58,208,a vehicle retrogrades
+11_009295_20_170,11/009295,20,170,lead vehicle stops
+11_009304_25_175,11/009304,25,175,a following vehicle makes a maneuver
+11_009305_15_165,11/009305,15,165,a vehicle backes up into another vehicle
+11_009308_57_207,11/009308,57,207,ego-car turns left across path at signalized junctions
+11_009310_115_265,11/009310,115,265,lead vehicle stops
+11_009322_42_192,11/009322,42,192,vehicles  meet on the road
+11_009324_27_177,11/009324,27,177,a vehicle turns left across path at non-signalized junctions
+11_009325_12_162,11/009325,12,162,a vehicle controls loss
+11_009328_88_238,11/009328,88,238,lead vehicle decelerates
+11_009332_100_250,11/009332,100,250,ego-car makes a dodge action
+11_009340_42_192,11/009340,42,192,vehicles  meet on the road
+11_009349_26_176,11/009349,26,176,lead vehicle decelerates
+11_009370_93_243,11/009370,93,243,lead vehicle stops
+11_009370_1_151,11/009370,1,151,lead vehicle stops
+11_009382_27_177,11/009382,27,177,ego-car turns left across path at signalized junctions
+11_009383_57_207,11/009383,57,207,ego-car  turns right across path at non-signalized junctions
+11_009384_10_160,11/009384,10,160,lead vehicle stops
+11_009398_93_243,11/009398,93,243,ego-car turns left across path at non-signalized junctions
+11_009399_1_151,11/009399,1,151,a vehicle turns on a road with the same direction to ego-car
+11_009417_171_321,11/009417,171,321,ego-car turns left across path at non-signalized junctions
+11_009417_1_151,11/009417,1,151,ego-car turns left across path at non-signalized junctions
+11_009418_31_181,11/009418,31,181,a vehicle turns right across path at non-signalized junctions
+11_009419_33_183,11/009419,33,183,vehicles  meet on the road
+11_009420_20_170,11/009420,20,170,a vehicle makes a dodge action
+11_009428_3_153,11/009428,3,153,a vehicle turns right across path at non-signalized junctions
+11_009430_62_212,11/009430,62,212,a vehicle controls loss
+11_009433_17_167,11/009433,17,167,a vehicle turns around at non-signalized junctions
+11_009434_15_165,11/009434,15,165,a vehicle turns right across path at signalized junctions
+11_009436_30_180,11/009436,30,180,vehicles  meet on the road
+11_009450_30_180,11/009450,30,180,ego-car turns on a road with the same direction to another vehicle
+11_009451_24_174,11/009451,24,174,a vehicle changes lanes with the same direction to ego-car
+11_009453_10_160,11/009453,10,160,ego-car turns left across path at non-signalized junctions
+11_009460_7_157,11/009460,7,157,a vehicle overtakes
+11_009472_40_190,11/009472,40,190,a vehicle turns left across path at signalized junctions
+11_009474_20_170,11/009474,20,170,lead vehicle decelerates
+11_009484_136_286,11/009484,136,286,a vehicle turns on a road with the same direction to ego-car
+11_009485_13_163,11/009485,13,163,lead vehicle decelerates
+11_009489_50_200,11/009489,50,200,there is an object crash
+11_009490_6_156,11/009490,6,156,a motorbike turns around at non-signalized junctions
+11_009493_80_230,11/009493,80,230,lead vehicle stops
+11_009497_1_151,11/009497,1,151,there is an object crash
+11_009498_30_180,11/009498,30,180,lead vehicle decelerates
+11_009504_45_195,11/009504,45,195,a vehicle controls loss
+11_009505_80_230,11/009505,80,230,lead vehicle stops
+11_009513_20_170,11/009513,20,170,a vehicle changes lanes with the same direction to ego-car
+11_009514_20_170,11/009514,20,170,ego-car goes straight near the center line of the road
+11_009525_37_187,11/009525,37,187,a vehicle turns left across path at non-signalized junctions
+11_009526_50_200,11/009526,50,200,vehicles  meet on the road
+11_009530_69_219,11/009530,69,219,a vehicle turns left across path at signalized junctions
+11_009532_10_160,11/009532,10,160,a vehicle accelerates to turn on a road
+11_009535_52_202,11/009535,52,202,a vehicle backes up into another vehicle
+11_009538_5_155,11/009538,5,155,a vehicle changes lanes with the same direction to ego-car
+11_009544_34_184,11/009544,34,184,ego-car turns left across path at non-signalized junctions
+11_009559_25_175,11/009559,25,175,ego-car makes a dodge action
+11_009560_8_158,11/009560,8,158,a vehicle turns left across path at signalized junctions
+11_009567_25_175,11/009567,25,175,ego-car turns left across path at signalized junctions
+11_009569_114_264,11/009569,114,264,a vehicle turns left across path at non-signalized junctions
+11_009569_1_151,11/009569,1,151,a vehicle turns left across path at non-signalized junctions
+11_009573_1_151,11/009573,1,151,a following vehicle makes a maneuver
+11_009576_25_175,11/009576,25,175,there is an object crash
+11_009579_20_170,11/009579,20,170,a vehicle controls loss
+11_009587_14_164,11/009587,14,164,a vehicle turns left across path at signalized junctions
+11_009592_35_185,11/009592,35,185,a vehicle changes lanes with the same direction to ego-car
+11_009594_12_162,11/009594,12,162,a vehicle turns right across path at signalized junctions
+11_009618_32_182,11/009618,32,182,a vehicle controls loss
+11_009619_40_190,11/009619,40,190,vehicles  meet on the road
+11_009620_107_257,11/009620,107,257,ego-car makes a dodge action
+11_009620_1_151,11/009620,1,151,ego-car makes a dodge action
+11_009632_70_220,11/009632,70,220,ego-car makes a dodge action
+11_009635_10_160,11/009635,10,160,ego-car makes a dodge action
+11_009636_74_224,11/009636,74,224,ego-car makes a dodge action
+11_009636_1_151,11/009636,1,151,ego-car makes a dodge action
+11_009637_29_179,11/009637,29,179,a vehicle controls loss
+11_009647_145_295,11/009647,145,295,vehicles  meet on the road
+11_009649_30_180,11/009649,30,180,a vehicle controls loss
+11_009653_140_290,11/009653,140,290,ego-car controls loss
+11_009658_10_160,11/009658,10,160,a vehicle turns left across path at non-signalized junctions
+11_009663_1_151,11/009663,1,151,lead vehicle stops
+11_009668_1_151,11/009668,1,151,ego-car turns on a road with the opposite direction to another vehicle
+11_009681_25_175,11/009681,25,175,a vehicle changes lanes with the same direction to ego-car
+11_009682_35_185,11/009682,35,185,ego-car controls loss
+11_009694_8_158,11/009694,8,158,a vehicle turns on a road with the same direction to ego-car
+11_009697_50_200,11/009697,50,200,a vehicle changes lanes with the same direction to ego-car
+11_009698_100_250,11/009698,100,250,a vehicle backes up into another vehicle
+11_009700_5_155,11/009700,5,155,a vehicle changes lanes with the same direction to ego-car
+11_009710_10_160,11/009710,10,160,ego-car turns on a road with the opposite direction to another vehicle
+11_009713_30_180,11/009713,30,180,a vehicle controls loss
+11_009715_1_151,11/009715,1,151,a vehicle turns on a road with the opposite direction to ego-car
+11_009717_80_230,11/009717,80,230,lead vehicle decelerates
+11_009718_20_170,11/009718,20,170,a vehicle changes lanes with the same direction to ego-car
+11_009728_47_197,11/009728,47,197,a vehicle changes lanes with the same direction to ego-car
+11_009731_14_164,11/009731,14,164,a vehicle changes lanes with the same direction to ego-car
+11_009736_70_220,11/009736,70,220,lead vehicle stops
+11_009742_10_160,11/009742,10,160,ego-car  turns right across path at non-signalized junctions
+11_009748_66_216,11/009748,66,216,lead vehicle decelerates
+11_009753_10_160,11/009753,10,160,a vehicle turns left across path at non-signalized junctions
+11_009756_45_195,11/009756,45,195,lead vehicle decelerates
+11_009766_228_378,11/009766,228,378,a vehicle backes up into another vehicle
+11_009766_1_151,11/009766,1,151,a vehicle backes up into another vehicle
+11_009767_45_195,11/009767,45,195,a vehicle turns on a road with the same direction to ego-car
+11_009768_40_190,11/009768,40,190,a vehicle retrogrades
+11_009781_87_237,11/009781,87,237,a vehicle turns on a road with the opposite direction to ego-car
+11_009782_3_153,11/009782,3,153,a vehicle turns on a road with the same direction to ego-car
+11_009786_110_260,11/009786,110,260,a vehicle retrogrades
+11_009790_112_262,11/009790,112,262,a vehicle controls loss
+11_009794_70_220,11/009794,70,220,ego-car turns right across path at signalized junctions
+11_009800_68_218,11/009800,68,218,ego-car  goes straight crossing paths at non-signalized junctions
+11_009801_42_192,11/009801,42,192,a vehicle turns around at non-signalized junctions
+11_009802_38_188,11/009802,38,188,a vehicle turns left across path at non-signalized junctions
+11_009803_83_233,11/009803,83,233,a vehicle overtakes
+11_009804_42_192,11/009804,42,192,lead vehicle stops
+11_009808_1_151,11/009808,1,151,ego-car  goes straight crossing paths at non-signalized junctions
+11_009813_20_170,11/009813,20,170,a vehicle turns left across path at non-signalized junctions
+11_009814_10_160,11/009814,10,160,a vehicle turns left across path at signalized junctions
+11_009819_57_207,11/009819,57,207,ego-car turns left across path at signalized junctions
+11_009820_39_189,11/009820,39,189,a vehicle turns left across path at non-signalized junctions
+11_009825_14_164,11/009825,14,164,a vehicle turns on a road with the same direction to ego-car
+11_009832_23_173,11/009832,23,173,there is an object crash
+11_009833_1_151,11/009833,1,151,a vehicle controls loss
+11_009834_77_227,11/009834,77,227,a vehicle turns on a road with the same direction to ego-car
+11_009837_40_190,11/009837,40,190,a vehicle changes lanes with the same direction to ego-car
+11_009848_5_155,11/009848,5,155,a following vehicle makes a maneuver
+11_009849_50_200,11/009849,50,200,a vehicle turns right across path at non-signalized junctions
+11_009859_114_264,11/009859,114,264,a vehicle turns on a road with the opposite direction to ego-car
+11_009862_5_155,11/009862,5,155,a following vehicle makes a maneuver
+11_009865_75_225,11/009865,75,225,a vehicle turns on a road with the same direction to ego-car
+11_009868_64_214,11/009868,64,214,a vehicle turns left across path at signalized junctions
+11_009874_380_530,11/009874,380,530,a vehicle turns left across path at non-signalized junctions
+11_009874_1_151,11/009874,1,151,a vehicle turns left across path at non-signalized junctions
+11_009876_1_151,11/009876,1,151,a vehicle turns left across path at non-signalized junctions
+11_009879_105_255,11/009879,105,255,a vehicle backes up into another vehicle
+11_009879_1_151,11/009879,1,151,a vehicle backes up into another vehicle
+11_009881_163_313,11/009881,163,313,lead vehicle decelerates
+11_009881_1_151,11/009881,1,151,lead vehicle decelerates
+11_009882_1_151,11/009882,1,151,a vehicle backes up into another vehicle
+11_009886_20_170,11/009886,20,170,a vehicle turns on a road with the same direction to ego-car
+11_009890_45_195,11/009890,45,195,ego-car turns right across path at signalized junctions
+11_009892_1_151,11/009892,1,151,vehicles  meet on the road
+11_009898_95_245,11/009898,95,245,a vehicle changes lanes with the same direction to ego-car
+11_009899_30_180,11/009899,30,180,a vehicle changes lanes with the same direction to ego-car
+11_009905_23_173,11/009905,23,173,lead vehicle stops
+11_009906_30_180,11/009906,30,180,a vehicle controls loss
+11_009907_1_151,11/009907,1,151,a vehicle changes lanes with the same direction to ego-car
+11_009922_120_270,11/009922,120,270,a vehicle backes up into another vehicle
+11_009922_1_151,11/009922,1,151,a vehicle backes up into another vehicle
+11_009936_20_170,11/009936,20,170,a following vehicle makes a maneuver
+11_009962_40_190,11/009962,40,190,lead vehicle stops
+11_009963_1_151,11/009963,1,151,a vehicle changes lanes with the same direction to ego-car
+11_009967_5_155,11/009967,5,155,lead vehicle stops
+11_009968_1_151,11/009968,1,151,a vehicle turns left across path at signalized junctions
+11_009971_46_196,11/009971,46,196,ego-car turns left across path at signalized junctions
+11_009973_15_165,11/009973,15,165,a vehicle turns left across path at non-signalized junctions
+11_009974_37_187,11/009974,37,187,ego-car  turns right across path at non-signalized junctions
+11_009975_1_151,11/009975,1,151,a vehicle turns left across path at non-signalized junctions
+11_009976_26_176,11/009976,26,176,a vehicle controls loss
+11_009981_5_155,11/009981,5,155,a vehicle turns on a road with the same direction to ego-car
+11_009988_61_211,11/009988,61,211,lead vehicle stops
+11_009991_10_160,11/009991,10,160,a vehicle controls loss
+11_009992_1_151,11/009992,1,151,a vehicle turns right across path at non-signalized junctions
+11_009993_30_180,11/009993,30,180,ego-car turns on a road with the opposite direction to another vehicle
+11_009994_10_160,11/009994,10,160,a vehicle turns left across path at non-signalized junctions
+11_009995_20_170,11/009995,20,170,there is an object crash
+11_009996_70_220,11/009996,70,220,ego-car turns left across path at signalized junctions
+11_010003_25_175,11/010003,25,175,ego-car turns left across path at non-signalized junctions
+11_010005_16_166,11/010005,16,166,a vehicle turns right across path at non-signalized junctions
+11_010006_1_151,11/010006,1,151,a vehicle overtakes
+11_010011_30_180,11/010011,30,180,a vehicle turns on a road with the same direction to ego-car
+11_010012_40_190,11/010012,40,190,a vehicle turns on a road with the same direction to ego-car
+11_010013_10_160,11/010013,10,160,a vehicle changes lanes with the same direction to ego-car
+11_010017_64_214,11/010017,64,214,a vehicle makes a dodge action
+11_010025_1_151,11/010025,1,151,a vehicle turns on a road with the same direction to ego-car
+11_010028_70_220,11/010028,70,220,a vehicle controls loss
+11_010033_110_260,11/010033,110,260,vehicles  meet on the road
+11_010034_10_160,11/010034,10,160,a following vehicle makes a maneuver
+11_010035_25_175,11/010035,25,175,a vehicle turns right across path at non-signalized junctions
+11_010039_30_180,11/010039,30,180,ego-car makes a dodge action
+11_010041_1_151,11/010041,1,151,a vehicle turns left across path at non-signalized junctions
+11_010048_35_185,11/010048,35,185,a vehicle turns around at non-signalized junctions
+11_010055_46_196,11/010055,46,196,a vehicle turns left across path at signalized junctions
+11_010059_7_157,11/010059,7,157,a vehicle turns on a road with the same direction to ego-car
+11_010060_32_182,11/010060,32,182,a vehicle turns left across path at non-signalized junctions
+11_010063_1_151,11/010063,1,151,vehicles  meet on the road
+11_010072_40_190,11/010072,40,190,lead vehicle stops
+11_010073_3_153,11/010073,3,153,lead vehicle stops
+11_010079_20_170,11/010079,20,170,a vehicle turns on a road with the same direction to ego-car
+11_010081_80_230,11/010081,80,230,a vehicle backes up into another vehicle
+11_010082_1_151,11/010082,1,151,ego-car makes a dodge action
+11_010084_120_270,11/010084,120,270,a vehicle controls loss
+11_010085_110_260,11/010085,110,260,vehicles  meet on the road
+11_010095_52_202,11/010095,52,202,lead vehicle stops
+11_010098_16_166,11/010098,16,166,ego-car turns left across path at non-signalized junctions
+11_010107_20_170,11/010107,20,170,lead vehicle decelerates
+11_010113_183_333,11/010113,183,333,a vehicle backes up into another vehicle
+11_010113_1_151,11/010113,1,151,a vehicle backes up into another vehicle
+11_010114_50_200,11/010114,50,200,a vehicle backes up into another vehicle
+11_010115_75_225,11/010115,75,225,a vehicle backes up into another vehicle
+11_010117_1_151,11/010117,1,151,lead vehicle stops
+11_010118_1_151,11/010118,1,151,a vehicle changes lanes with the same direction to ego-car
+11_010120_13_163,11/010120,13,163,lead vehicle stops
+11_010124_8_158,11/010124,8,158,a vehicle makes a dodge action
+11_010127_60_210,11/010127,60,210,a vehicle backes up into another vehicle
+11_010139_50_200,11/010139,50,200,a vehicle changes lanes with the same direction to ego-car
+11_010143_30_180,11/010143,30,180,lead vehicle decelerates
+11_010148_1_151,11/010148,1,151,a vehicle retrogrades
+11_010160_1_151,11/010160,1,151,a vehicle controls loss
+11_010162_20_170,11/010162,20,170,lead vehicle stops
+11_010163_90_240,11/010163,90,240,lead vehicle stops
+11_010164_70_220,11/010164,70,220,a following vehicle makes a maneuver
+11_010165_80_230,11/010165,80,230,a vehicle makes a dodge action
+11_010166_1_151,11/010166,1,151,ego-car turns left across path at signalized junctions
+11_010176_22_172,11/010176,22,172,there is an object crash
+11_010193_23_173,11/010193,23,173,a vehicle overtakes
+11_010197_80_230,11/010197,80,230,ego-car turns left across path at non-signalized junctions
+11_010198_30_180,11/010198,30,180,ego-car controls loss
+11_010199_40_190,11/010199,40,190,ego-car controls loss
+11_010204_62_212,11/010204,62,212,a vehicle turns left across path at non-signalized junctions
+11_010205_20_170,11/010205,20,170,a vehicle turns left across path at non-signalized junctions
+11_010208_290_440,11/010208,290,440,ego-car turns left across path at non-signalized junctions
+11_010211_50_200,11/010211,50,200,a vehicle turns left across path at non-signalized junctions
+11_010212_83_233,11/010212,83,233,ego-car turns left across path at non-signalized junctions
+11_010214_6_156,11/010214,6,156,a vehicle turns right across path at non-signalized junctions
+11_010217_25_175,11/010217,25,175,ego-car overtakes
+11_010218_50_200,11/010218,50,200,a vehicle turns left across path at non-signalized junctions
+11_010223_23_173,11/010223,23,173,a vehicle turns left across path at non-signalized junctions
+11_010226_110_260,11/010226,110,260,a vehicle backes up into another vehicle
+11_010232_30_180,11/010232,30,180,ego-car  turns right across path at non-signalized junctions
+11_010233_50_200,11/010233,50,200,vehicles  meet on the road
+11_010235_30_180,11/010235,30,180,a vehicle retrogrades
+11_010240_5_155,11/010240,5,155,lead vehicle stops
+11_010243_100_250,11/010243,100,250,a vehicle backes up into another vehicle
+11_010244_110_260,11/010244,110,260,a vehicle backes up into another vehicle
+11_010246_75_225,11/010246,75,225,vehicles  meet on the road
+11_010251_40_190,11/010251,40,190,a vehicle turns on a road with the same direction to ego-car
+11_010256_30_180,11/010256,30,180,a vehicle turns left across path at non-signalized junctions
+11_010258_75_225,11/010258,75,225,ego-car turns left across path at signalized junctions
+11_010259_55_205,11/010259,55,205,a vehicle turns right across path at non-signalized junctions
+11_010268_80_230,11/010268,80,230,ego-car turns right across path at signalized junctions
+11_010271_2_152,11/010271,2,152,a vehicle turns around at non-signalized junctions
+11_010276_38_188,11/010276,38,188,a vehicle turns around at non-signalized junctions
+11_010277_60_210,11/010277,60,210,a vehicle controls loss
+11_010280_70_220,11/010280,70,220,a vehicle controls loss
+11_010288_90_240,11/010288,90,240,there is an object crash
+11_010289_10_160,11/010289,10,160,ego-car turns left across path at signalized junctions
+11_010290_1_151,11/010290,1,151,a vehicle turns left across path at non-signalized junctions
+11_010297_100_250,11/010297,100,250,a vehicle backes up into another vehicle
+11_010306_120_270,11/010306,120,270,a vehicle changes lanes with the same direction to ego-car
+11_010309_90_240,11/010309,90,240,a vehicle retrogrades
+11_010313_55_205,11/010313,55,205,a vehicle controls loss
+11_010315_28_178,11/010315,28,178,a vehicle turns left across path at non-signalized junctions
+11_010320_53_203,11/010320,53,203,ego-car overtakes
+11_010322_6_156,11/010322,6,156,lead vehicle stops
+11_010324_1_151,11/010324,1,151,a vehicle turns on a road with the same direction to ego-car
+11_010325_250_400,11/010325,250,400,a vehicle turns left across path at non-signalized junctions
+11_010332_1_151,11/010332,1,151,a following vehicle makes a maneuver
+11_010334_105_255,11/010334,105,255,a vehicle controls loss
+11_010335_20_170,11/010335,20,170,ego-car  turns right across path at non-signalized junctions
+11_010340_40_190,11/010340,40,190,lead vehicle stops
+11_010341_50_200,11/010341,50,200,lead vehicle stops
+11_010346_29_179,11/010346,29,179,a vehicle turns on a road with the opposite direction to ego-car
+11_010349_86_236,11/010349,86,236,lead vehicle stops
+11_010351_20_170,11/010351,20,170,a vehicle turns around at non-signalized junctions
+11_010355_1_151,11/010355,1,151,a vehicle controls loss
+11_010356_50_200,11/010356,50,200,ego-car  turns right across path at non-signalized junctions
+11_010360_90_240,11/010360,90,240,a vehicle backes up into another vehicle
+11_010373_1_151,11/010373,1,151,lead vehicle stops
+11_010389_13_163,11/010389,13,163,a vehicle turns around at non-signalized junctions
+11_010395_33_183,11/010395,33,183,a vehicle changes lanes with the same direction to ego-car
+11_010401_1_151,11/010401,1,151,a vehicle turns left across path at signalized junctions
+11_010406_28_178,11/010406,28,178,lead vehicle stops
+11_010407_70_220,11/010407,70,220,a vehicle turns on a road with the opposite direction to ego-car
+11_010411_15_165,11/010411,15,165,ego-car turns left across path at non-signalized junctions
+11_010412_85_235,11/010412,85,235,a vehicle turns left across path at signalized junctions
+11_010412_1_151,11/010412,1,151,a vehicle turns left across path at signalized junctions
+11_010413_30_180,11/010413,30,180,a vehicle changes lanes with the same direction to ego-car
+11_010434_80_230,11/010434,80,230,a vehicle turns left across path at non-signalized junctions
+11_010438_42_192,11/010438,42,192,ego-car  goes straight crossing paths at non-signalized junctions
+11_010439_5_155,11/010439,5,155,ego-car  goes straight crossing paths at non-signalized junctions
+11_010442_28_178,11/010442,28,178,a vehicle turns left across path at signalized junctions
+11_010443_35_185,11/010443,35,185,lead vehicle stops
+11_010445_37_187,11/010445,37,187,ego-car turns right across path at signalized junctions
+11_010448_25_175,11/010448,25,175,lead vehicle stops
+11_010450_18_168,11/010450,18,168,a vehicle changes lanes with the same direction to ego-car
+11_010452_1_151,11/010452,1,151,a following vehicle makes a maneuver
+11_010454_130_280,11/010454,130,280,lead vehicle stops
+11_010456_40_190,11/010456,40,190,lead vehicle stops
+11_010457_50_200,11/010457,50,200,a vehicle backes up into another vehicle
+11_010458_74_224,11/010458,74,224,lead vehicle stops
+11_010463_80_230,11/010463,80,230,a vehicle backes up into another vehicle
+11_010465_10_160,11/010465,10,160,a vehicle turns on a road with the same direction to ego-car
+11_010472_20_170,11/010472,20,170,a vehicle changes lanes with the same direction to ego-car
+11_010473_35_185,11/010473,35,185,lead vehicle stops
+11_010480_13_163,11/010480,13,163,vehicles  meet on the road
+11_010481_50_200,11/010481,50,200,a vehicle changes lanes with the same direction to ego-car
+11_010498_1_151,11/010498,1,151,a vehicle turns left across path at non-signalized junctions
+11_010508_67_217,11/010508,67,217,a vehicle turns on a road with the opposite direction to ego-car
+11_010512_10_160,11/010512,10,160,a vehicle changes lanes with the same direction to ego-car
+11_010518_45_195,11/010518,45,195,a vehicle overtakes
+11_010526_10_160,11/010526,10,160,a vehicle changes lanes with the same direction to ego-car
+11_010532_30_180,11/010532,30,180,a vehicle turns on a road with the same direction to ego-car
+11_010537_20_170,11/010537,20,170,a vehicle turns on a road with the opposite direction to ego-car
+11_010540_50_200,11/010540,50,200,a vehicle changes lanes with the same direction to ego-car
+11_010542_90_240,11/010542,90,240,ego-car controls loss
+11_010542_1_151,11/010542,1,151,ego-car controls loss
+11_010544_120_270,11/010544,120,270,a vehicle controls loss
+11_010546_34_184,11/010546,34,184,a vehicle controls loss
+11_010550_80_230,11/010550,80,230,a vehicle makes a dodge action
+11_010552_10_160,11/010552,10,160,ego-car turns left across path at non-signalized junctions
+11_010559_28_178,11/010559,28,178,vehicles  meet on the road
+11_010560_24_174,11/010560,24,174,ego-car controls loss
+11_010563_35_185,11/010563,35,185,ego-car turns on a road with the same direction to another vehicle
+11_010583_18_168,11/010583,18,168,lead vehicle stops
+11_010597_20_170,11/010597,20,170,lead vehicle stops
+11_010607_34_184,11/010607,34,184,lead vehicle stops
+11_010611_70_220,11/010611,70,220,a vehicle backes up into another vehicle
+11_010612_73_223,11/010612,73,223,lead vehicle stops
+11_010618_10_160,11/010618,10,160,a vehicle turns left across path at signalized junctions
+11_010623_56_206,11/010623,56,206,lead vehicle stops
+11_010630_85_235,11/010630,85,235,a vehicle turns left across path at non-signalized junctions
+11_010632_110_260,11/010632,110,260,a vehicle controls loss
+11_010637_1_151,11/010637,1,151,a vehicle changes lanes with the same direction to ego-car
+11_010638_20_170,11/010638,20,170,there is an object crash
+11_010650_28_178,11/010650,28,178,a vehicle backes up into another vehicle
+11_010662_50_200,11/010662,50,200,there is an object crash
+11_010668_50_200,11/010668,50,200,lead vehicle stops
+11_010671_30_180,11/010671,30,180,a vehicle changes lanes with the same direction to ego-car
+11_010672_80_230,11/010672,80,230,lead vehicle stops
+11_010679_40_190,11/010679,40,190,a vehicle turns on a road with the same direction to ego-car
+11_010681_40_190,11/010681,40,190,a vehicle controls loss
+11_010684_30_180,11/010684,30,180,a vehicle controls loss
+11_010685_1_151,11/010685,1,151,a vehicle turns on a road with the opposite direction to ego-car
+11_010689_100_250,11/010689,100,250,ego-car controls loss
+11_010690_83_233,11/010690,83,233,a vehicle turns left across path at non-signalized junctions
+11_010691_26_176,11/010691,26,176,a vehicle turns left across path at non-signalized junctions
+11_010693_62_212,11/010693,62,212,lead vehicle decelerates
+11_010694_260_410,11/010694,260,410,a vehicle backes up into another vehicle
+11_010694_1_151,11/010694,1,151,a vehicle backes up into another vehicle
+11_010704_50_200,11/010704,50,200,lead vehicle stops
+11_010705_1_151,11/010705,1,151,lead vehicle decelerates
+11_010706_30_180,11/010706,30,180,a vehicle changes lanes with the same direction to ego-car
+11_010710_25_175,11/010710,25,175,lead vehicle stops
+11_010716_13_163,11/010716,13,163,lead vehicle stops
+11_010717_23_173,11/010717,23,173,vehicles  meet on the road
+11_010722_100_250,11/010722,100,250,lead vehicle decelerates
+11_010731_67_217,11/010731,67,217,ego-car controls loss
+11_010736_30_180,11/010736,30,180,a vehicle controls loss
+11_010738_24_174,11/010738,24,174,a vehicle turns left across path at non-signalized junctions
+11_010739_10_160,11/010739,10,160,a vehicle changes lanes with the same direction to ego-car
+11_010742_26_176,11/010742,26,176,ego-car turns left across path at non-signalized junctions
+11_010743_45_195,11/010743,45,195,lead vehicle decelerates
+11_010744_1_151,11/010744,1,151,a vehicle turns left across path at non-signalized junctions
+11_010747_10_160,11/010747,10,160,a vehicle controls loss
+11_010748_1_151,11/010748,1,151,a vehicle overtakes
+11_010754_20_170,11/010754,20,170,a vehicle turns right across path at non-signalized junctions
+11_010756_30_180,11/010756,30,180,ego-car turns left across path at non-signalized junctions
+11_010760_70_220,11/010760,70,220,vehicles  meet on the road
+11_010761_70_220,11/010761,70,220,lead vehicle stops
+11_010762_10_160,11/010762,10,160,a vehicle changes lanes with the same direction to ego-car
+11_010764_10_160,11/010764,10,160,vehicles  meet on the road
+11_010777_23_173,11/010777,23,173,a vehicle turns on a road with the same direction to ego-car
+11_010794_30_180,11/010794,30,180,a vehicle turns on a road with the same direction to ego-car
+11_010795_10_160,11/010795,10,160,a vehicle turns left across path at signalized junctions
+11_010800_20_170,11/010800,20,170,ego-car turns left across path at signalized junctions
+11_010802_40_190,11/010802,40,190,a vehicle turns left across path at signalized junctions
+11_010804_1_151,11/010804,1,151,lead vehicle stops
+11_010813_14_164,11/010813,14,164,a vehicle backes up into another vehicle
+11_010814_50_200,11/010814,50,200,lead vehicle stops
+11_010819_10_160,11/010819,10,160,ego-car turns left across path at non-signalized junctions
+11_010823_10_160,11/010823,10,160,lead vehicle stops
+11_010824_26_176,11/010824,26,176,lead vehicle stops
+11_010829_50_200,11/010829,50,200,a vehicle backes up into another vehicle
+11_010830_85_235,11/010830,85,235,a vehicle changes lanes with the same direction to ego-car
+11_010835_48_198,11/010835,48,198,lead vehicle decelerates
+11_010837_30_180,11/010837,30,180,lead vehicle stops
+11_010847_10_160,11/010847,10,160,a vehicle turns left across path at non-signalized junctions
+11_010849_1_151,11/010849,1,151,a vehicle controls loss
+11_010852_17_167,11/010852,17,167,a vehicle controls loss
+11_010853_10_160,11/010853,10,160,a vehicle turns left across path at non-signalized junctions
+11_010854_50_200,11/010854,50,200,vehicles  meet on the road
+11_010868_28_178,11/010868,28,178,a vehicle goes straight near the center line of the road
+11_010872_20_170,11/010872,20,170,a vehicle turns left across path at non-signalized junctions
+11_010873_3_153,11/010873,3,153,a vehicle turns left across path at signalized junctions
+11_010894_50_200,11/010894,50,200,ego-car goes straight near the center line of the road
+11_010900_85_235,11/010900,85,235,ego-car turns left across path at signalized junctions
+11_010901_40_190,11/010901,40,190,a vehicle turns right across path at non-signalized junctions
+11_010902_54_204,11/010902,54,204,lead vehicle stops
+11_010903_40_190,11/010903,40,190,lead vehicle stops
+11_010911_420_570,11/010911,420,570,there is an object crash
+11_010911_1_151,11/010911,1,151,there is an object crash
+11_010913_60_210,11/010913,60,210,ego-car turns left across path at non-signalized junctions
+11_010914_50_200,11/010914,50,200,a vehicle turns left across path at non-signalized junctions
+11_010916_120_270,11/010916,120,270,a vehicle turns left across path at non-signalized junctions
+11_010919_3_153,11/010919,3,153,a vehicle turns left across path at non-signalized junctions
+11_010924_10_160,11/010924,10,160,a vehicle controls loss
+11_010927_10_160,11/010927,10,160,lead vehicle stops
+11_010933_28_178,11/010933,28,178,a vehicle backes up into another vehicle
+11_010942_32_182,11/010942,32,182,a vehicle turns on a road with the same direction to ego-car
+11_010943_10_160,11/010943,10,160,lead vehicle stops
+11_010946_76_226,11/010946,76,226,ego-car turns on a road with the same direction to another vehicle
+11_010951_1_151,11/010951,1,151,a vehicle changes lanes with the same direction to ego-car
+11_010952_1_151,11/010952,1,151,lead vehicle stops
+11_010953_28_178,11/010953,28,178,a vehicle turns left across path at signalized junctions
+11_010954_33_183,11/010954,33,183,lead vehicle stops
+11_010955_210_360,11/010955,210,360,a vehicle changes lanes with the same direction to ego-car
+11_010956_76_226,11/010956,76,226,lead vehicle stops
+11_010957_10_160,11/010957,10,160,lead vehicle stops
+11_010962_1_151,11/010962,1,151,vehicles  meet on the road
+11_010964_90_240,11/010964,90,240,a vehicle turns left across path at non-signalized junctions
+11_010965_35_185,11/010965,35,185,vehicles  meet on the road
+11_010970_30_180,11/010970,30,180,a vehicle backes up into another vehicle
+11_010971_64_214,11/010971,64,214,lead vehicle stops
+11_010972_10_160,11/010972,10,160,a vehicle turns right across path at non-signalized junctions
+11_010976_38_188,11/010976,38,188,ego-car backes up into another vehicle
+11_010979_15_165,11/010979,15,165,there is an object crash
+11_010981_1_151,11/010981,1,151,ego-car  goes straight crossing paths at non-signalized junctions
+11_010983_6_156,11/010983,6,156,a vehicle changes lanes with the same direction to ego-car
+11_010984_73_223,11/010984,73,223,a vehicle overtakes
+11_010985_20_170,11/010985,20,170,a vehicle controls loss
+11_010988_10_160,11/010988,10,160,vehicles  meet on the road
+11_010994_50_200,11/010994,50,200,lead vehicle stops
+11_011000_5_155,11/011000,5,155,lead vehicle stops
+11_011002_7_157,11/011002,7,157,ego-car passes through the blind corner of the underground park lot
+11_011004_26_176,11/011004,26,176,lead vehicle stops
+11_011008_55_205,11/011008,55,205,a vehicle turns right across path at non-signalized junctions
+11_011009_50_200,11/011009,50,200,lead vehicle stops
+11_011011_85_235,11/011011,85,235,a vehicle changes lanes with the same direction to ego-car
+11_011019_26_176,11/011019,26,176,a vehicle changes lanes with the same direction to ego-car
+11_011021_29_179,11/011021,29,179,lead vehicle stops
+11_011022_20_170,11/011022,20,170,lead vehicle stops
+11_011023_10_160,11/011023,10,160,a vehicle changes lanes with the same direction to ego-car
+11_011026_6_156,11/011026,6,156,a vehicle turns left across path at non-signalized junctions
+11_011031_15_165,11/011031,15,165,ego-car turns on a road with the opposite direction to another vehicle
+11_011032_115_265,11/011032,115,265,a vehicle turns right across path at non-signalized junctions
+11_011059_70_220,11/011059,70,220,vehicles  meet on the road
+11_011060_16_166,11/011060,16,166,a vehicle retrogrades
+11_011061_50_200,11/011061,50,200,ego-car controls loss
+11_011061_1_151,11/011061,1,151,ego-car controls loss
+11_011062_1_151,11/011062,1,151,vehicles  meet on the road
+11_011063_100_250,11/011063,100,250,a vehicle controls loss
+11_011064_160_310,11/011064,160,310,ego-car turns left across path at non-signalized junctions
+11_011065_90_240,11/011065,90,240,a vehicle controls loss
+11_011066_16_166,11/011066,16,166,lead vehicle stops
+11_011067_32_182,11/011067,32,182,lead vehicle stops
+11_011068_53_203,11/011068,53,203,a vehicle changes lanes with the same direction to ego-car
+11_011069_10_160,11/011069,10,160,a vehicle turns on a road with the opposite direction to ego-car
+11_011070_1_151,11/011070,1,151,a vehicle turns left across path at non-signalized junctions
+11_011071_40_190,11/011071,40,190,a vehicle turns left across path at non-signalized junctions
+11_011073_10_160,11/011073,10,160,a vehicle turns left across path at non-signalized junctions
+11_011074_50_200,11/011074,50,200,ego-car turns on a road with the opposite direction to another vehicle
+11_011076_10_160,11/011076,10,160,a vehicle changes lanes with the same direction to ego-car
+11_011091_45_195,11/011091,45,195,a vehicle turns left across path at non-signalized junctions
+11_011092_50_200,11/011092,50,200,lead vehicle decelerates
+11_011095_170_320,11/011095,170,320,ego-car turns left across path at non-signalized junctions
+11_011095_1_151,11/011095,1,151,ego-car turns left across path at non-signalized junctions
+11_011102_100_250,11/011102,100,250,ego-car goes straight in the blind spot area
+11_011103_18_168,11/011103,18,168,a vehicle turns on a road with the same direction to ego-car
+11_011111_50_200,11/011111,50,200,there is an object crash
+11_011112_1_151,11/011112,1,151,lead vehicle stops
+11_011114_12_162,11/011114,12,162,a vehicle turns left across path at non-signalized junctions
+11_011117_10_160,11/011117,10,160,ego-car overtakes
+11_011121_65_215,11/011121,65,215,lead vehicle stops
+11_011122_80_230,11/011122,80,230,lead vehicle stops
+11_011125_40_190,11/011125,40,190,lead vehicle stops
+11_011127_7_157,11/011127,7,157,a vehicle changes lanes with the same direction to ego-car
+11_011128_1_151,11/011128,1,151,a vehicle turns left across path at non-signalized junctions
+11_011129_10_160,11/011129,10,160,a vehicle changes lanes with the same direction to ego-car
+11_011130_1_151,11/011130,1,151,a vehicle turns on a road with the same direction to ego-car
+11_011132_1_151,11/011132,1,151,ego-car turns left across path at non-signalized junctions
+11_011136_17_167,11/011136,17,167,a vehicle turns on a road with the opposite direction to ego-car
+11_011138_90_240,11/011138,90,240,a vehicle controls loss
+11_011139_80_230,11/011139,80,230,a vehicle controls loss
+11_011141_1_151,11/011141,1,151,a vehicle controls loss
+11_011145_50_200,11/011145,50,200,a vehicle backes up into another vehicle
+11_011147_1_151,11/011147,1,151,a vehicle goes straight near the center line of the road
+11_011148_428_578,11/011148,428,578,a vehicle changes lanes with the same direction to ego-car
+11_011148_1_151,11/011148,1,151,a vehicle changes lanes with the same direction to ego-car
+11_011151_38_188,11/011151,38,188,a vehicle changes lanes with the same direction to ego-car
+11_011152_56_206,11/011152,56,206,ego-car controls loss
+11_011153_1_151,11/011153,1,151,ego-car controls loss
+11_011155_40_190,11/011155,40,190,ego-car makes a dodge action
+11_011160_55_205,11/011160,55,205,a vehicle turns left across path at signalized junctions
+11_011161_24_174,11/011161,24,174,a vehicle turns left across path at signalized junctions
+11_011163_90_240,11/011163,90,240,ego-car controls loss
+11_011166_1_151,11/011166,1,151,a vehicle backes up into another vehicle
+11_011168_1_151,11/011168,1,151,a vehicle turns on a road with the opposite direction to ego-car
+11_011169_32_182,11/011169,32,182,a vehicle makes a dodge action
+11_011170_9_159,11/011170,9,159,a vehicle turns left across path at non-signalized junctions
+11_011176_52_202,11/011176,52,202,lead vehicle stops
+11_011182_1_151,11/011182,1,151,a vehicle changes lanes with the same direction to ego-car/another vehicle
+11_011189_5_155,11/011189,5,155,a vehicle changes lanes with the same direction to ego-car/another vehicle
+11_011192_1_151,11/011192,1,151,a vehicle turns left across path at non-signalized junctions
+11_011194_1_151,11/011194,1,151,a vehicle changes lanes with the same direction to ego-car/another vehicle
+11_011195_5_155,11/011195,5,155,lead vehicle stops
+11_011202_12_162,11/011202,12,162,a vehicle changes lanes with the same direction to ego-car/another vehicle
+11_011205_94_244,11/011205,94,244,lead vehicle stops
+11_011205_1_151,11/011205,1,151,lead vehicle stops
+11_011206_1_151,11/011206,1,151,a vehicle controls loss
+11_011229_10_160,11/011229,10,160,vehicles meet on the road
+11_011231_1_151,11/011231,1,151,vehicles meet on the road
+11_011232_184_334,11/011232,184,334,a vehicle turns left across path at non-signalized junctions
+11_011232_1_151,11/011232,1,151,a vehicle turns left across path at non-signalized junctions
+11_011233_30_180,11/011233,30,180,lead vehicle stops
+11_011242_18_168,11/011242,18,168,vehicles meet on the road
+11_011253_32_182,11/011253,32,182,lead vehicle stops
+11_011255_25_175,11/011255,25,175,a vehicle changes lanes with the same direction to ego-car/another vehicle
+11_011255_1_151,11/011255,1,151,a vehicle changes lanes with the same direction to ego-car/another vehicle
+11_011257_1_151,11/011257,1,151,lead vehicle stops
+11_011265_7_157,11/011265,7,157,lead vehicle stops
+11_011268_87_237,11/011268,87,237,a vehicle backes up into another vehicle
+11_011268_1_151,11/011268,1,151,a vehicle backes up into another vehicle
+11_011269_86_236,11/011269,86,236,a vehicle backes up into another vehicle
+11_011269_1_151,11/011269,1,151,a vehicle backes up into another vehicle
+11_011270_4_154,11/011270,4,154,a vehicle turns left across path at non-signalized junctions
+11_011275_65_215,11/011275,65,215,lead vehicle stops
+11_011275_1_151,11/011275,1,151,lead vehicle stops
+11_011276_56_206,11/011276,56,206,ego-car controls loss
+11_011276_1_151,11/011276,1,151,ego-car controls loss
+11_011279_90_240,11/011279,90,240,ego-car turns left across path at non-signalized junctions
+11_011279_1_151,11/011279,1,151,ego-car turns left across path at non-signalized junctions
+11_011284_1_151,11/011284,1,151,lead vehicle stops
+11_011285_26_176,11/011285,26,176,lead vehicle stops
+11_011287_18_168,11/011287,18,168,lead vehicle stops
+11_011288_120_270,11/011288,120,270,a vehicle changes lanes with the same direction to ego-car/another vehicle
+11_011288_1_151,11/011288,1,151,a vehicle changes lanes with the same direction to ego-car/another vehicle
+11_011293_93_243,11/011293,93,243,a vehicle backes up into another vehicle
+11_011293_1_151,11/011293,1,151,a vehicle backes up into another vehicle
+11_011294_41_191,11/011294,41,191,lead vehicle stops
+11_011299_4_154,11/011299,4,154,a vehicle controls loss
+11_011315_69_219,11/011315,69,219,lead vehicle stops
+11_011315_1_151,11/011315,1,151,lead vehicle stops
+11_011317_116_266,11/011317,116,266,a following vehicle makes a maneuver
+11_011317_1_151,11/011317,1,151,a following vehicle makes a maneuver
+11_011322_53_203,11/011322,53,203,a vehicle changes lanes with the same direction to ego-car/another vehicle
+11_011322_1_151,11/011322,1,151,a vehicle changes lanes with the same direction to ego-car/another vehicle
+11_011325_55_205,11/011325,55,205,lead vehicle stops
+11_011325_1_151,11/011325,1,151,lead vehicle stops
+11_011331_18_168,11/011331,18,168,a vehicle turns around at non-signalized junctions
+11_011333_6_156,11/011333,6,156,vehicles  meet on the road
+11_011333_1_151,11/011333,1,151,vehicles  meet on the road
+11_011337_36_186,11/011337,36,186,a vehicle changes lanes with the same direction to ego-car
+11_011342_78_228,11/011342,78,228,a vehicle turns left across path at non-signalized junctions
+11_011342_1_151,11/011342,1,151,a vehicle turns left across path at non-signalized junctions
+11_011360_30_180,11/011360,30,180,a vehicle  goes straight crossing paths at non-signalized junctions
+11_011361_14_164,11/011361,14,164,a vehicle changes lanes with the same direction to ego-car
+11_011372_47_197,11/011372,47,197,lead vehicle stops
+11_011375_1_151,11/011375,1,151,a vehicle turns on a road with the same direction to ego-car
+11_011386_59_209,11/011386,59,209,a vehicle overtakes
+11_011388_34_184,11/011388,34,184,lead vehicle stops
+11_011389_11_161,11/011389,11,161,a vehicle overtakes
+11_011390_12_162,11/011390,12,162,vehicles  meet on the road
+11_011399_197_347,11/011399,197,347,ego-car makes a dodge action
+11_011399_1_151,11/011399,1,151,ego-car makes a dodge action
+11_011400_1_151,11/011400,1,151,a vehicle turns left across path at signalized junctions
+11_011415_9_159,11/011415,9,159,a vehicle changes lanes with the same direction to ego-car
+11_011416_20_170,11/011416,20,170,ego-car turns left across path at non-signalized junctions
+11_011420_30_180,11/011420,30,180,a vehicle changes lanes with the same direction to ego-car
+11_011424_20_170,11/011424,20,170,a vehicle turns right across path at non-signalized junctions
+11_011432_2_152,11/011432,2,152,a vehicle overtakes
+11_011434_18_168,11/011434,18,168,lead vehicle stops
+11_011440_53_203,11/011440,53,203,a vehicle backes up into ego-car
+11_011451_14_164,11/011451,14,164,ego-car turns around at non-signalized junctions
+11_011456_119_269,11/011456,119,269,lead vehicle stops
+11_011464_8_158,11/011464,8,158,lead vehicle stops
+11_011470_186_336,11/011470,186,336,ego-car controls loss
+11_011473_18_168,11/011473,18,168,ego-car changes lanes
+11_011481_58_208,11/011481,58,208,ego-car turns left across path at non-signalized junctions
+11_011482_6_156,11/011482,6,156,a vehicle controls loss
+11_011484_11_161,11/011484,11,161,lead vehicle decelerates
+11_011485_37_187,11/011485,37,187,a vehicle controls loss
+11_011499_4_154,11/011499,4,154,a vehicle changes lanes with the same direction to ego-car
+11_011500_5_155,11/011500,5,155,a vehicle backes up into  ego-car
+11_011504_15_165,11/011504,15,165,a vehicle retrogrades
+11_011509_32_182,11/011509,32,182,ego-car goes straight in the blind spot area
+11_011512_43_193,11/011512,43,193,vehicles  meet on the road
+11_011512_1_151,11/011512,1,151,vehicles  meet on the road
+11_011516_11_161,11/011516,11,161,lead vehicle stops
+11_011520_94_244,11/011520,94,244,vehicles  meet on the road
+11_011525_62_212,11/011525,62,212,ego-car controls loss
+11_011527_54_204,11/011527,54,204,a vehicle controls loss
+11_011528_15_165,11/011528,15,165,ego-car  goes straight crossing paths at non-signalized junctions
+11_011530_20_170,11/011530,20,170,a vehicle turns left across path at non-signalized junctions
+11_011531_20_170,11/011531,20,170,lead vehicle stops
+11_011531_1_151,11/011531,1,151,lead vehicle stops
+11_011532_46_196,11/011532,46,196,lead vehicle stops
+11_011538_1_151,11/011538,1,151,a vehicle turns right across path at non-signalized junctions
+11_011553_178_328,11/011553,178,328,ego-car turns left across path at non-signalized junctions
+11_011553_1_151,11/011553,1,151,ego-car turns left across path at non-signalized junctions
+11_011554_20_170,11/011554,20,170,ego-car  goes straight crossing paths at non-signalized junctions
+11_011559_1_151,11/011559,1,151,ego-car makes a dodge action
+11_011563_19_169,11/011563,19,169,a vehicle turns on a road with the same direction to ego-car
+11_011567_1_151,11/011567,1,151,a vehicle overtakes
+11_011569_37_187,11/011569,37,187,lead vehicle stops
+11_011573_100_250,11/011573,100,250,ego-car turns left across path at non-signalized junctions
+11_011573_1_151,11/011573,1,151,ego-car turns left across path at non-signalized junctions
+11_011576_27_177,11/011576,27,177,ego-car  turns right across path at non-signalized junctions
+11_011577_9_159,11/011577,9,159,a vehicle changes lanes with the same direction to ego-car
+11_011579_47_197,11/011579,47,197,a vehicle backes up into another vehicle
+11_011588_13_163,11/011588,13,163,a vehicle changes lanes with the same direction to ego-car/another vehicle
+11_011594_1_151,11/011594,1,151,lead vehicle decelerates
+11_011596_25_175,11/011596,25,175,a vehicle turns right across path at non-signalized junctions
+11_011599_37_187,11/011599,37,187,lead vehicle stops
+11_011599_1_151,11/011599,1,151,lead vehicle stops
+11_011600_26_176,11/011600,26,176,ego-car overtakes
+11_011602_29_179,11/011602,29,179,a vehicle drives away from the edge of the road
+11_011608_38_188,11/011608,38,188,a vehicle turns left across path at non-signalized junctions
+11_011614_19_169,11/011614,19,169,a vehicle controls loss
+11_011623_39_189,11/011623,39,189,a vehicle turns left across path at signalized junctions
+11_011634_13_163,11/011634,13,163,a vehicle turns left across path at non-signalized junctions
+11_011639_59_209,11/011639,59,209,lead vehicle stops
+11_011639_1_151,11/011639,1,151,lead vehicle stops
+11_011642_9_159,11/011642,9,159,a vehicle turns left across path at non-signalized junctions
+11_011643_162_312,11/011643,162,312,a vehicle retrogrades
+11_011643_1_151,11/011643,1,151,a vehicle retrogrades
+11_011646_75_225,11/011646,75,225,a vehicle overtakes
+11_011650_10_160,11/011650,10,160,a vehicle turns left across path at non-signalized junctions
+11_011651_3_153,11/011651,3,153,a vehicle turns left across path at non-signalized junctions
+11_011652_5_155,11/011652,5,155,a vehicle overtakes
+11_011653_76_226,11/011653,76,226,ego-car accelerates to turn on a road
+11_011653_1_151,11/011653,1,151,ego-car accelerates to turn on a road
+11_011654_5_155,11/011654,5,155,a vehicle goes straight near the center line of the road
+11_011655_9_159,11/011655,9,159,a vehicle turns left across path at non-signalized junctions
+11_011659_3_153,11/011659,3,153,a vehicle turns right across path at non-signalized junctions
+11_011661_119_269,11/011661,119,269,a vehicle accelerates to turn on a road
+11_011661_1_151,11/011661,1,151,a vehicle accelerates to turn on a road
+11_011663_9_159,11/011663,9,159,lead vehicle stops
+11_011668_16_166,11/011668,16,166,a vehicle  goes straight crossing paths at non-signalized junctions
+11_011674_16_166,11/011674,16,166,lead vehicle stops
+11_011676_42_192,11/011676,42,192,a vehicle overtakes
+11_011678_61_211,11/011678,61,211,a vehicle retrogrades
+11_011678_1_151,11/011678,1,151,a vehicle retrogrades
+11_011694_20_170,11/011694,20,170,a vehicle turns left across path at non-signalized junctions
+11_011702_45_195,11/011702,45,195,ego-car makes a dodge action
+11_011703_11_161,11/011703,11,161,lead vehicle stops
+11_011716_30_180,11/011716,30,180,a vehicle changes lanes with the same direction to ego-car
+11_011718_130_280,11/011718,130,280,ego-car controls loss
+11_011718_1_151,11/011718,1,151,ego-car controls loss
+11_011728_20_170,11/011728,20,170,a vehicle turns right across path at non-signalized junctions
+11_011732_30_180,11/011732,30,180,a vehicle controls loss
+11_011739_6_156,11/011739,6,156,ego-car accelerately goes straight at non-signalized junctions
+11_011742_42_192,11/011742,42,192,vehicles  meet on the road
+11_011749_23_173,11/011749,23,173,a vehicle makes a dodge action
+11_011753_10_160,11/011753,10,160,lead vehicle stops
+11_011756_30_180,11/011756,30,180,a vehicle changes lanes with the same direction to ego-car
+11_011758_22_172,11/011758,22,172,ego-car drives slowly on congested road
+11_011760_6_156,11/011760,6,156,lead vehicle stops
+11_011761_60_210,11/011761,60,210,a vehicle changes lanes with the same direction to ego-car
+11_011766_60_210,11/011766,60,210,a vehicle turns left across path at signalized junctions
+11_011770_37_187,11/011770,37,187,a vehicle turns left across path at signalized junctions
+12_001536_17_167,12/001536,17,167,a vehicle overtakes
+12_009372_12_162,12/009372,12,162,a vehicle overtakes
+12_009395_168_318,12/009395,168,318,a vehicle overtakes
+12_009395_1_151,12/009395,1,151,a vehicle overtakes
+12_009486_5_155,12/009486,5,155,a vehicle overtakes
+12_009541_100_250,12/009541,100,250,a vehicle overtakes
+12_009541_1_151,12/009541,1,151,a vehicle overtakes
+12_009555_10_160,12/009555,10,160,ego-car changes lanes with the same direction to another vehicle
+12_009591_1_151,12/009591,1,151,a vehicle overtakes
+12_009703_53_203,12/009703,53,203,ego-car turns left across path at non-signalized junctions
+12_009946_4_154,12/009946,4,154,a vehicle overtakes
+12_010136_1_151,12/010136,1,151,a vehicle overtakes
+12_010328_30_180,12/010328,30,180,a vehicle overtakes
+12_010435_1_151,12/010435,1,151,a vehicle overtakes
+12_010516_65_215,12/010516,65,215,a vehicle overtakes
+12_010524_20_170,12/010524,20,170,a vehicle overtakes
+12_010585_30_180,12/010585,30,180,a vehicle overtakes
+12_010603_95_245,12/010603,95,245,a vehicle overtakes
+12_010702_100_250,12/010702,100,250,a vehicle overtakes
+12_010712_57_207,12/010712,57,207,a vehicle overtakes
+12_010718_10_160,12/010718,10,160,a vehicle overtakes
+12_010766_10_160,12/010766,10,160,a vehicle overtakes
+12_010791_70_220,12/010791,70,220,a vehicle overtakes
+12_010817_35_185,12/010817,35,185,a vehicle overtakes
+12_010862_1_151,12/010862,1,151,a vehicle overtakes
+12_010949_13_163,12/010949,13,163,a vehicle overtakes
+12_011118_25_175,12/011118,25,175,a vehicle overtakes
+12_011190_122_272,12/011190,122,272,a vehicle controls loss
+12_011190_1_151,12/011190,1,151,a vehicle controls loss
+12_011207_86_236,12/011207,86,236,a vehicle overtakes
+12_011207_1_151,12/011207,1,151,a vehicle overtakes
+12_011243_12_162,12/011243,12,162,a vehicle overtakes
+12_011282_3_153,12/011282,3,153,a vehicle overtakes
+12_011310_27_177,12/011310,27,177,a vehicle overtakes
+12_011320_5_155,12/011320,5,155,a vehicle overtakes
+12_011353_137_287,12/011353,137,287,a vehicle overtakes
+12_011353_1_151,12/011353,1,151,a vehicle overtakes
+12_011404_19_169,12/011404,19,169,a vehicle overtakes
+12_011408_1_151,12/011408,1,151,a vehicle overtakes
+12_011452_1_151,12/011452,1,151,a vehicle overtakes
+12_011542_29_179,12/011542,29,179,a vehicle overtakes
+12_011601_15_165,12/011601,15,165,a vehicle goes straight near the center line of the road
+12_011763_61_211,12/011763,61,211,a vehicle overtakes
+13_009049_84_234,13/009049,84,234,ego-car controls loss
+13_009051_45_195,13/009051,45,195,ego-car controls loss
+13_009147_3_153,13/009147,3,153,ego-car controls loss
+13_009219_15_165,13/009219,15,165,there is an object crash
+13_009385_32_182,13/009385,32,182,ego-car accelerates out of the underground park lot
+13_009389_30_180,13/009389,30,180,ego-car controls loss
+13_009431_211_361,13/009431,211,361,ego-car controls loss
+13_009471_90_240,13/009471,90,240,ego-car controls loss
+13_009524_50_200,13/009524,50,200,ego-car controls loss
+13_010040_20_170,13/010040,20,170,ego-car controls loss
+13_010291_10_160,13/010291,10,160,ego-car controls loss
+13_010299_30_180,13/010299,30,180,there is an object crash
+13_010337_20_170,13/010337,20,170,ego-car makes a dodge action
+13_010425_20_170,13/010425,20,170,ego-car controls loss
+13_010471_1_151,13/010471,1,151,ego-car controls loss
+13_010574_190_340,13/010574,190,340,ego-car makes a dodge action
+13_010574_1_151,13/010574,1,151,ego-car makes a dodge action
+13_010575_40_190,13/010575,40,190,ego-car controls loss
+13_010604_30_180,13/010604,30,180,ego-car controls loss
+13_010782_150_300,13/010782,150,300,ego-car controls loss
+13_010782_1_151,13/010782,1,151,ego-car controls loss
+13_010907_40_190,13/010907,40,190,ego-car controls loss
+13_010982_10_160,13/010982,10,160,there is an object crash
+13_011045_30_180,13/011045,30,180,ego-car controls loss
+13_011046_100_250,13/011046,100,250,ego-car controls loss
+13_011124_74_224,13/011124,74,224,ego-car controls loss
+13_011173_23_173,13/011173,23,173,a vehicle controls loss
+13_011196_83_233,13/011196,83,233,a vehicle controls loss
+13_011196_1_151,13/011196,1,151,a vehicle controls loss
+13_011197_30_180,13/011197,30,180,a vehicle controls loss
+13_011350_50_200,13/011350,50,200,ego-car controls loss
+13_011374_10_160,13/011374,10,160,there is an object crash
+13_011387_19_169,13/011387,19,169,ego-car controls loss
+13_011619_8_158,13/011619,8,158,ego-car makes a dodge action
+14_009047_119_269,14/009047,119,269,a vehicle controls loss
+14_009047_1_151,14/009047,1,151,a vehicle controls loss
+14_009050_56_206,14/009050,56,206,ego-car controls loss
+14_009076_50_200,14/009076,50,200,a vehicle controls loss
+14_009097_20_170,14/009097,20,170,a vehicle makes a dodge action
+14_009135_33_183,14/009135,33,183,a vehicle controls loss
+14_009151_29_179,14/009151,29,179,ego-car controls loss
+14_009154_50_200,14/009154,50,200,ego-car controls loss
+14_009158_40_190,14/009158,40,190,a vehicle controls loss
+14_009181_1_151,14/009181,1,151,ego-car controls loss
+14_009191_5_155,14/009191,5,155,a vehicle makes a dodge action
+14_009217_90_240,14/009217,90,240,a vehicle controls loss
+14_009217_1_151,14/009217,1,151,a vehicle controls loss
+14_009218_625_775,14/009218,625,775,a vehicle controls loss
+14_009218_1_151,14/009218,1,151,a vehicle controls loss
+14_009228_40_190,14/009228,40,190,ego-car controls loss
+14_009230_180_330,14/009230,180,330,ego-car controls loss
+14_009230_1_151,14/009230,1,151,ego-car controls loss
+14_009311_10_160,14/009311,10,160,ego-car drives away from the edge of the road
+14_009333_70_220,14/009333,70,220,ego-car controls loss
+14_009338_176_326,14/009338,176,326,a vehicle changes lanes with the same direction to ego-car
+14_009338_1_151,14/009338,1,151,a vehicle changes lanes with the same direction to ego-car
+14_009339_13_163,14/009339,13,163,ego-car controls loss
+14_009348_90_240,14/009348,90,240,ego-car makes a dodge action
+14_009359_28_178,14/009359,28,178,ego-car makes a dodge action
+14_009361_1_151,14/009361,1,151,ego-car makes a dodge action
+14_009365_50_200,14/009365,50,200,ego-car makes a dodge action
+14_009371_80_230,14/009371,80,230,ego-car makes a dodge action
+14_009429_180_330,14/009429,180,330,ego-car controls loss
+14_009429_1_151,14/009429,1,151,ego-car controls loss
+14_009440_30_180,14/009440,30,180,ego-car makes a dodge action
+14_009467_30_180,14/009467,30,180,ego-car controls loss
+14_009492_75_225,14/009492,75,225,a following vehicle makes a maneuver
+14_009492_1_151,14/009492,1,151,a following vehicle makes a maneuver
+14_009517_70_220,14/009517,70,220,ego-car controls loss
+14_009612_100_250,14/009612,100,250,ego-car controls loss
+14_009624_150_300,14/009624,150,300,ego-car controls loss
+14_009650_150_300,14/009650,150,300,ego-car controls loss
+14_009687_50_200,14/009687,50,200,ego-car makes a dodge action
+14_009732_66_216,14/009732,66,216,ego-car makes a dodge action
+14_009734_30_180,14/009734,30,180,ego-car makes a dodge action
+14_009740_100_250,14/009740,100,250,ego-car makes a dodge action
+14_009784_80_230,14/009784,80,230,ego-car controls loss
+14_009821_80_230,14/009821,80,230,ego-car controls loss
+14_009821_1_151,14/009821,1,151,ego-car controls loss
+14_009843_230_380,14/009843,230,380,ego-car makes a dodge action
+14_009843_1_151,14/009843,1,151,ego-car makes a dodge action
+14_009851_170_320,14/009851,170,320,ego-car controls loss
+14_009856_20_170,14/009856,20,170,ego-car makes a dodge action
+14_009857_86_236,14/009857,86,236,ego-car makes a dodge action
+14_009875_37_187,14/009875,37,187,ego-car controls loss
+14_009888_108_258,14/009888,108,258,ego-car makes a dodge action
+14_009888_1_151,14/009888,1,151,ego-car makes a dodge action
+14_009925_50_200,14/009925,50,200,ego-car makes a dodge action
+14_010057_13_163,14/010057,13,163,ego-car makes a dodge action
+14_010075_15_165,14/010075,15,165,ego-car controls loss
+14_010091_30_180,14/010091,30,180,ego-car makes a dodge action
+14_010183_20_170,14/010183,20,170,ego-car controls loss
+14_010190_72_222,14/010190,72,222,ego-car controls loss
+14_010192_56_206,14/010192,56,206,ego-car controls loss
+14_010220_40_190,14/010220,40,190,ego-car controls loss
+14_010221_115_265,14/010221,115,265,ego-car controls loss
+14_010221_1_151,14/010221,1,151,ego-car controls loss
+14_010237_1_151,14/010237,1,151,a vehicle controls loss
+14_010245_90_240,14/010245,90,240,ego-car makes a dodge action
+14_010247_10_160,14/010247,10,160,ego-car controls loss
+14_010249_50_200,14/010249,50,200,ego-car makes a dodge action
+14_010255_1_151,14/010255,1,151,ego-car controls loss
+14_010257_70_220,14/010257,70,220,ego-car controls loss
+14_010278_100_250,14/010278,100,250,ego-car controls loss
+14_010292_130_280,14/010292,130,280,ego-car controls loss
+14_010338_10_160,14/010338,10,160,ego-car makes a dodge action
+14_010339_120_270,14/010339,120,270,ego-car makes a dodge action
+14_010352_70_220,14/010352,70,220,ego-car makes a dodge action
+14_010399_50_200,14/010399,50,200,ego-car controls loss
+14_010423_30_180,14/010423,30,180,ego-car drives away from the edge of the road
+14_010433_20_170,14/010433,20,170,ego-car makes a dodge action
+14_010505_1_151,14/010505,1,151,ego-car makes a dodge action
+14_010543_150_300,14/010543,150,300,ego-car controls loss
+14_010543_1_151,14/010543,1,151,ego-car controls loss
+14_010558_70_220,14/010558,70,220,ego-car controls loss
+14_010573_120_270,14/010573,120,270,ego-car makes a dodge action
+14_010573_1_151,14/010573,1,151,ego-car makes a dodge action
+14_010576_20_170,14/010576,20,170,ego-car makes a dodge action
+14_010686_40_190,14/010686,40,190,ego-car makes a dodge action
+14_010746_10_160,14/010746,10,160,ego-car controls loss
+14_010885_80_230,14/010885,80,230,ego-car controls loss
+14_010966_30_180,14/010966,30,180,ego-car overtakes
+14_010967_73_223,14/010967,73,223,ego-car controls loss
+14_011001_50_200,14/011001,50,200,ego-car controls loss
+14_011018_50_200,14/011018,50,200,ego-car makes a dodge action
+14_011050_20_170,14/011050,20,170,ego-car controls loss
+14_011075_50_200,14/011075,50,200,ego-car controls loss
+14_011093_105_255,14/011093,105,255,ego-car controls loss
+14_011104_80_230,14/011104,80,230,ego-car drives away from the edge of the road
+14_011144_30_180,14/011144,30,180,ego-car controls loss
+14_011157_70_220,14/011157,70,220,ego-car controls loss
+14_011158_40_190,14/011158,40,190,ego-car controls loss
+14_011172_17_167,14/011172,17,167,a vehicle controls loss
+14_011184_10_160,14/011184,10,160,a vehicle controls loss
+14_011185_8_158,14/011185,8,158,a vehicle controls loss
+14_011186_60_210,14/011186,60,210,a vehicle controls loss
+14_011186_1_151,14/011186,1,151,a vehicle controls loss
+14_011200_25_175,14/011200,25,175,there is an object crash
+14_011249_10_160,14/011249,10,160,a vehicle controls loss
+14_011348_20_170,14/011348,20,170,ego-car controls loss
+14_011457_85_235,14/011457,85,235,ego-car drives away from the edge of the road
+14_011457_1_151,14/011457,1,151,ego-car drives away from the edge of the road
+14_011483_37_187,14/011483,37,187,ego-car makes a dodge action
+14_011524_98_248,14/011524,98,248,ego-car controls loss
+14_011524_1_151,14/011524,1,151,ego-car controls loss
+14_011722_9_159,14/011722,9,159,ego-car controls loss
+14_011746_70_220,14/011746,70,220,ego-car controls loss
+15_009290_10_160,15/009290,10,160,there is an object crash
+15_009502_33_183,15/009502,33,183,there is an object crash
+15_009545_116_266,15/009545,116,266,ego-car controls loss
+15_009634_25_175,15/009634,25,175,ego-car makes a dodge action
+15_009720_1_151,15/009720,1,151,there is an object crash
+15_009769_1_151,15/009769,1,151,a vehicle controls loss
+15_010068_18_168,15/010068,18,168,there is an object crash
+15_010138_20_170,15/010138,20,170,there is an object crash
+15_010294_20_170,15/010294,20,170,there is an object crash
+15_010300_115_265,15/010300,115,265,there is an object crash
+15_010675_1_151,15/010675,1,151,ego-car controls loss
+15_010781_10_160,15/010781,10,160,ego-car makes a dodge action
+15_010992_20_170,15/010992,20,170,there is an object crash
+15_011187_100_250,15/011187,100,250,a vehicle controls loss
+15_011187_1_151,15/011187,1,151,a vehicle controls loss
+15_011264_74_224,15/011264,74,224,ego-car controls loss
+15_011264_1_151,15/011264,1,151,ego-car controls loss
+15_011280_53_203,15/011280,53,203,ego-car controls loss
+15_011487_6_156,15/011487,6,156,there is an object crash
+15_011539_62_212,15/011539,62,212,ego-car makes a dodge action
+15_011649_90_240,15/011649,90,240,there is an object crash
+15_011649_1_151,15/011649,1,151,there is an object crash
+15_011750_8_158,15/011750,8,158,there is an object crash
+16_009302_1_151,16/009302,1,151,ego-car controls loss
+16_009543_10_160,16/009543,10,160,ego-car controls loss
+16_009915_50_200,16/009915,50,200,ego-car controls loss
+16_010167_10_160,16/010167,10,160,ego-car drives away from the edge of the road
+16_010279_80_230,16/010279,80,230,ego-car controls loss
+16_010326_50_200,16/010326,50,200,ego-car controls loss
+16_010426_17_167,16/010426,17,167,ego-car controls loss
+16_010598_90_240,16/010598,90,240,ego-car controls loss
+16_010977_150_300,16/010977,150,300,there is an object crash
+16_011298_76_226,16/011298,76,226,ego-car controls loss
+16_011306_38_188,16/011306,38,188,ego-car controls loss
+16_011647_118_268,16/011647,118,268,ego-car controls loss
+16_011647_1_151,16/011647,1,151,ego-car controls loss
+17_009470_5_155,17/009470,5,155,a vehicle turns around at non-signalized junctions
+17_009645_120_270,17/009645,120,270,ego-car accelerates to turn on a road
+17_009651_80_230,17/009651,80,230,ego-car controls loss
+17_009949_11_161,17/009949,11,161,ego-car turns right across path at signalized junctions
+17_010023_50_200,17/010023,50,200,there is an object crash
+17_010302_50_200,17/010302,50,200,there is an object crash
+17_010884_1_151,17/010884,1,151,ego-car controls loss
+17_011616_61_211,17/011616,61,211,a vehicle changes lanes with the same direction to ego-car
+17_011616_1_151,17/011616,1,151,a vehicle changes lanes with the same direction to ego-car
+17_011697_73_223,17/011697,73,223,ego-car makes a dodge action
+17_011710_40_190,17/011710,40,190,ego-car controls loss
+18_009652_66_216,18/009652,66,216,ego-car controls loss
+18_010295_30_180,18/010295,30,180,ego-car makes a dodge action
+18_010891_75_225,18/010891,75,225,ego-car makes a dodge action
+18_011107_10_160,18/011107,10,160,a vehicle turns left across path at non-signalized junctions
+18_011167_1_151,18/011167,1,151,there is an object crash
+2_009677_1_151,2/009677,1,151,a pedestrian crosses the road
+2_011083_25_175,2/011083,25,175,a pedestrian crosses the road
+20_009220_170_320,20/009220,170,320,a vehicle controls loss
+20_009220_1_151,20/009220,1,151,a vehicle controls loss
+20_009424_2_152,20/009424,2,152,there is an object crash
+21_008404_3_153,21/008404,3,153,a vehicle controls loss
+21_008579_50_200,21/008579,50,200,a vehicle controls loss
+21_008924_1_151,21/008924,1,151,a vehicle controls loss
+21_009195_132_282,21/009195,132,282,a vehicle controls loss
+21_009195_1_151,21/009195,1,151,a vehicle controls loss
+21_009196_120_270,21/009196,120,270,a vehicle controls loss
+21_009196_1_151,21/009196,1,151,a vehicle controls loss
+21_009335_180_330,21/009335,180,330,a vehicle controls loss
+21_009840_22_172,21/009840,22,172,a vehicle controls loss
+21_009880_10_160,21/009880,10,160,a vehicle controls loss
+21_010749_25_175,21/010749,25,175,a vehicle controls loss
+23_008711_20_170,23/008711,20,170,a vehicle turns right across path at signalized junctions
+23_008974_23_173,23/008974,23,173,a vehicle makes a dodge action
+24_007947_16_166,24/007947,16,166,a vehicle controls loss
+24_008114_86_236,24/008114,86,236,a vehicle controls loss
+24_008878_52_202,24/008878,52,202,a vehicle retrogrades
+24_008878_1_151,24/008878,1,151,a vehicle retrogrades
+24_008935_2_152,24/008935,2,152,a vehicle controls loss
+24_009207_62_212,24/009207,62,212,a vehicle controls loss
+24_009226_26_176,24/009226,26,176,a vehicle controls loss
+24_009421_32_182,24/009421,32,182,a vehicle controls loss
+24_009623_50_200,24/009623,50,200,ego-car makes a dodge action
+24_009723_17_167,24/009723,17,167,a vehicle controls loss
+27_008648_6_156,27/008648,6,156,there is an object crash
+29_008798_1_151,29/008798,1,151,a vehicle controls loss
+3_009400_15_165,3/009400,15,165,a cyclist changes lines into motorway
+3_010135_1_151,3/010135,1,151,a cyclist crosses the road
+3_010836_1_151,3/010836,1,151,a cyclist crosses the road
+3_011084_20_170,3/011084,20,170,a cyclist crosses the road
+30_009590_1_151,30/009590,1,151,a vehicle makes a dodge action
+33_007341_12_162,33/007341,12,162,a vehicle controls loss
+33_011308_85_235,33/011308,85,235,there is an object crash
+33_011308_1_151,33/011308,1,151,there is an object crash
+35_008112_7_157,35/008112,7,157,a vehicle controls loss
+36_009735_25_175,36/009735,25,175,a vehicle controls loss
+37_009250_9_159,37/009250,9,159,a motorbike changes lines into motorway
+37_009438_1_151,37/009438,1,151,a vehicle makes a dodge action
+37_010089_30_180,37/010089,30,180,a vehicle controls loss
+37_010827_50_200,37/010827,50,200,a motorbike evades the vehicle
+39_009118_50_200,39/009118,50,200,a vehicle makes a dodge action
+39_009785_5_155,39/009785,5,155,there is an object crash
+39_010045_61_211,39/010045,61,211,a vehicle controls loss
+4_010093_25_175,4/010093,25,175,ego-car  turns right across path at non-signalized junctions
+40_009149_39_189,40/009149,39,189,a vehicle  goes straight crossing paths at non-signalized junctions
+40_011736_70_220,40/011736,70,220,vehicles  meet on the road
+40_011736_1_151,40/011736,1,151,vehicles  meet on the road
+41_009445_1_151,41/009445,1,151,there is an object crash
+41_009827_28_178,41/009827,28,178,there is an object crash
+41_010000_6_156,41/010000,6,156,there is an object crash
+41_011738_40_190,41/011738,40,190,a vehicle controls loss
+42_008746_17_167,42/008746,17,167,a vehicle controls loss
+42_009633_30_180,42/009633,30,180,a vehicle controls loss
+42_009641_20_170,42/009641,20,170,a vehicle controls loss
+42_009809_10_160,42/009809,10,160,a vehicle controls loss
+42_009822_45_195,42/009822,45,195,a vehicle controls loss
+42_010050_10_160,42/010050,10,160,a vehicle overtakes
+42_010347_1_151,42/010347,1,151,a vehicle controls loss
+43_005483_7_157,43/005483,7,157,a vehicle  goes straight in the blind spot area
+43_008126_4_154,43/008126,4,154,a vehicle controls loss
+43_008277_10_160,43/008277,10,160,a vehicle  goes straight crossing paths at non-signalized junctions
+43_008363_26_176,43/008363,26,176,a vehicle retrogrades
+43_008560_41_191,43/008560,41,191,a vehicle retrogrades
+43_008797_38_188,43/008797,38,188,a vehicle turns on a road with the same direction to another vehicle
+43_008797_1_151,43/008797,1,151,a vehicle turns on a road with the same direction to another vehicle
+43_009056_18_168,43/009056,18,168,a vehicle  goes straight crossing paths at non-signalized junctions
+43_009104_4_154,43/009104,4,154,a vehicle turns on a road with the same direction to another vehicle
+43_009133_47_197,43/009133,47,197,a following vehicle makes a maneuver
+43_009133_1_151,43/009133,1,151,a following vehicle makes a maneuver
+43_009209_19_169,43/009209,19,169,a vehicle controls loss
+43_009307_41_191,43/009307,41,191,a vehicle goes straight in the blind spot area
+43_009307_1_151,43/009307,1,151,a vehicle goes straight in the blind spot area
+43_009309_19_169,43/009309,19,169,a vehicle controls loss
+43_009321_30_180,43/009321,30,180,a vehicle turns on a road with the opposite direction to another vehicle
+43_009327_14_164,43/009327,14,164,a vehicle turns left across path at non-signalized junctions
+43_009344_10_160,43/009344,10,160,a vehicle  goes straight crossing paths at non-signalized junctions
+43_009346_90_240,43/009346,90,240,a vehicle turns on a road with the opposite direction to another vehicle
+43_009346_1_151,43/009346,1,151,a vehicle turns on a road with the opposite direction to another vehicle
+43_009354_8_158,43/009354,8,158,a vehicle controls loss
+43_009411_34_184,43/009411,34,184,a vehicle controls loss
+43_009435_1_151,43/009435,1,151,there is an object crash
+43_009458_18_168,43/009458,18,168,a vehicle changes lanes with the same direction to another vehicle
+43_009491_1_151,43/009491,1,151,lead vehicle decelerates
+43_009501_35_185,43/009501,35,185,a vehicle turns right across path at non-signalized junctions
+43_009570_44_194,43/009570,44,194,lead vehicle decelerates
+43_009611_76_226,43/009611,76,226,a vehicle controls loss
+43_009613_10_160,43/009613,10,160,a vehicle controls loss
+43_009617_12_162,43/009617,12,162,there is an object crash
+43_009628_90_240,43/009628,90,240,there is an object crash
+43_009640_20_170,43/009640,20,170,a vehicle controls loss
+43_009642_20_170,43/009642,20,170,a vehicle turns on a road with the opposite direction to another vehicle
+43_009655_30_180,43/009655,30,180,a vehicle makes a dodge action
+43_009779_44_194,43/009779,44,194,a vehicle turns left across path at signalized junctions
+43_009793_2_152,43/009793,2,152,a vehicle controls loss
+43_009841_56_206,43/009841,56,206,vehicles  meet on the road
+43_009869_10_160,43/009869,10,160,there is an object crash
+43_009872_24_174,43/009872,24,174,there is an object crash
+43_009977_113_263,43/009977,113,263,vehicles  meet on the road
+43_009982_20_170,43/009982,20,170,lead vehicle stops
+43_010206_10_160,43/010206,10,160,a vehicle controls loss
+43_010209_15_165,43/010209,15,165,a vehicle  goes straight crossing paths at non-signalized junctions
+43_010270_18_168,43/010270,18,168,there is an object crash
+43_010293_40_190,43/010293,40,190,a vehicle controls loss
+43_010303_1_151,43/010303,1,151,a vehicle controls loss
+43_010319_18_168,43/010319,18,168,there is an object crash
+43_010336_22_172,43/010336,22,172,there is an object crash
+43_010453_40_190,43/010453,40,190,lead vehicle stops
+43_010541_85_235,43/010541,85,235,a vehicle controls loss
+43_010541_1_151,43/010541,1,151,a vehicle controls loss
+43_010557_84_234,43/010557,84,234,there is an object crash
+43_010557_1_151,43/010557,1,151,there is an object crash
+43_010695_10_160,43/010695,10,160,a vehicle controls loss
+43_010822_70_220,43/010822,70,220,lead vehicle stops
+43_010856_25_175,43/010856,25,175,a vehicle controls loss
+43_010978_92_242,43/010978,92,242,there is an object crash
+43_011098_155_305,43/011098,155,305,a vehicle controls loss
+43_011098_1_151,43/011098,1,151,a vehicle controls loss
+43_011109_1_151,43/011109,1,151,a vehicle turns on a road with the opposite direction to another vehicle
+43_011236_29_179,43/011236,29,179,a motorbike turns left across path at signalized junctions
+43_011371_12_162,43/011371,12,162,a vehicle overtakes
+43_011462_46_196,43/011462,46,196,a following vehicle makes a maneuver
+43_011471_18_168,43/011471,18,168,vehicles  meet on the road
+43_011769_30_180,43/011769,30,180,a vehicle  goes straight crossing paths at non-signalized junctions
+44_011341_50_200,44/011341,50,200,a vehicle controls loss
+44_011341_1_151,44/011341,1,151,a vehicle controls loss
+45_007892_1_151,45/007892,1,151,a vehicle accelerating to turn on a road
+45_008930_24_174,45/008930,24,174,a vehicle turns right across path at non-signalized junctions
+48_005688_5_155,48/005688,5,155,a motorbike turns left across path at signalized junctions
+48_007979_59_209,48/007979,59,209,a vehicle makes a dodge action
+48_007986_97_247,48/007986,97,247,a vehicle retrogrades
+48_007986_1_151,48/007986,1,151,a vehicle retrogrades
+48_008107_3_153,48/008107,3,153,a vehicle changes lanes with the same direction to another vehicle
+48_008858_12_162,48/008858,12,162,a vehicle  goes straight crossing paths at non-signalized junctions
+48_009221_22_172,48/009221,22,172,a vehicle controls loss
+48_009329_4_154,48/009329,4,154,a vehicle goes straight in the blind spot area
+48_009343_110_260,48/009343,110,260,a vehicle changes lanes with the same direction to another vehicle
+48_009350_1_151,48/009350,1,151,there is an object crash
+48_009422_130_280,48/009422,130,280,a vehicle retrogrades
+48_009422_1_151,48/009422,1,151,a vehicle retrogrades
+48_009494_1_151,48/009494,1,151,a vehicle retrogrades
+48_009719_86_236,48/009719,86,236,a vehicle turns around at non-signalized junctions
+48_009835_46_196,48/009835,46,196,there is an object crash
+48_009847_17_167,48/009847,17,167,a vehicle controls loss
+48_009863_60_210,48/009863,60,210,a vehicle turns on a road with the opposite direction to another vehicle
+48_010275_1_151,48/010275,1,151,a vehicle controls loss
+48_011240_30_180,48/011240,30,180,a vehicle controls loss
+5_009197_13_163,5/009197,13,163,a motorbike crosses the road
+5_009425_12_162,5/009425,12,162,a motorbike runs red light
+5_009580_12_162,5/009580,12,162,a motorcycle crosses the road
+5_009904_56_206,5/009904,56,206,a motorbike runs red light
+5_009934_1_151,5/009934,1,151,a motorcycle crosses the road
+5_010470_1_151,5/010470,1,151,a motorbike turns around at non-signalized junctions
+5_010580_20_170,5/010580,20,170,a vehicle controls loss
+5_010659_10_160,5/010659,10,160,a motorcycle crosses the road
+5_010929_1_151,5/010929,1,151,ego-car  goes straight crossing paths at non-signalized junctions
+5_011025_1_151,5/011025,1,151,a motorbike crosses the road
+5_011291_18_168,5/011291,18,168,a motorbike runs red light
+5_011422_1_151,5/011422,1,151,a motorbike crosses the road
+5_011549_1_151,5/011549,1,151,a motorbike crosses the road
+5_011631_10_160,5/011631,10,160,a vehicle  goes straight crossing paths at non-signalized junctions
+5_011641_21_171,5/011641,21,171,a motorbike changes lines into motorway
+50_008011_12_162,50/008011,12,162,a vehicle  goes straight crossing paths at signalized junctions
+50_008113_45_195,50/008113,45,195,an vehicle turns around at non-signalized junctions
+50_008487_32_182,50/008487,32,182,a motorbike runs red light
+50_008541_46_196,50/008541,46,196,a vehicle  goes straight crossing paths at non-signalized junctions
+50_008785_32_182,50/008785,32,182,a vehicle controls loss
+50_008795_57_207,50/008795,57,207,a vehicle  goes straight crossing paths at signalized junctions
+50_008965_13_163,50/008965,13,163,a motorbike runs red light
+50_010785_15_165,50/010785,15,165,a vehicle turns left across path at signalized junctions
+56_009500_33_183,56/009500,33,183,a pedestrian crosses the road
+57_008784_2_152,57/008784,2,152,an vehicle turns around at non-signalized junctions
+57_008855_40_190,57/008855,40,190,a cyclist changes lines into motorway
+6_004745_34_184,6/004745,34,184,lead electric motorcycle stops
+6_009072_41_191,6/009072,41,191,a motorbike changes lines into motorway
+6_009245_13_163,6/009245,13,163,a motorbike changes lines into motorway
+6_009518_11_161,6/009518,11,161,a motorcycle crosses the road
+6_009695_42_192,6/009695,42,192,ego-car turns right across path at signalized junctions
+6_009811_27_177,6/009811,27,177,ego-car turns left across path at non-signalized junctions
+6_009900_10_160,6/009900,10,160,a motorbike changes lines into motorway
+6_009987_50_200,6/009987,50,200,a motorbike changes lines into motorway
+6_010097_1_151,6/010097,1,151,a motorcycle crosses the road
+6_010202_5_155,6/010202,5,155,a motorbike changes lines into motorway
+6_010459_17_167,6/010459,17,167,vehicles  meet on the road
+6_010469_10_160,6/010469,10,160,vehicles  meet on the road
+6_010599_10_160,6/010599,10,160,vehicles  meet on the road
+6_010605_15_165,6/010605,15,165,vehicles  meet on the road
+6_010626_10_160,6/010626,10,160,ego-car turns on a road with the same direction to another vehicle
+6_010661_10_160,6/010661,10,160,vehicles  meet on the road
+6_010786_17_167,6/010786,17,167,vehicles  meet on the road
+6_010792_20_170,6/010792,20,170,lead vehicle decelerates
+6_010799_5_155,6/010799,5,155,ego-car  turns right across path at non-signalized junctions
+6_010831_1_151,6/010831,1,151,a motorbike changes lines into motorway
+6_010934_40_190,6/010934,40,190,a motorbike changes lines into motorway
+6_011030_28_178,6/011030,28,178,vehicles  meet on the road
+6_011099_50_200,6/011099,50,200,vehicles  meet on the road
+6_011352_3_153,6/011352,3,153,vehicles  meet on the road
+6_011403_10_160,6/011403,10,160,ego-car  turns right across path at non-signalized junctions
+6_011505_10_160,6/011505,10,160,ego-car turns left across path at non-signalized junctions
+6_011517_4_154,6/011517,4,154,ego-car goes straight in the blind spot area
+6_011632_7_157,6/011632,7,157,a motorbike changes lines into motorway
+6_011757_30_180,6/011757,30,180,ego-car turns on a road
+61_001788_90_240,61/001788,90,240,ego-car controls loss
+61_009089_90_240,61/009089,90,240,a vehicle makes a dodge action
+61_009427_81_231,61/009427,81,231,ego-car controls loss
+61_009654_30_180,61/009654,30,180,ego-car controls loss
+61_009765_50_200,61/009765,50,200,ego-car controls loss
+61_009944_70_220,61/009944,70,220,ego-car controls loss
+61_009954_1_151,61/009954,1,151,ego-car controls loss
+61_010170_30_180,61/010170,30,180,ego-car controls loss
+61_010316_110_260,61/010316,110,260,ego-car controls loss
+61_010316_1_151,61/010316,1,151,ego-car controls loss
+61_010507_50_200,61/010507,50,200,ego-car controls loss
+61_010577_50_200,61/010577,50,200,ego-car controls loss
+61_010906_40_190,61/010906,40,190,ego-car controls loss
+61_011555_50_200,61/011555,50,200,ego-car controls loss
+61_011557_100_250,61/011557,100,250,ego-car controls loss
+61_011617_1_151,61/011617,1,151,a vehicle controls loss
+61_011705_23_173,61/011705,23,173,ego-car controls loss
+7_010066_1_151,7/010066,1,151,ego-car  goes straight crossing paths at non-signalized junctions
+7_011072_27_177,7/011072,27,177,ego-car  goes straight crossing paths at non-signalized junctions
+7_011086_5_155,7/011086,5,155,ego-car  goes straight crossing paths at non-signalized junctions
+7_011575_1_151,7/011575,1,151,ego-car goes straight at signalized junctions
+8_007980_10_160,8/007980,10,160,a vehicle retrogrades
+8_008004_5_155,8/008004,5,155,a vehicle controls loss
+8_008297_1_151,8/008297,1,151,a vehicle retrogrades
+8_008307_1_151,8/008307,1,151,a vehicle turns on a road with the same direction to ego-car
+8_008599_13_163,8/008599,13,163,a vehicle  goes straight crossing paths at non-signalized junctions
+8_008601_60_210,8/008601,60,210,a vehicle backes up into ego-car
+8_008705_10_160,8/008705,10,160,a vehicle makes a dodge action
+8_008750_9_159,8/008750,9,159,lead vehicle stops
+8_008782_90_240,8/008782,90,240,a vehicle backes up into ego-car
+8_008782_1_151,8/008782,1,151,a vehicle backes up into ego-car
+8_009131_8_158,8/009131,8,158,a pedestrian crosses the road
+8_009172_2_152,8/009172,2,152,a vehicle changes lanes with the same direction to ego-car
+8_009192_154_304,8/009192,154,304,vehicles  meet on the road
+8_009192_1_151,8/009192,1,151,vehicles  meet on the road
+8_009267_147_297,8/009267,147,297,ego-car backes up into another vehicle
+8_009331_28_178,8/009331,28,178,a vehicle turns right across path at non-signalized junctions
+8_009390_50_200,8/009390,50,200,lead vehicle decelerates
+8_009390_1_151,8/009390,1,151,lead vehicle decelerates
+8_009402_23_173,8/009402,23,173,a vehicle turns on a road with the same direction to ego-car
+8_009461_118_268,8/009461,118,268,a vehicle changes lanes with the same direction to ego-car
+8_009529_120_270,8/009529,120,270,a vehicle turns left across path at non-signalized junctions
+8_009539_24_174,8/009539,24,174,lead vehicle decelerates
+8_009548_1_151,8/009548,1,151,a vehicle controls loss
+8_009571_5_155,8/009571,5,155,lead vehicle decelerates
+8_009627_10_160,8/009627,10,160,a vehicle controls loss
+8_009750_178_328,8/009750,178,328,a vehicle backes up into another vehicle
+8_009750_1_151,8/009750,1,151,a vehicle backes up into another vehicle
+8_009812_40_190,8/009812,40,190,ego-car changes lanes with the same direction to another vehicle
+8_009966_10_160,8/009966,10,160,a vehicle goes straight near the center line of the road
+8_009980_50_200,8/009980,50,200,lead vehicle stops
+8_009980_1_151,8/009980,1,151,lead vehicle stops
+8_010046_6_156,8/010046,6,156,a vehicle overtakes
+8_010069_120_270,8/010069,120,270,a following vehicle makes a maneuver
+8_010110_1_151,8/010110,1,151,ego-car turns left across path at signalized junctions
+8_010125_35_185,8/010125,35,185,vehicles  meet on the road
+8_010171_90_240,8/010171,90,240,ego-car makes a dodge action
+8_010207_180_330,8/010207,180,330,a vehicle backes up into another vehicle
+8_010228_50_200,8/010228,50,200,a vehicle controls loss
+8_010254_30_180,8/010254,30,180,a vehicle turns on a road with the same direction to ego-car
+8_010284_1_151,8/010284,1,151,a vehicle backes up into another vehicle
+8_010287_230_380,8/010287,230,380,a vehicle controls loss
+8_010287_1_151,8/010287,1,151,a vehicle controls loss
+8_010323_70_220,8/010323,70,220,lead vehicle stops
+8_010344_30_180,8/010344,30,180,ego-car controls loss
+8_010359_50_200,8/010359,50,200,a vehicle controls loss
+8_010422_30_180,8/010422,30,180,a vehicle turns right across path at non-signalized junctions
+8_010455_50_200,8/010455,50,200,a vehicle turns left across path at non-signalized junctions
+8_010494_10_160,8/010494,10,160,a vehicle turns on a road with the same direction to ego-car
+8_010545_120_270,8/010545,120,270,ego-car makes a dodge action
+8_010646_5_155,8/010646,5,155,ego-car turns left across path at non-signalized junctions
+8_010683_30_180,8/010683,30,180,a vehicle controls loss
+8_010732_1_151,8/010732,1,151,a vehicle turns left across path at non-signalized junctions
+8_010757_100_250,8/010757,100,250,ego-car makes a dodge action
+8_010763_10_160,8/010763,10,160,a vehicle goes straight near the center line of the road
+8_010810_100_250,8/010810,100,250,a vehicle changes lanes with the same direction to ego-car
+8_010846_20_170,8/010846,20,170,a vehicle changes lanes with the same direction to ego-car
+8_010864_10_160,8/010864,10,160,a vehicle turns right across path at non-signalized junctions
+8_010871_30_180,8/010871,30,180,a vehicle turns right across path at non-signalized junctions
+8_010968_30_180,8/010968,30,180,a vehicle changes lanes with the same direction to ego-car
+8_010990_137_287,8/010990,137,287,a vehicle turns left across path at signalized junctions
+8_011027_77_227,8/011027,77,227,ego-car changes lanes with the same direction to another vehicle
+8_011096_118_268,8/011096,118,268,ego-car controls loss
+8_011096_1_151,8/011096,1,151,ego-car controls loss
+8_011115_70_220,8/011115,70,220,ego-car  turns right across path at non-signalized junctions
+8_011126_1_151,8/011126,1,151,a vehicle turns left across path at non-signalized junctions
+8_011150_95_245,8/011150,95,245,lead vehicle stops
+8_011237_125_275,8/011237,125,275,lead vehicle stops
+8_011237_1_151,8/011237,1,151,lead vehicle stops
+8_011238_32_182,8/011238,32,182,vehicles meet on the road
+8_011252_44_194,8/011252,44,194,a vehicle turns right across path at non-signalized junctions
+8_011273_138_288,8/011273,138,288,vehicles meet on the road
+8_011273_1_151,8/011273,1,151,vehicles meet on the road
+8_011311_15_165,8/011311,15,165,a vehicle turns right across path at non-signalized junctions
+8_011419_20_170,8/011419,20,170,a vehicle turns right across path at non-signalized junctions
+8_011477_2_152,8/011477,2,152,a vehicle changes lanes with the same direction to ego-car
+8_011521_13_163,8/011521,13,163,ego-car turns left across path at non-signalized junctions
+8_011698_40_190,8/011698,40,190,a vehicle changes lanes with the same direction to ego-car
+8_011743_6_156,8/011743,6,156,a following vehicle makes a maneuver
+8_011759_8_158,8/011759,8,158,a vehicle turns on a road with the same direction to ego-car
+9_009533_17_167,9/009533,17,167,a vehicle controls loss
+9_010371_1_151,9/010371,1,151,a vehicle overtakes
+9_011078_20_170,9/011078,20,170,a vehicle overtakes
+9_011405_30_180,9/011405,30,180,a vehicle overtakes
