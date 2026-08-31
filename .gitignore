@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# Data and outputs are never committed. Manifests in data/*.csv ARE committed:
+# they are small, and they are what makes the evaluation reproducible.
+features/
+results/
+data/Test/
+data/train/
+data/*.zip
+*.npz
