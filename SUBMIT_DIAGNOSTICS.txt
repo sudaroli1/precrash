@@ -1,0 +1,17 @@
+Run these six lines in your own terminal, from the repo root, with the venv
+active. They take about a minute. The daily cap is 100; this uses six.
+
+  .venv\Scripts\activate
+
+  python -m kaggle competitions submit -c zero-shot-taa -f submissions\d_step_at_075.csv     -m "diag: step at 75, reference"
+  python -m kaggle competitions submit -c zero-shot-taa -f submissions\d_pre_graded.csv      -m "diag: graded before crossing, crosses 75"
+  python -m kaggle competitions submit -c zero-shot-taa -f submissions\d_post_graded.csv     -m "diag: graded after crossing, crosses 75"
+  python -m kaggle competitions submit -c zero-shot-taa -f submissions\d_both_graded.csv     -m "diag: graded throughout, crosses 75"
+  python -m kaggle competitions submit -c zero-shot-taa -f submissions\d_step_at_076.csv     -m "diag: step at 76, one-frame calibration"
+  python -m kaggle competitions submit -c zero-shot-taa -f submissions\00_replicate_sample.csv -m "diag: organisers sample submission, verbatim"
+
+Then, after a minute or two:
+
+  python -m kaggle competitions submissions -c zero-shot-taa -v > submissions\scores.csv
+
+and tell me it is done. I read scores.csv from here.
