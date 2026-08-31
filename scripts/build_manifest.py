@@ -73,9 +73,19 @@ from __future__ import annotations
 import argparse
 import csv
 import random
+import sys
 from pathlib import Path
 
 VIDEO_EXTS = {".mp4", ".avi", ".mov", ".mkv"}
+
+
+# Windows consoles default to cp1252. Nothing printed here should be able to
+# raise UnicodeEncodeError partway through a long run; see src/utils/console.py.
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(errors="replace")
+    except (AttributeError, ValueError):
+        pass
 
 
 def parse_args():
@@ -154,7 +164,7 @@ def build(args):
 
     ids = [r["clip_id"] for r in rows]
     if len(ids) != len(set(ids)):
-        raise SystemExit("Duplicate clip_id values — positive and negative filenames collide. "
+        raise SystemExit("Duplicate clip_id values -- positive and negative filenames collide. "
                          "Prefix them (pos_/neg_) so cached features cannot overwrite each other.")
 
     out = Path(args.out)
@@ -176,7 +186,7 @@ def build(args):
               "  and this is the exact defect that got the paper rejected.\n")
     elif n_neg < n_pos * 0.5:
         print(f"\n  Note: only {n_neg} negatives for {n_pos} positives. Workable, but state\n"
-              f"  the ratio explicitly in the paper — precision depends on it.\n")
+              f"  the ratio explicitly in the paper -- precision depends on it.\n")
 
 
 def split(args):
@@ -219,7 +229,7 @@ def split(args):
         p = sum(int(r["label"]) == 1 for r in subset)
         print(f"Wrote {out}  ({p} positive, {len(subset) - p} negative)")
 
-    print(f"\nSeed {args.seed} recorded. Commit both files — a split you cannot")
+    print(f"\nSeed {args.seed} recorded. Commit both files -- a split you cannot")
     print("reproduce is a split a referee cannot trust.")
     print("Tune on dev. Run test once, at the end, and report whatever it gives you.")
 

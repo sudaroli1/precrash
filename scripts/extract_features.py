@@ -70,6 +70,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
+from utils.console import safe_console  # noqa: E402
 from engines.clip_scorer import CLIPScorer
 from engines.flow_scorer import FlowScorer
 from engines.nlp_scorer import NLPScorer
@@ -197,6 +198,7 @@ def check_device(device: str) -> str:
 
 
 def main():
+    safe_console()
     args = parse_args()
     args.device = check_device(args.device)
     out_dir = Path(args.out_dir)

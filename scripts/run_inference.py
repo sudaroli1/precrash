@@ -43,6 +43,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
+from utils.console import safe_console  # noqa: E402
 from postprocess import PostProcessor  # noqa: E402
 
 
@@ -107,6 +108,7 @@ def first_crossing(p, threshold=0.5):
 
 
 def main():
+    safe_console()
     args = parse_args()
     with open(args.config) as f:
         cfg = yaml.safe_load(f)
@@ -123,7 +125,7 @@ def main():
 
     print(f"clip length {T} frames @ {args.fps} fps"
           + (f", annotated onset at frame {onset}" if onset else ", onset unknown"))
-    print("\n  diagnostic only — these are not performance metrics.")
+    print("\n  diagnostic only -- these are not performance metrics.")
     print("  Corpus performance needs labels: use evaluate.py.\n")
     print(f"  {'curve':<26}{'first crossing':>15}{'lead over onset':>18}")
     print("  " + "-" * 59)
@@ -132,13 +134,13 @@ def main():
                         ("VIDEO-BLIND prior", p_prior)]:
         tc = first_crossing(curve, thr)
         if tc is None:
-            print(f"  {name:<26}{'never':>15}{'—':>18}")
+            print(f"  {name:<26}{'never':>15}{'--':>18}")
         elif onset:
             lead = (onset - tc) / args.fps
             flag = "" if lead > 0 else "  (after onset)"
             print(f"  {name:<26}{tc:>15}{lead:>15.2f} s{flag}")
         else:
-            print(f"  {name:<26}{tc:>15}{'—':>18}")
+            print(f"  {name:<26}{tc:>15}{'--':>18}")
 
     prior_tc, ens_tc = first_crossing(p_prior, thr), first_crossing(p_final, thr)
     if prior_tc is not None and ens_tc is not None and prior_tc <= ens_tc:

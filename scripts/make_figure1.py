@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -36,6 +37,15 @@ import matplotlib.pyplot as plt
 CLAIM = 4.23
 
 BLUE, INK, MUTED, GRID = "#2a78d6", "#0b0b0b", "#52514e", "#e8e8e6"
+
+
+# Windows consoles default to cp1252. Nothing printed here should be able to
+# raise UnicodeEncodeError partway through a long run; see src/utils/console.py.
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(errors="replace")
+    except (AttributeError, ValueError):
+        pass
 
 
 def parse_args():

@@ -25,9 +25,19 @@ from __future__ import annotations
 
 import argparse
 import csv
+import sys
 from pathlib import Path
 
 import numpy as np
+
+
+# Windows consoles default to cp1252. Nothing printed here should be able to
+# raise UnicodeEncodeError partway through a long run; see src/utils/console.py.
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(errors="replace")
+    except (AttributeError, ValueError):
+        pass
 
 
 def parse_args():

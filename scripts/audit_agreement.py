@@ -39,6 +39,7 @@ import argparse
 import csv
 import json
 from collections import Counter
+import sys
 from pathlib import Path
 
 # Fields coded for every paper. Keep in sync with the protocol document.
@@ -66,6 +67,15 @@ ALLOWED = {
 }
 
 ID_FIELD = "paper_id"
+
+
+# Windows consoles default to cp1252. Nothing printed here should be able to
+# raise UnicodeEncodeError partway through a long run; see src/utils/console.py.
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(errors="replace")
+    except (AttributeError, ValueError):
+        pass
 
 
 def parse_args():
@@ -111,7 +121,7 @@ def read_coding(path: Path) -> dict[str, dict]:
 
 
 def cohens_kappa(a: list[str], b: list[str]) -> tuple[float, float]:
-    """Return (kappa, raw agreement). Kappa is nan when it is undefined —
+    """Return (kappa, raw agreement). Kappa is nan when it is undefined --
     which happens when both coders used a single value throughout, and is worth
     seeing rather than hiding behind a zero."""
     n = len(a)
@@ -175,7 +185,7 @@ def main():
         with open(dpath, "w", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=["paper_id", "field", "coder_a", "coder_b"])
             w.writeheader(); w.writerows(disagreements)
-        print(f"\nwrote {dpath} — resolve these together before reporting counts")
+        print(f"\nwrote {dpath} -- resolve these together before reporting counts")
 
     # ---- summary counts ----
     if args.adjudicated:

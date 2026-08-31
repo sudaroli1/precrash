@@ -63,6 +63,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
+from utils.console import safe_console  # noqa: E402
 from utils.frame_io import describe_clip  # noqa: E402
 
 FIELDS = [
@@ -105,6 +106,7 @@ def find_frame_dir(root: Path, category: str, video_num: str) -> Path | None:
 
 
 def main():
+    safe_console()
     args = parse_args()
     root = Path(args.root)
     if not root.is_dir():

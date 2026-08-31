@@ -60,9 +60,19 @@ import csv
 import random
 import subprocess
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import sys
 from pathlib import Path
 
 VIDEO_EXTS = (".mp4", ".avi", ".mov", ".mkv")
+
+
+# Windows consoles default to cp1252. Nothing printed here should be able to
+# raise UnicodeEncodeError partway through a long run; see src/utils/console.py.
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(errors="replace")
+    except (AttributeError, ValueError):
+        pass
 
 
 def parse_args():
@@ -321,7 +331,7 @@ def main():
     if args.onset_mode == "fixed" and onsets and len(set(onsets)) < 5:
         print("\n  Note: onsets are near-constant across clips, which is exactly the\n"
               "  construction that lets a video-blind template score well. That is the\n"
-              "  intended condition here — now build the random-onset counterpart and\n"
+              "  intended condition here -- now build the random-onset counterpart and\n"
               "  compare.")
 
 
