@@ -105,18 +105,62 @@ def detect_format(sample_path: Path) -> dict:
     if not rows:
         raise SystemExit(f"{sample_path} is empty")
     raw = rows[0]["risk"]
+    bracketed = raw.strip().startswith("[")
+    sep = ", " if ", " in raw else ","
+    values = parse_risk(raw)
+    style = calibrate_style(raw, values, sep, bracketed)
     return {
         "fieldnames": list(rows[0].keys()),
-        "bracketed": raw.strip().startswith("["),
-        "sep": ", " if ", " in raw else ",",
-        "n_values": len(parse_risk(raw)),
+        "bracketed": bracketed,
+        "sep": sep,
+        "n_values": len(values),
         "ids": [r["id"] for r in rows],
-        "first_values": parse_risk(raw)[:3].tolist(),
+        "style": style,
+        "sample_values": values,
+        "exact": style != "f6_strip" or format_risk(values, {
+            "style": "f6_strip", "sep": sep, "bracketed": bracketed}) == raw.strip(),
     }
 
 
+# Candidate ways a float might have been written into the reference file. The
+# right one is not guessable -- it depends on whether the organisers used
+# pandas, numpy, repr(), or an f-string, and with what precision -- so it is
+# recovered by testing each against their own file rather than assumed.
+FLOAT_STYLES = {
+    "repr": repr,
+    "str": str,
+    "g": lambda v: f"{v:g}",
+    "r17": lambda v: f"{v:.17g}",
+    **{f"f{n}": (lambda n: lambda v: f"{v:.{n}f}")(n) for n in range(1, 11)},
+    **{f"f{n}_strip": (lambda n: lambda v: f"{v:.{n}f}".rstrip("0").rstrip("."))(n)
+       for n in range(1, 11)},
+}
+
+
+def calibrate_style(sample_raw: str, values: np.ndarray, sep: str,
+                    bracketed: bool) -> str:
+    """Find the float style that reproduces the reference string exactly.
+
+    Falls back to a reasonable default when none matches -- the scorer parses
+    floats, so trailing digits almost certainly do not affect the score. But an
+    exact match turns --replicate_sample into a real check of the id order and
+    the whole write path, at the cost of no submission slot.
+    """
+    for name, fn in FLOAT_STYLES.items():
+        body = sep.join(fn(float(v)) for v in values)
+        cand = f"[{body}]" if bracketed else body
+        if cand == sample_raw.strip():
+            return name
+    return "f6_strip"
+
+
 def format_risk(values: np.ndarray, fmt: dict) -> str:
-    body = fmt["sep"].join(f"{v:.6f}".rstrip("0").rstrip(".") for v in values)
+    fn = FLOAT_STYLES[fmt["style"]]
+    # float(v), not v. repr() of a numpy scalar is "np.float64(0.51)" under
+    # numpy 2, which triples the file size and would be rejected by the scorer.
+    # The style functions are calibrated on Python floats and must be applied to
+    # Python floats.
+    body = fmt["sep"].join(fn(float(v)) for v in values)
     return f"[{body}]" if fmt["bracketed"] else body
 
 
@@ -156,13 +200,20 @@ def main():
     print(f"test.csv           : {len(test_ids)} ids")
     print(f"sample_submission  : {len(fmt['ids'])} ids, {fmt['n_values']} values, "
           f"bracketed={fmt['bracketed']}, sep={fmt['sep']!r}")
+    print(f"float style        : {fmt['style']}"
+          f"{'' if fmt['exact'] else '  (no exact match; using a default)'}")
 
     if set(test_ids) != set(fmt["ids"]):
         print("  note: sample and test id sets differ; test.csv is authoritative")
 
     # ---- build the curves ------------------------------------------------
     if args.replicate_sample:
-        ramp = np.linspace(0.001, 0.999, fmt["n_values"])
+        # Their own values, not a freshly computed linspace. The point of this
+        # mode is to reproduce their file exactly, and a recomputed ramp differs
+        # in the trailing digits -- the reference file holds values already
+        # rounded to six places, so recomputing at full precision writes
+        # 0.007697986577181208 where they wrote 0.007698.
+        ramp = fmt["sample_values"]
         curves = {i: ramp for i in test_ids}
         label = "replicate_sample (known score: 0.58333)"
     elif args.curve:

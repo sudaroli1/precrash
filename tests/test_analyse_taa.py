@@ -152,3 +152,84 @@ def test_submission_refuses_incomplete_feature_coverage(tmp_path):
     assert r.returncode != 0
     assert "have no features" in (r.stdout + r.stderr)
     assert not (tmp_path / "s.csv").exists()
+
+
+@pytest.mark.parametrize("style_name,fn", [
+    ("repr", repr),
+    ("fixed6", lambda v: f"{v:.6f}".rstrip("0").rstrip(".")),
+    ("general", lambda v: f"{v:g}"),
+    ("fixed4", lambda v: f"{v:.4f}"),
+])
+def test_submission_recovers_the_reference_float_style(tmp_path, style_name, fn):
+    """How the organisers serialised their floats is not guessable -- pandas,
+    numpy, repr() and an f-string all differ in the trailing digits. The style
+    is recovered by testing candidates against their own file, so
+    --replicate_sample is a real check of the write path rather than an
+    approximation of it."""
+    import csv as _csv
+    import subprocess
+
+    ids = [f"11_00{i:04d}_1_151" for i in range(10)]
+    ramp = [float(v) for v in np.linspace(0.001, 0.999, 150)]
+    risk = "[" + ",".join(fn(v) for v in ramp) + "]"
+
+    with open(tmp_path / "test.csv", "w", newline="", encoding="utf-8") as f:
+        w = _csv.DictWriter(f, fieldnames=["id", "video_id", "start_frame",
+                                           "end_frame", "caption"])
+        w.writeheader()
+        for i in ids:
+            w.writerow({"id": i, "video_id": "11/0001", "start_frame": 1,
+                        "end_frame": 151, "caption": "x"})
+    with open(tmp_path / "sample.csv", "w", newline="", encoding="utf-8") as f:
+        w = _csv.DictWriter(f, fieldnames=["id", "risk"])
+        w.writeheader()
+        for i in ids:
+            w.writerow({"id": i, "risk": risk})
+
+    r = subprocess.run([sys.executable, "scripts/make_submission.py",
+                        "--test_csv", str(tmp_path / "test.csv"),
+                        "--sample_csv", str(tmp_path / "sample.csv"),
+                        "--replicate_sample", "--out", str(tmp_path / "s.csv")],
+                       cwd=ROOT, capture_output=True, text=True)
+    assert r.returncode == 0, r.stderr[-800:]
+    assert "byte-identical" in r.stdout, r.stdout[-800:]
+
+
+def test_numpy_scalars_do_not_leak_into_the_file(tmp_path):
+    """repr() of a numpy scalar is 'np.float64(0.51)' under numpy 2. Writing
+    that triples the file and the scorer would reject it. The style functions
+    are calibrated on Python floats and must be applied to Python floats."""
+    import csv as _csv
+    import subprocess
+
+    ids = [f"11_00{i:04d}_1_151" for i in range(10)]
+    ramp = [float(v) for v in np.linspace(0.001, 0.999, 150)]
+    risk = "[" + ",".join(repr(v) for v in ramp) + "]"      # calibrates to repr
+
+    with open(tmp_path / "test.csv", "w", newline="", encoding="utf-8") as f:
+        w = _csv.DictWriter(f, fieldnames=["id", "video_id", "start_frame",
+                                           "end_frame", "caption"])
+        w.writeheader()
+        for i in ids:
+            w.writerow({"id": i, "video_id": "11/0001", "start_frame": 1,
+                        "end_frame": 151, "caption": "x"})
+    with open(tmp_path / "sample.csv", "w", newline="", encoding="utf-8") as f:
+        w = _csv.DictWriter(f, fieldnames=["id", "risk"])
+        w.writeheader()
+        for i in ids:
+            w.writerow({"id": i, "risk": risk})
+
+    out = tmp_path / "s.csv"
+    r = subprocess.run([sys.executable, "scripts/make_submission.py",
+                        "--test_csv", str(tmp_path / "test.csv"),
+                        "--sample_csv", str(tmp_path / "sample.csv"),
+                        "--curve", "constant_0.51", "--out", str(out)],
+                       cwd=ROOT, capture_output=True, text=True)
+    assert r.returncode == 0, r.stderr[-800:]
+
+    text = out.read_text(encoding="utf-8")
+    assert "np.float64" not in text
+    assert "float64" not in text
+    rows = list(_csv.DictReader(open(out, encoding="utf-8")))
+    assert all(len(A.parse_risk(x["risk"])) == 150 for x in rows)
+    assert all(abs(v - 0.51) < 1e-12 for v in A.parse_risk(rows[0]["risk"]))
