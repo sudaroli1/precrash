@@ -107,6 +107,70 @@ def blind_family(n_frames: int) -> dict[str, np.ndarray]:
     return out
 
 
+def probe_family(n_frames: int) -> dict[str, np.ndarray]:
+    """Curves designed to DECOMPOSE the official score, not merely to score well.
+
+    The official score is
+
+        w_AP*AP + w_AUC*AUC + w_TTA*TTA@0.5 + w_STTA*STTA@0.5
+
+    with the weights undisclosed. Every curve below is constant across clips, so
+    each scores base-rate AP and chance AUC -- those two terms contribute the
+    same amount to all of them and cancel in any difference. What differs is
+    what the two timing terms see.
+
+    TTA@0.5 = max{t_ai - t_a | p_t > 0.5}, where t_a is the FIRST frame above
+    threshold. STTA@0.5 additionally requires p to stay above 0.5 continuously
+    from t_a' through t_ai.
+
+    THE THREE THAT MATTER
+    ---------------------
+      never_crosses     0.49 throughout. Never above threshold, so both timing
+                        terms are zero. This measures the AP+AUC floor alone.
+
+      cross_then_drop   0.51 at frame 0, then 0.49 forever. t_a = 0, so TTA is
+                        the maximum the clip admits -- but the score never stays
+                        above threshold, so STTA collapses. This adds exactly
+                        the TTA term to the floor.
+
+      constant_0.51     Above threshold everywhere. Both timing terms saturate.
+
+    Subtracting in sequence isolates each weight-times-mean-onset product:
+    (cross_then_drop - never_crosses) is the TTA contribution, and
+    (constant_0.51 - cross_then_drop) is the STTA contribution. Three
+    submissions, and the composite comes apart.
+
+    THE SWEEP
+    ---------
+      step_at_K         0.49 before frame K, 0.51 from K onward. If the timing
+                        terms are linear in the crossing frame, these fall on a
+                        straight line, and its slope is the same quantity the
+                        differences above give -- an independent check.
+    """
+    out = {
+        "never_crosses": np.full(n_frames, 0.49),
+        "constant_0.51": np.full(n_frames, 0.51),
+        "constant_0.99": np.full(n_frames, 0.99),
+    }
+
+    drop = np.full(n_frames, 0.49)
+    drop[0] = 0.51
+    out["cross_then_drop"] = drop
+
+    # crosses at 0, dips for ten frames in the middle, recovers: TTA unchanged,
+    # STTA pushed back to the end of the dip
+    dip = np.full(n_frames, 0.51)
+    dip[n_frames // 3: n_frames // 3 + 10] = 0.49
+    out["cross_then_dip"] = dip
+
+    for k in (0, 10, 25, 50, 75, 100, 125, 140):
+        c = np.full(n_frames, 0.49)
+        c[k:] = 0.51
+        out[f"step_at_{k:03d}"] = c
+
+    return out
+
+
 def parse_risk(text: str) -> np.ndarray:
     """Parse a submission's risk field into an array.
 
