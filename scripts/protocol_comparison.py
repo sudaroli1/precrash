@@ -47,6 +47,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
+from utils.console import safe_console  # noqa: E402
 from postprocess import PostProcessor
 from utils.metrics import evaluate_anticipation, matched_windows, paired_bootstrap_test
 
@@ -151,6 +152,7 @@ def load_features(feature_dir: Path) -> dict:
 
 
 def main():
+    safe_console()
     ap = argparse.ArgumentParser(description="Legacy vs corrected protocol comparison")
     ap.add_argument("--features", required=True)
     ap.add_argument("--fps", type=float, default=None,
@@ -168,7 +170,7 @@ def main():
     n_pos = sum(l == 1 for l in data["label"])
     n_neg = len(data["label"]) - n_pos
     if n_neg == 0:
-        raise SystemExit("No negative clips — the corrected panel cannot be computed.")
+        raise SystemExit("No negative clips -- the corrected panel cannot be computed.")
 
     if all(f is not None for f in data["fps"]):
         FPS = [float(f) for f in data["fps"]]
@@ -227,7 +229,7 @@ def main():
         r["corrected_rank"] = i
 
     hdr = (f"{'method':<26}{'blind':>6}{'t_c':>8}{'TTA*':>8}{'STTA':>7}"
-           f"{'| AP':>9}{'AUC':>8}{'TTA@R80':>9}{'rank L→C':>11}")
+           f"{'| AP':>9}{'AUC':>8}{'TTA@R80':>9}{'rank L->C':>11}")
     print(hdr)
     print("-" * len(hdr))
     for r in sorted(rows, key=lambda r: r["legacy_rank"]):
@@ -235,7 +237,7 @@ def main():
         print(f"{r['method']:<26}{blind:>6}"
               f"{r['legacy_crossover']:>8.1f}{r['legacy_tta']:>8.2f}{r['legacy_stta']:>7.2f}"
               f"{r['ap']:>9.4f}{r['auc']:>8.4f}{r['tta_r80']:>9.2f}"
-              f"{r['legacy_rank']:>6} → {r['corrected_rank']:<3}")
+              f"{r['legacy_rank']:>6} -> {r['corrected_rank']:<3}")
     print("\n  t_c / TTA* / STTA = legacy protocol (positives only, TTA to clip end).")
     print("  AP / AUC / TTA@R80 = corrected protocol (negatives + annotated onsets,")
     print("                       negatives given a matched decision window).")
@@ -255,7 +257,7 @@ def main():
     if beaten:
         print(f"    outranks under the legacy protocol: {', '.join(beaten)}")
         print("\n  This is the paper. A curve that reads no pixels outranks methods that do,")
-        print("  on the metric the subfield reports — and sits at chance once negatives")
+        print("  on the metric the subfield reports -- and sits at chance once negatives")
         print("  and real onsets are introduced.")
     else:
         print("\n  The video-blind baselines do NOT outrank the real methods here.")
@@ -269,11 +271,11 @@ def main():
         data["label"], data["onset"], fps=FPS, metric="ap", windows=win,
     )
     print(f"\n  ensemble_postproc vs {best_blind['method']}: "
-          f"ΔAP = {test['mean_diff']:+.4f}  95% CI [{test['ci_low']:+.4f}, {test['ci_high']:+.4f}]")
+          f"dAP = {test['mean_diff']:+.4f}  95% CI [{test['ci_low']:+.4f}, {test['ci_high']:+.4f}]")
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    with open(out, "w") as f:
+    with open(out, "w", encoding="utf-8") as f:
         json.dump({"dataset": args.dataset_name, "fps": FPS,
                    "n_positive": n_pos, "n_negative": n_neg,
                    "window_policy": "negatives matched to the positive onset "
@@ -284,7 +286,7 @@ def main():
     if args.markdown:
         md = Path(args.markdown)
         md.parent.mkdir(parents=True, exist_ok=True)
-        with open(md, "w") as f:
+        with open(md, "w", encoding="utf-8") as f:
             f.write(f"**{args.dataset_name}** — {n_pos} positive / {n_neg} negative clips, "
                     f"{rate_note}\n\n")
             f.write("| Method | Video-blind | t_c ↓ | TTA* (s) | STTA | AP ↑ | AUC ↑ | TTA@R80 (s) |\n")

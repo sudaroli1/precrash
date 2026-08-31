@@ -35,6 +35,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
+from utils.console import safe_console  # noqa: E402
 from postprocess import PostProcessor
 from utils.metrics import (
     evaluate_anticipation,
@@ -139,14 +140,15 @@ def build_variants(data: dict, cfg: dict) -> dict[str, list[np.ndarray]]:
 
 
 def main():
+    safe_console()
     args = parse_args()
     with open(args.config) as f:
         cfg = yaml.safe_load(f)
 
     alpha = cfg.get("postprocess", {}).get("temporal_alpha", 1.0)
     if abs(alpha - 1.0) > 1e-9:
-        print(f"\n  WARNING: temporal_alpha = {alpha}. This makes the pipeline non-causal —\n"
-              f"  the value emitted at frame t is the score computed at frame {alpha}·t,\n"
+        print(f"\n  WARNING: temporal_alpha = {alpha}. This makes the pipeline non-causal:\n"
+              f"  the value emitted at frame t is the score computed at frame {alpha}*t,\n"
               f"  a frame that has not happened yet. Set it to 1.0 before reporting\n"
               f"  anything you intend to publish.\n")
 
@@ -212,7 +214,7 @@ def main():
         results["comparisons"][f"{a}_vs_{b}"] = t
         verdict = "significant" if (t["ci_low"] > 0 or t["ci_high"] < 0) else "NOT significant"
         print(f"{a} vs {b}")
-        print(f"    ΔAP = {t['mean_diff']:+.4f}  95% CI [{t['ci_low']:+.4f}, {t['ci_high']:+.4f}]  → {verdict}")
+        print(f"    dAP = {t['mean_diff']:+.4f}  95% CI [{t['ci_low']:+.4f}, {t['ci_high']:+.4f}]  -> {verdict}")
 
     ens_ap = results["ensemble_postproc"]["ap"]
     prior_ap = results["fixed_prior"]["ap"]
@@ -228,7 +230,7 @@ def main():
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump({"config": cfg, "fps": FPS, "results": results}, f, indent=2)
     print(f"\nSaved: {out_path}")
 
