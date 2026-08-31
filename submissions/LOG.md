@@ -109,3 +109,80 @@ The model variants, once features are extracted:
 `ensemble_postproc`, `clip_only`, `flow_only`, `prior_only`, `ensemble_raw`.
 Use `make_submission.py --features DIR --variant NAME`. Every ablation row then
 carries a third-party score.
+
+---
+
+# Diagnostics, 31 August 2026 — the crossing-frame model is incomplete
+
+Six submissions. Five hold the threshold crossing at frame 75 and vary only the
+shape of the curve away from it; the sixth is the organisers' own file verbatim.
+
+| File | Public | Private | vs step_at_075 |
+|---|---|---|---|
+| `d_pre_graded` (0 -> 0.49 run-up, then 0.51) | 1.12598 | **1.12964** | +0.02519 |
+| `d_step_at_075` (0.49 / 0.51 step) | 1.10057 | **1.10445** | reference |
+| `d_step_at_076` (same, one frame later) | 1.08391 | **1.08779** | -0.01666 |
+| `d_both_graded` (0 -> 1 throughout) | 1.06604 | **1.06725** | -0.03720 |
+| `d_post_graded` (0.49, then 0.51 -> 0.99) | 1.03507 | **1.03871** | -0.06574 |
+| `00_replicate_sample` (organisers' file) | 1.04063 | **1.04203** | — |
+
+## 1. The crossing-frame law is exact for steps
+
+`step_at_075 - step_at_076 = 0.01666`, against 1/60 = 0.016667. One frame of
+delay costs exactly one sixtieth of a point. The slope is confirmed to the
+displayed precision by a dedicated one-frame experiment.
+
+## 2. The score reads the curve away from the crossing, which the published
+## metric definition cannot do
+
+`d_step_at_075`, `d_pre_graded` and `d_post_graded` have **identical values at
+frames 74 and 75**, cross 0.5 at frame 75, and never dip afterwards. Under the
+published definitions -- TTA and STTA are functions of threshold crossings
+alone, and every video-blind curve is identical across clips so AP and AUC
+cannot separate them -- these three must score identically.
+
+They span 0.09093, which is 5.5 frames of slope.
+
+Direction of the effect, which is the useful part:
+
+- grading the run-up **down** (0 -> 0.49 instead of a flat 0.49) **gains** 0.025
+- grading the run-out **up** (0.51 -> 0.99 instead of a flat 0.51) **loses** 0.066
+
+Lower before the alarm helps; higher after the alarm hurts. Neither is
+expressible in the published formula.
+
+The two effects are nearly but not exactly additive: -0.04055 predicted against
+-0.03720 measured for the combination.
+
+## 3. The linear_ramp anomaly is real and reproducible
+
+`d_both_graded` was generated independently and scores **1.06725** — identical
+to `02_linear_ramp`. So the outlier is a property of graded curves, not a
+one-off fault in an early submission.
+
+## 4. The organisers' sample submission scores 1.04203, not 0.58333
+
+Submitted verbatim, byte-identical to the distributed file. So the leaderboard's
+0.58333 benchmark row is **not** `sample_submission.csv`, and the draft was right
+to refuse the attribution.
+
+Separately: 1.04203 is also the private score of the twelfth-placed team. As
+with the eighth-place tie, state the arithmetic and infer nothing further.
+
+## What survives untouched
+
+The headline and the decomposition are measured between **flat** curves —
+`constant_0.51` (2.35291) and `never_crosses` (0.35105) — which have no shape to
+vary. Timing total 2.00186 and the 5.70x ratio stand.
+
+What now carries a caveat: the *split* of the timing total into TTA and STTA,
+and any claim that the linear fit is exact for arbitrary curves. It is exact for
+steps and approximate otherwise.
+
+## What this adds to the paper
+
+A second finding, and a sharper one for a methodology venue: **the published
+metric definition does not reproduce the scorer's behaviour.** An entrant cannot
+compute this benchmark's score from its stated formula, even given the labels.
+That strengthens protocol item 6 from "publish a control's score" to "publish
+the scorer."
