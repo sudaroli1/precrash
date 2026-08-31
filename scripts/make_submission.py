@@ -72,7 +72,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from utils.console import safe_console  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from analyse_taa import blind_family, parse_risk  # noqa: E402
+from analyse_taa import blind_family, parse_risk, probe_family  # noqa: E402
 
 N_FRAMES = 150          # the competition rejects anything else
 CLIP_LO, CLIP_HI = 0.0, 1.0
@@ -91,6 +91,8 @@ def parse_args():
                           "is known (0.58333), so this validates the pipeline.")
     src.add_argument("--curve", choices=sorted(blind_family(N_FRAMES)),
                      help="One member of the video-blind family")
+    src.add_argument("--probe", choices=sorted(probe_family(N_FRAMES)),
+                     help="A curve designed to decompose the official score")
     src.add_argument("--features", help="Directory of per-clip .npz feature files")
 
     p.add_argument("--variant", default="ensemble_postproc",
@@ -220,6 +222,10 @@ def main():
         c = blind_family(fmt["n_values"])[args.curve]
         curves = {i: c for i in test_ids}
         label = f"video-blind: {args.curve}"
+    elif args.probe:
+        c = probe_family(fmt["n_values"])[args.probe]
+        curves = {i: c for i in test_ids}
+        label = f"metric probe: {args.probe}"
     else:
         got = load_feature_curves(Path(args.features), args.variant, args.config)
         missing = [i for i in test_ids if i not in got]
