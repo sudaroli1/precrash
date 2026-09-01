@@ -50,16 +50,35 @@ The supplementary ZIP is anonymised the same way: `LOG.md` says "our entry".
 The PDF has no document metadata. The other twelve teams are named only as the
 competition's own public leaderboard names them.
 
-**Audited.** The compiled PDF was read end to end against its own tables
-before any of this was packaged, and twenty-two corrections came out of it.
-Four sentences in Section 4 had been broken by the Word-to-LaTeX conversion and
-were printing strings of orphaned symbols mid-clause; three equations were
-malformed. Two of Table 10's deltas did not follow from the numbers beside
-them, two figures were rounded the wrong way, and the mean peak risk quoted in
-Section 5.6 was not the mean of the column it summarised. Table 11's note still
-claimed the seconds were measured to a collision, which Section 5.6 withdraws
-two paragraphs earlier; Table 8's caption miscounted its own rows. All are
-fixed, in the LaTeX and in `paper/Precrash.docx` both, so the two forms agree.
+**Audited three times.** The compiled PDF was read end to end against its own
+tables, and then against the code and the score log, before any of this was
+packaged. Ninety-odd corrections came out of it. The three that mattered:
+
+- **The third engine is not a captioning model.** The code says so in its own
+  docstring — it thresholds the same grayscale frame-difference statistic the
+  motion engine uses, at 20 and at 10, and picks one of three fixed strings.
+  So the paper's claim of three independent modalities was false, two of the
+  three curves are functions of one signal, and the modality has three
+  reachable states across the whole corpus. That last fact is what explains
+  the ablation, where the prior alone posts an earlier crossover than the full
+  ensemble. Section 4.2, Figure 1, Table 10 and Section 5.6 are all corrected.
+- **Twenty-six submissions, not twenty-four, all on one day.** `scores.csv`
+  has 26 rows: 25 video-blind curves, in 21 distinct shapes, plus the
+  organisers' sample resubmitted. The old count appeared in four places.
+- **The six-frame timing gain is withdrawn.** No table in the paper measures
+  the compression stage on its own; Table 12 separates C6 from C7 by 1.2
+  frames and bundles the compression with the clamp. The structural objection
+  stands without the number.
+
+Plus: the metric definition — the formula the whole paper is about — was
+typeset as running text with escaped underscores and is now three display
+equations; four sentences broken by the Word-to-LaTeX conversion; three
+malformed equations; α, γ and σ each carrying two meanings; two tables calling
+a configuration "best performance" that their own numbers rank second; a
+promise that Section 5 reports metrics with the clamp disabled, which it does
+not; two cross-references to limitations Section 8 did not contain, now added;
+and a handful of arithmetic slips. All fixed in the LaTeX and in
+`paper/Precrash.docx` both, so the two forms agree.
 
 **Do not upload `latex/` as supplementary material.** `convert.py` in that
 directory contains the repository URL, and the directory is not part of the
