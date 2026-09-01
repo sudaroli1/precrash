@@ -50,6 +50,22 @@ The supplementary ZIP is anonymised the same way: `LOG.md` says "our entry".
 The PDF has no document metadata. The other twelve teams are named only as the
 competition's own public leaderboard names them.
 
+**Audited.** The compiled PDF was read end to end against its own tables
+before any of this was packaged, and twenty-two corrections came out of it.
+Four sentences in Section 4 had been broken by the Word-to-LaTeX conversion and
+were printing strings of orphaned symbols mid-clause; three equations were
+malformed. Two of Table 10's deltas did not follow from the numbers beside
+them, two figures were rounded the wrong way, and the mean peak risk quoted in
+Section 5.6 was not the mean of the column it summarised. Table 11's note still
+claimed the seconds were measured to a collision, which Section 5.6 withdraws
+two paragraphs earlier; Table 8's caption miscounted its own rows. All are
+fixed, in the LaTeX and in `paper/Precrash.docx` both, so the two forms agree.
+
+**Do not upload `latex/` as supplementary material.** `convert.py` in that
+directory contains the repository URL, and the directory is not part of the
+submission package. What you upload is `latex/main.pdf` and
+`tmlr_supplementary.zip`, nothing else.
+
 **Supplementary.** 1.2 MB, well inside the 100 MB cap, and a ZIP as the guide
 requires. It holds the 27 submission files, the score log, the scripts that
 generated and analysed them, and both figures, with a README explaining what
