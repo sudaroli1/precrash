@@ -129,19 +129,19 @@ Pre-crash systems differ from reactive ones in that the prediction must precede 
 
 The considered problem is anticipating accidents without any training data and it is expected to generalize well only with pretrained knowledge. The formal definition of the problem is as follows:
 
-Let the 5 second dashcam video sequence be defined as a temporally ordered set of frames \(V_{s =}\{ f_{1},f_{2}\ldots\ldots\ldots f_{m}\)\} and the dimension of each frame denotes the RGB observation at time t as \(f_{t} \in \mathbb{R}^{H \times w \times 3}\). The accident anticipation problem thus denotes a learning predictive mapping that predicts the risk score for each frame. The learning predictive mapping is formally denoted as mentioned in equation (1)
+Let the 5 second dashcam video sequence be defined as a temporally ordered set of frames \(V_{s} = \{ f_{1},f_{2},\ldots,f_{m}\}\) and the dimension of each frame denotes the RGB observation at time t as \(f_{t} \in \mathbb{R}^{H \times W \times 3}\). The accident anticipation problem thus denotes a learning predictive mapping that predicts the risk score for each frame. The learning predictive mapping is formally denoted as mentioned in equation (1)
 
-\[g\ :\ \mathcal{W}_{t} \longrightarrow \rho_{t} \in \lbrack 0,1\rbrack\ldots\ldots\ldots.(1)\]
+\[g\ :\ V_{s} \longrightarrow \rho_{t} \in \lbrack 0,1\rbrack\ldots\ldots\ldots.(1)\]
 
-\(\rho_{t}\)Where ρ(t) is the predicted probability of an accident, computed without observing one. The risk score should begin near 0 and rise toward 1 before the collision, and the earlier it crosses 0.5 the better the official score. That last clause is not a design preference but a literal description of the metric, and it is this paper's subject: Section 5 shows that a score crossing at frame 0 and never falling collects almost all of what the metric awards.
+Here \(\rho_{t}\) is the predicted probability of an accident at frame \(t\), computed without observing one. The risk score should begin near 0 and rise toward 1 before the collision, and the earlier it crosses 0.5 the better the official score. That last clause is not a design preference but a literal description of the metric, and it is this paper's subject: Section 5 shows that a score crossing at frame 0 and never falling collects almost all of what the metric awards.
 
 This problem statement is specifically difficult to solve for the following reasons:
 
-1.~~~~ ~As there are no training data, it becomes impossible to fine-tune the model.
+1.~~~~ As there are no training data, it becomes impossible to fine-tune the model.
 
 2.~~~~ The clips are diverse in accident type and in condition --- lane changes, rear-end collisions, red-light violations, pedestrians; rain, fog, night, tunnels, mountain roads --- and no training data is available to adapt to any of them.
 
-3.~~~~ The considered dataset is diverse in terms of accident categories, and without any training instances, it might generalize well.
+3.~~~~ Pretrained knowledge is the only knowledge available, and with no training instances there is no way to establish in advance that it transfers to any of these accident categories.
 
 4.~~~~ The four official metrics --- AP, AUC, TTA@0.5 and STTA@0.5 --- must be optimised together, and none of them can be computed by an entrant, because the corpus publishes no labels (Section 3.3).
 
@@ -183,7 +183,7 @@ The three engines were chosen by trial rather than by training, since no trainin
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  CLIP ViT-L/14:
+  \emph{CLIP ViT-L/14:}
 \end{enumerate}
 
 Visual scoring asks whether a frame resembles danger --- which requires reading the scene semantically rather than as pixels. CLIP does this at zero shot because it was pretrained on 400 million image--text pairs and can therefore compare a frame against a danger prompt with no task-specific training. ViT-L/14 was chosen over the smaller variants for its finer spatial detail. Convolutional backbones were rejected because they cannot score a frame against a text prompt without accident-specific training, object detectors because they locate objects rather than assess risk, and the larger instruction-tuned models because their per-frame decoding cost exceeded the compute available.
@@ -199,7 +199,12 @@ Motion asks a different question: are objects moving as normal physics would pre
 
 \[flow(t) = mean\left( \left| frame(t) - frame(t - 1) \right| \right)\ldots\ldots\ldots..(2)\]
 
-\subsubsection{\emph{Caption NLP Prior:}}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  \emph{Caption NLP Prior:}
+\end{enumerate}
 
 Vision and motion between them still do not answer what is happening. A text prior adds that: captions translate the scene into language, which can be compared against high-risk action patterns, and sentence encoders trained on large image--text corpora carry enough of that structure to reason about danger without task-specific training. Table 1 records how the encoder was chosen.
 
@@ -230,7 +235,7 @@ Table 1 needs a caveat that only became clear later, and it is the reason this p
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{2}
+\setcounter{enumi}{3}
 \item
   \emph{Ensembled Model:}
 \end{enumerate}
@@ -239,7 +244,7 @@ Each engine alone is blind to what the others see. The semantic score reads appe
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{3}
+\setcounter{enumi}{4}
 \item
   \emph{Pipeline Overview and Ensemble calculation:}
 \end{enumerate}
@@ -248,17 +253,17 @@ All 1,417 clips pass through the pipeline of Figure 1. Each clip, standardised t
 
 The CLIP ViT-L/14 encoder of \citet{radford2021clip} takes the frame as input and encode that frame so as to identify the dangerous and safe scene. This is carried out with the computation of the cosine similarity between the frame embedding and hand-crafted text anchors. This similarity value thus aids in the identification of the danger affinity score for each frame as mentioned in equation (3)
 
-\[{p\_}_{clip(t)} = \sigma((\cos\left( \varphi\left( e_{t} \right),f_{danger} \right) - cos(\varphi\left( e_{t} \right),f_{safe})\ldots\ldots\ldots\ldots\ldots\ldots.(3)\]
+\[{p\_}_{clip(t)} = \sigma\left( \cos\left( \varphi\left( e_{t} \right),f_{\text{danger}} \right) - \cos\left( \varphi\left( e_{t} \right),f_{\text{safe}} \right) \right)\ldots\ldots\ldots\ldots\ldots\ldots.(3)\]
 
 Where \(\varphi\left( e_{t} \right)\) denotes the visual encoder and \(\sigma\) is the logistic function.
 
 The sudden changes in the scene and appearance of any form of kinematics is extracted from the frame using the optical flow estimation that basically finds the inter-frame pixel difference between the consecutive frames as shown in equation (4)
 
-\[{p\_}_{flow(t)} = \frac{{|\left| e_{t} - e_{t - 1} \right||}_{1} - \min_{\propto}{|\left| e_{\alpha} - e_{\alpha - 1} \right||}_{1}}{\max_{\alpha}{||e_{\alpha} - e_{\alpha - 1}}|| - \min_{\propto}{|\left| e_{\alpha} - e_{\alpha - 1} \right||}_{1}}\ldots\ldots\ldots\ldots..(4)\]
+\[{p\_}_{flow(t)} = \frac{{|\left| e_{t} - e_{t - 1} \right||}_{1} - \min_{\alpha}{|\left| e_{\alpha} - e_{\alpha - 1} \right||}_{1}}{\max_{\alpha}{||e_{\alpha} - e_{\alpha - 1}}|| - \min_{\alpha}{|\left| e_{\alpha} - e_{\alpha - 1} \right||}_{1}}\ldots\ldots\ldots\ldots..(4)\]
 
 NLP captioning model generates the zero-shot text caption for each frame. This model performs the scoring against sudden onset of danger and gradual onset of danger. Thus, the final score is estimated using the temporal offset and relative score trajectory as mentioned in equation (5)
 
-\[{p\_}_{caption(t)} = \sigma(\left( \rho_{1}D_{sudden}(t) + \rho_{2}D_{gradual}(t) - t_{0} \right)\ldots\ldots\ldots\ldots..(5)\]
+\[{p\_}_{caption(t)} = \sigma\left( \rho_{1}D_{\text{sudden}}(t) + \rho_{2}D_{\text{gradual}}(t) - t_{0} \right)\ldots\ldots\ldots\ldots..(5)\]
 
 Where \(\rho_{1}\) and \(\rho_{2}\) are scaling constants and \(t_{0}\) denotes the temporal offset.
 
@@ -294,7 +299,7 @@ The Gaussian kernel suppresses frame-to-frame noise arising from inter-frame app
 
 \[{p\_}_{norm(t)} = {p\_ smooth(t)}^{\gamma}\ldots\ldots\ldots\ldots(8)\]
 
-\(\gamma > 1\gamma\gamma \in \lbrack 1.0,2.5\rbrack\)Since , this operation is a monotone contrast stretch: scores below 0.5 are suppressed toward zero while scores above 0.5 are amplified toward one, increasing the separation between the positive and negative score distributions. The exponent was selected over a grid in steps of 0.1. It could not have been selected by maximising average precision, as an earlier version of this text stated, because average precision is not computable on this corpus by an entrant (Section 3.3). The grid was scored against the crossover-frame proxy, with the consequences discussed under Table 1.
+Since \(\gamma > 1\), with \(\gamma\) searched over \(\lbrack 1.0,2.5\rbrack\), this operation is a monotone contrast stretch: scores below 0.5 are suppressed toward zero while scores above 0.5 are amplified toward one, increasing the separation between the positive and negative score distributions. The exponent was selected over a grid in steps of 0.1. It could not have been selected by maximising average precision, as an earlier version of this text stated, because average precision is not computable on this corpus by an entrant (Section 3.3). The grid was scored against the crossover-frame proxy, with the consequences discussed under Table 1.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -312,7 +317,7 @@ p_{\text{norm}}(s) & s \leq t^{*} \\
 \end{matrix}\]
 \end{quote}
 
-\(\epsilon = 0.01\)with . This enforces a hard causal constraint: once the score crosses the alarm boundary, it cannot fall back below it. The constraint is motivated by the irreversibility assumption --- in the target domain, risk accumulates monotonically once triggered --- and it also, by construction, forces the exact condition that the official Stable Time-to-Accident metric tests. STTA@0.5 requires the risk score to remain above 0.5 continuously from the alarm to the accident; the clamp makes falling below 0.5 impossible once the score has crossed. Any subsequent report of STTA compliance therefore measures that the clamp executed, and nothing about the video. We retain the stage, and Section 5 reports every metric with it disabled as well as enabled. Note also that the metric's name is Stable Time-to-Accident; an earlier version of this text expanded STTA as Score-Triggered Time-to-Action, which is not what the benchmark defines.
+with \(\epsilon = 0.01\). This enforces a hard causal constraint: once the score crosses the alarm boundary, it cannot fall back below it. The constraint is motivated by the irreversibility assumption --- in the target domain, risk accumulates monotonically once triggered --- and it also, by construction, forces the exact condition that the official Stable Time-to-Accident metric tests. STTA@0.5 requires the risk score to remain above 0.5 continuously from the alarm to the accident; the clamp makes falling below 0.5 impossible once the score has crossed. Any subsequent report of STTA compliance therefore measures that the clamp executed, and nothing about the video. We retain the stage, and Section 5 reports every metric with it disabled as well as enabled. Note also that the metric's name is Stable Time-to-Accident; an earlier version of this text expanded STTA as Score-Triggered Time-to-Action, which is not what the benchmark defines.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -326,7 +331,7 @@ p_{\text{norm}}(s) & s \leq t^{*} \\
 \end{matrix}
 \]
 
-\(interpt \approx 28t \approx 22\alpha = 1.3\left( 0.001,\text{\,}0.999 \right)\)where denotes linear interpolation onto the original frame grid. This stage requires a correction and a warning. As implemented, the resampling evaluates the curve at index alpha times t and emits it at index t, so the score reported for frame t is the score computed from frame 1.3t --- a frame that has not yet been observed. Equation (10) as printed reads t divided by alpha; the implementation, and the reported shift of the crossover from about frame 28 to about frame 22, both correspond to alpha times t, and the equation should be corrected accordingly. This is the origin of the reported mean gain of six frames in time-to-accident: the six frames are read from the future. The operation cannot run in a deployed system, where frame 1.3t does not exist at time t, and every time-to-accident figure produced with alpha not equal to 1 is therefore unreportable. The released configuration sets alpha to 1.0, disabling the stage. It is documented here because it is one of the mechanisms Section 6 identifies, and because we introduced it ourselves. Finally, the output is clipped to the open interval to ensure numerical stability in downstream log-loss evaluation.
+where \(\text{interp}\) denotes linear interpolation onto the original frame grid. This stage requires a correction and a warning. As implemented, the resampling evaluates the curve at index alpha times t and emits it at index t, so the score reported for frame t is the score computed from frame 1.3t --- a frame that has not yet been observed. Equation (10) as printed reads t divided by alpha; the implementation, and the reported shift of the crossover from about frame 28 to about frame 22, both correspond to alpha times t, and the equation should be corrected accordingly. This is the origin of the reported mean gain of six frames in time-to-accident: the six frames are read from the future. The operation cannot run in a deployed system, where frame 1.3t does not exist at time t, and every time-to-accident figure produced with alpha not equal to 1 is therefore unreportable. The released configuration sets alpha to 1.0, disabling the stage. It is documented here because it is one of the mechanisms Section 6 identifies, and because we introduced it ourselves. Finally, the output is clipped to the open interval \((0.001,\ 0.999)\) to ensure numerical stability in downstream log-loss evaluation.
 
 \subsection{Implementation and Hardware}
 
@@ -360,7 +365,7 @@ Training Data Used & None (strict zero-shot inference) \\
 
 \subsection{Video-Blind Control Family}
 
-A video-blind submission is one whose risk curve is a function of the frame index alone: identical for every clip, computed without opening a single frame. We use a family rather than a single curve, because one flattering curve invites the objection that the comparison was chosen to flatter it. The family comprises a constant 0.51 and a constant 0.99; a linear ramp from 0.001 to 0.999; logistic curves centred at frames 60, 75, 90 and 105; and step functions rising from 0.49 to 0.51 at frames 0, 10, 25, 50, 75, 100, 125 and 140. Each is a single list of 150 numbers, repeated across all 1,417 clips.
+A video-blind submission is one whose risk curve is a function of the frame index alone: identical for every clip, computed without opening a single frame. We use a family rather than a single curve, because one flattering curve invites the objection that the comparison was chosen to flatter it. The family comprises a constant 0.51 and a constant 0.99; a linear ramp from 0.000 to 1.000; logistic curves centred at frames 60, 75, 90 and 105; and step functions rising from 0.49 to 0.51 at frames 0, 10, 25, 50, 75, 100, 125 and 140. Each is a single list of 150 numbers, repeated across all 1,417 clips.
 
 \subsection{Probes that Isolate the Terms of the Metric}
 
@@ -484,14 +489,14 @@ constant\_0.51 & 2.35291 & floor + TTA + STTA \\
 \bottomrule\noalign{}
 \endlastfoot
 AP + AUC, to a video-blind submission & 0.35105 & 1.00× \\
-TTA@0.5, saturated & 0.87593 & 2.49× \\
+TTA@0.5, saturated & 0.87593 & 2.50× \\
 STTA@0.5, saturated & 1.12593 & 3.21× \\
 Timing terms together & 2.00186 & 5.70× \\
 \end{longtable}
 
 Read the ratio precisely. It compares the timing terms at their maximum against the discrimination terms at chance, not maximum against maximum. The maxima ratio is not identifiable from outside, because the weights are undisclosed; it is bounded, because the winner's discrimination terms are worth at least 0.14874 + 0.35105 = 0.49979, giving a maxima ratio of at most 4.01. Both framings say the same thing, and the measured statement is the safer one: a submission that reads nothing collects 2.00186, and the best discrimination anyone demonstrated on this benchmark added 0.14874 to it.
 
-Two further readings follow from Table 4. A constant at 0.51 and a constant at 0.99 score identically, so the metric reads only whether the curve stands above the threshold and never by how much; there is no incentive to calibrate. And the probe holding 0.51 throughout with a dip across frames 50 to 59 scores 1.85347, where the per-frame stable-timing coefficient predicts 1.79041 for a reference point moved to frame 60. The additive attribution of the timing total into its two parts is therefore close but not exact, and we report the split of 2.00186 into 0.87593 and 1.12593 with that tolerance attached. The total itself is measured directly between two flat curves and does not depend on the split.
+Two further readings follow from Tables 4 and 5. A constant at 0.51 and a constant at 0.99 score identically, so the metric reads only whether the curve stands above the threshold and never by how much; there is no incentive to calibrate. And the probe holding 0.51 throughout with a dip across frames 50 to 59 scores 1.85347, where the per-frame stable-timing coefficient predicts 1.79041 for a reference point moved to frame 60. The additive attribution of the timing total into its two parts is therefore close but not exact, and we report the split of 2.00186 into 0.87593 and 1.12593 with that tolerance attached. The total itself is measured directly between two flat curves and does not depend on the split.
 
 \subsection{The score is linear in the frame at which the alarm fires}
 Frame indices are zero-based and the threshold comparison is strict; both conventions were determined empirically from the submitted files rather than assumed, because one frame is worth 0.0166 of score and an off-by-one would exceed every residual below.
@@ -537,7 +542,7 @@ The line was then asked to predict curves it had not seen. Three logistic curves
 \subsection{What the published metric definition does not explain}
 One result does not fit, and we report it rather than smooth it. A linear ramp crosses the threshold at frame 75, exactly as three other curves do, and scores 0.037 lower than they do. That gap is 2.24 frames of slope, which is not an integer, so it cannot be a crossing-frame effect. We therefore submitted a diagnostic family that holds the crossing frame at 75 and varies only the shape of the curve away from it.
 
-\floatcap{Table 8}{Five curves that all first exceed 0.5 at frame 75, with identical values at frames 74 and 75 and no subsequent dip, plus a one-frame calibration step.}
+\floatcap{Table 8}{Four curves that all first exceed 0.5 at frame 75, with identical values at frames 74 and 75 and no subsequent dip, plus a one-frame calibration step.}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3889}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3056}}
@@ -561,7 +566,7 @@ graded run-out (0.49, then 0.51 → 0.99) & 1.03871 & −0.06574 \\
 step at frame 76 (one-frame calibration) & 1.08779 & −0.01666 = 1/60.0 \\
 \end{longtable}
 
-The three curves in the middle of Table 8 have identical values at frames 74 and 75, cross at the same frame, and never fall back afterwards. Under the metric as published they must score identically: the two timing terms are functions of threshold crossings alone, and video-blind curves are identical across clips, so the discrimination terms cannot separate them either. They span 0.09093, which is 5.5 frames of slope. Grading the run-up downward gains 0.02519; grading the run-out upward loses 0.06574.
+The four curves at the head of Table 8 have identical values at frames 74 and 75, cross at the same frame, and never fall back afterwards. Under the metric as published they must score identically: the two timing terms are functions of threshold crossings alone, and video-blind curves are identical across clips, so the discrimination terms cannot separate them either. They span 0.09093, which is 5.5 frames of slope. Grading the run-up downward gains 0.02519; grading the run-out upward loses 0.06574.
 
 We do not have an explanation, and we state the two candidates rather than choose between them. Either the discrimination terms are not invariant to curve shape among video-blind submissions --- which would weaken the cancellation argument of Section 4, though it is hard to reconcile with a step at frame 140 and a flat 0.49 scoring identically despite very different frame orderings --- or the timing terms read something beyond the first crossing that the three agreeing curves share and the ramp does not.
 
@@ -602,10 +607,10 @@ Across the full corpus of 1,417 clips the ensemble produced a mean crossover fra
 \bottomrule\noalign{}
 \endlastfoot
 Mean Crossover Frame (t\textsubscript{c}) & 22.7 & 21.1 \\
-Mean TTA (seconds) & 4.23 s & 4.30 s \\
+Mean TTA (seconds) & 4.24 s & 4.30 s \\
 Min. Crossover Frame Observed & 7 & 7 \\
 Initial Risk Score p(1) & ≤ 0.05 (all clips) & ≤ 0.001 (all clips) \\
-Peak Risk Score p\textsubscript{m}\textsubscript{a}\textsuperscript{x} & \textgreater{} 0.95 (majority) & 0.963--0.999 \\
+Peak Risk Score p\textsubscript{max} & \textgreater{} 0.95 (majority) & 0.963--0.999 \\
 STTA Compliance Rate & 100\% & 100\% \\
 Training Data Required & None & None \\
 \end{longtable}
@@ -632,16 +637,16 @@ The modality ablation of Table 10 compares single-modality configurations agains
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-CLIP Only & 26--28 & +4.3 to +5.3 & Temporal blindness; moderate risk inflation on safe high-density traffic frames (p\,≈\,0.38--0.42) \\
+CLIP Only & 26--28 & +3.3 to +5.3 & Temporal blindness; moderate risk inflation on safe high-density traffic frames (p\,≈\,0.38--0.42) \\
 Optical Flow Only & 28--32 & +5.3 to +9.3 & Semantic blindness; cannot distinguish normal intersection traffic motion from imminent collision dynamics \\
-NLP Prior Only & \textasciitilde21.7 & +0.0 to −0.7 & Temporal ceiling; identical t\textsubscript{0} values for clips with similar captions --- no per-clip visual personalisation \\
+NLP Prior Only & \textasciitilde21.7 & −1.0 & Temporal ceiling; identical t\textsubscript{0} values for clips with similar captions --- no per-clip visual personalisation \\
 CLIP + Flow (No NLP) & \textasciitilde24.1 & +1.4 & Improved kinematics but risk curves oscillate; STTA compliance degraded without NLP temporal anchoring \\
 CLIP + NLP (No Flow) & \textasciitilde23.5 & +0.8 & Better semantic context but delayed detection for physically sudden events (e.g., pedestrian intrusion) \\
 \textbf{Full Ensemble (Proposed)} & \textbf{22.7} & \textbf{---} & \textbf{Best performance; all modality blind spots mutually compensated} \\
 \end{longtable}
 
 \subsubsection{The selected subsets}
-Two further analyses select the fifty and then the twenty-five clips with the earliest crossings. Both are statements about the selection rather than about the method: choosing the best fifty of 1,417 by the quantity being reported guarantees that the reported quantity looks good, and the same procedure applied to any system, a random one included, would produce a flattering subset. Within the best twenty-five, every sequence began at p(1) = 0.001 despite crossing as early as frame 7, and mean peak risk reached 0.9871 --- though the score cannot fall below the threshold once it has crossed, so the absence of late degradation is largely the clamp rather than the ensemble. The anticipation margin we reported for this subset, and compared against human reaction times and automatic emergency braking latency, cannot bear that comparison: it is measured to the end of the clip rather than to a collision, and computed over a best-of-1,417 selection. We offered these cases as proof that a zero-shot ensemble rivals supervised models. They are not. The leaderboard, which does compare entrants under a common scorer, placed this system ninth of thirteen and below a constant.
+Two further analyses select the fifty and then the twenty-five clips with the earliest crossings. Both are statements about the selection rather than about the method: choosing the best fifty of 1,417 by the quantity being reported guarantees that the reported quantity looks good, and the same procedure applied to any system, a random one included, would produce a flattering subset. Within the best twenty-five, every sequence began at p(1) = 0.001 despite crossing as early as frame 7, and mean peak risk reached 0.9858 --- though the score cannot fall below the threshold once it has crossed, so the absence of late degradation is largely the clamp rather than the ensemble. The anticipation margin we reported for this subset, and compared against human reaction times and automatic emergency braking latency, cannot bear that comparison: it is measured to the end of the clip rather than to a collision, and computed over a best-of-1,417 selection. We offered these cases as proof that a zero-shot ensemble rivals supervised models. They are not. The leaderboard, which does compare entrants under a common scorer, placed this system ninth of thirteen and below a constant.
 
 \floatcap{Table 11}{Quantitative Metrics of the Top 25 Anticipatory Trajectories}
 \begin{longtable}[]{@{}
@@ -663,7 +668,7 @@ Two further analyses select the fifty and then the twenty-five clips with the ea
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \textbf{Initial Risk p(1)}
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Peak Risk p\textsubscript{m}\textsubscript{a}\textsuperscript{x}}
+\textbf{Peak Risk p\textsubscript{max}}
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
@@ -696,7 +701,7 @@ Two further analyses select the fifty and then the twenty-five clips with the ea
 25 & 13\_010982\_10\_160 & 11 & 4.63 & 0.0010 & 0.9899 \\
 \end{longtable}
 
-\emph{Table 11, note: TTA derived from remaining frames prior to collision at 30 FPS. Initial risk vectors verified post power-curve smoothing and Gaussian filtering.}
+\emph{Table 11, note: the seconds column is the interval from the crossover frame to the end of the clip at 30 FPS. It is not a time-to-accident: this corpus annotates no collision frame (Section 3.3), and the figure is inflated by the interval Section 5.5 estimates at about a second. Initial risk vectors are read after the power transform and the Gaussian filter.}
 
 \subsubsection{The seven configurations}
 Table 12 compares seven pipeline configurations. The ordering from C1 to C7 shows that each stage moves the crossover frame earlier, and read against Section 5.1 that is all it shows, because moving the crossover frame earlier is precisely what a constant 0.51 does perfectly. Two stages deserve particular note in that light. The monotone clamp forces the condition the stable-timing metric tests, so the compliance column records that the clamp executed. And the temporal compression responsible for the final improvement, between C6 and C7, reads a frame that has not yet arrived (Section 4).
