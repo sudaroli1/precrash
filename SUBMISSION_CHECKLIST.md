@@ -1,201 +1,241 @@
-# TMLR submission checklist
+# TMLR submission — the steps
 
-Everything in Part A is done. Parts B and C are yours — they need your
-OpenReview account and an authorship attestation that only an author can make.
+Written against TMLR's own pages, read on 1 September 2026:
+[submissions](https://www.jmlr.org/tmlr/submissions.html),
+[editorial policies](https://www.jmlr.org/tmlr/editorial-policies.html),
+[author guide](https://www.jmlr.org/tmlr/author-guide.html),
+[FAQ](https://www.jmlr.org/tmlr/faq.html).
 
-Files to upload:
+**The two files you upload:**
 
-- `latex/main.pdf` — the manuscript, 27 pages, TMLR style, anonymised
+- `latex/main.pdf` — 28 pages, TMLR style, anonymised
 - `tmlr_supplementary.zip` — 1.2 MB, anonymised
+
+**Nothing else.** In particular do not upload `latex/` — `convert.py` in it
+contains your repository URL.
 
 ---
 
-## A. Done, and what was checked
+## Step 0 — push the repository
 
-**Style.** `tmlr.sty`, `tmlr.bst` and `fancyhdr.sty` are the current files from
-the official `JmlrOrg/tmlr-style-file` repository. The build uses
-`\usepackage{tmlr}` with no options, which is the submission form: the header
-reads "Under review as submission to TMLR" and the by-line prints "Anonymous
-authors / Paper under double-blind review" automatically. **Do not add the
-`accepted` option until the paper is accepted** — it would print the author
-block that sits commented in `main.tex`.
+There is nothing left to commit; the working tree is clean and 22 commits are
+sitting on `main` waiting to go out. From a terminal on your machine:
+
+```
+cd C:\Users\sudar\Desktop\Preparation\tier-a-prep\precrash-eval
+git push origin main
+```
+
+If it asks for a password, GitHub no longer accepts your account password over
+HTTPS — generate a personal access token at
+`github.com/settings/tokens` (classic token, `repo` scope) and paste that as
+the password. Verify with `git status`, which should then say
+`Your branch is up to date with 'origin/main'`.
+
+I cannot run this for you: the shell I work through has no GitHub credentials,
+and it should not have them.
+
+---
+
+## Step 1 — settle the author list. Do this first, and do not rush it.
+
+> "No authors may be added or removed after submission. There are no
+> exceptions to this policy." — editorial policies
+
+Everything else on this list is reversible. This is not.
+
+Author 1 currently reads "Independent Researcher, Bengaluru"; authors 2 and 3
+read "T. John Institute of Technology". Decide the final list and the final
+affiliation for each person, and put it in `latex/main.tex` (it is commented
+out and does not print during review, but it must be right for the
+camera-ready and for arXiv).
+
+TMLR's authorship test is all three of:
+
+1. a substantial intellectual contribution to the work;
+2. a contribution to drafting or revising the submission;
+3. full responsibility for all content in the published work.
+
+Every name on the list must satisfy all three.
+
+## Step 2 — every author needs a complete OpenReview profile
+
+The author guide requires "complete and active OpenReview profiles" with
+affiliations, conflicts of interest and publication history. An incomplete
+co-author profile is a common reason a submission stalls, so check each one
+now rather than at upload time.
+
+Each author, at `openreview.net`:
+
+- signs up or signs in, and confirms the email address on the profile
+- fills in **Education & Career History** — every affiliation, with dates, and
+  no gaps (OpenReview flags gaps)
+- fills in **Advisors & Other Relations**, and **Expertise**
+- confirms the name matches the one you will type on the submission form
+
+Conflicts of interest, per the policies, are: any domain you were affiliated
+with in the past three years, anyone you collaborated with in the past three
+years, family relationships, and advisor/advisee relationships.
+
+## Step 3 — confirm reference 23
+
+`singh2026metadata` (arXiv:2606.12047): the surnames are confirmed, the given
+names are not, and the entry currently prints surnames only. Open the arXiv
+abstract page, copy the full author list into `latex/references.bib`, and
+rebuild. There is a comment above the entry marking this. It is the only
+unverified item in the bibliography; the other 31 were audited against their
+DOIs.
+
+## Step 4 — post to arXiv, before you submit
+
+Do this today if you are going to do it at all. arXiv endorsement for cs.CV
+can take several days if you do not already have it, and the priority risk is
+real: the second-placed team published on arXiv in June 2026.
+
+TMLR explicitly permits it:
+
+> "It is acceptable for a submission to overlap with the author's previous work
+> if it was shared at venues or tracks that are publicly declared … to be
+> non-archival, such as workshops, or on preprint servers such as arXiv."
+
+and the FAQ confirms reviewers are told not to go looking. Build the named
+version by swapping one line in `latex/main.tex`:
+
+```latex
+% \usepackage{tmlr}
+\usepackage[preprint]{tmlr}     % names and affiliations printed
+```
+
+and un-commenting the `\author{...}` block. Rebuild, and keep the two PDFs
+separate — the anonymous one goes to OpenReview, the named one to arXiv.
+
+## Step 5 — email the AUTOPILOT organisers
+
+A courtesy copy before you submit. The paper reports that their published
+formula does not reproduce their own scorer; they should hear it from you
+rather than from a reviewer, and it gives them a chance to correct the record.
+
+## Step 6 — submit
+
+Go to **https://openreview.net/group?id=TMLR** and use the submission button
+there. TMLR is rolling — there is no deadline and no cycle to wait for.
+
+What the form asks for, and what to put:
+
+| Field | What to enter |
+|---|---|
+| Title | Unbounded Timing Terms Make a Composite Accident-Anticipation Score Video-Blind: Evidence from a Live Benchmark |
+| Authors | the list settled in Step 1, each matched to their OpenReview profile |
+| Abstract | paste from the PDF (plain text, one paragraph) |
+| PDF | `latex/main.pdf` |
+| Supplementary material | `tmlr_supplementary.zip` |
+| Human subjects / IRB | **Not applicable.** No human subjects: the work analyses a scoring function using curves generated from the frame index, on dashcam clips the authors did not collect. |
+| Funding | state it, or "none" |
+| Competing interests | disclose that you were an entrant in the competition the paper analyses. It is already stated in the paper (§5.1 and the compliance section); saying it again here costs nothing and pre-empts the question. |
+| Broader impact statement | not required — it is required only where the work carries significant risk of harm, and this does not. |
+| Previous submission URL | leave blank; this is a first submission. |
+
+Before you press submit you are confirming that every author is aware of the
+submission, that all of you take responsibility for the correctness and
+integrity of the work, that it is original, and that everyone who qualifies as
+an author is listed.
+
+## Step 7 — recommend action editors, by email, after submitting
+
+> "You will receive an email once your submission has been made, asking you to
+> recommend potential Action Editors that would be appropriate for your
+> submission." — submissions page
+
+So this is not on the form; it arrives afterwards, and it matters. Pick from
+the [editorial board](https://www.jmlr.org/tmlr/editorial-board.html) and
+choose people who work on **evaluation methodology, benchmarking or
+measurement**, not on accident anticipation. An AE who reads this as an
+anticipation paper will look for a method contribution it does not make and
+does not claim; an AE who reads it as a paper about how a composite score
+behaves will see the evidence for what it is. Flag any conflicts in the same
+reply.
+
+---
+
+## What happens next
+
+- An action editor is assigned **within a week**, and checks eligibility.
+- **At least three qualified reviewers** are assigned.
+- An open-ended rebuttal, discussion and revision phase follows. You may
+  revise as many times as you like; leave a comment on the OpenReview page
+  each time so reviewers see the revision.
+- You respond **no later than two weeks after the third review** arrives.
+- Decision: **accept as is, accept with minor revisions, or reject.**
+- Target: **a final decision about nine weeks after submission.** Longer papers
+  can take longer, and at 28 pages this one is on the long side.
+- On acceptance: a camera-ready with `\usepackage[accepted]{tmlr}`, the author
+  block restored, and `\month` / `\year` / `\openreview` filled in. Papers may
+  additionally be awarded Featured, Survey or Reproducibility certification.
+- Everything is published CC BY 4.0 with copyright retained by you.
+- You can withdraw any time before a decision.
+
+---
+
+## What is already done, and what was checked
+
+**Style.** `tmlr.sty`, `tmlr.bst` and `fancyhdr.sty` verified **byte-identical**
+to the official `JmlrOrg/tmlr-style-file` files. This matters: the submissions
+page warns that "any changes to the stylefile or template that alters the
+formatting, font, or layout of the manuscript may result in rejection without
+review." `main.tex` matches the official template's preamble —
+`\documentclass[10pt]{article}`, `\usepackage{tmlr}` with no options. Nothing
+that alters font, margins or layout has been added.
 
 **Build.** 0 LaTeX errors, 0 undefined references, 0 undefined citations, 0
-overfull boxes. Rebuild with:
+overfull boxes, 28 pages. Rebuild with:
 
 ```
 cd latex
 pdflatex main && bibtex main && pdflatex main && pdflatex main
 ```
 
-**Citations.** TMLR's style file sets `authoryear` natbib, so the paper's
-numeric brackets were converted: 57 `\citet`, 3 `\citep`, none left numeric.
-The hand-written reference list has been removed and BibTeX now sets the
-references from `references.bib` (32 entries).
+**Tool-use disclosure.** The FAQ requires that authors who used an LLM "mention
+explicitly in their submission that they have used this tool, as a footnote on
+the first page." That footnote is now on page 1, and states what the assistant
+did and that the research question, design, claims and conclusions are yours.
 
-**Sectioning.** Word's auto-numbered headings had converted to one-item lists,
-so nothing in the paper was numbered by LaTeX. All 9 sections, 20 subsections
-and the unnumbered compliance section are now real headings, and the numbers
-LaTeX generates match every "Section 5.3" typed in the running text.
+**Anonymity.** The compiled PDF was searched for every identifying string — your
+name, the team name, the institution, the city, `github.com`, emails, ORCIDs,
+the system name "PreCrash" — in its text, its metadata and its raw object
+streams, and is clean. It carries no `/Author` or `/Title` and no XMP stream.
+Three things were changed to get there: the leaderboard row naming the team,
+the code-availability line's repository URL, and the author block.
 
-**Anonymity.** The compiled PDF was searched for every identifying string —
-your name, the team name, the institution, the city, `github.com`, an email,
-an ORCID — and is clean. Three things were changed to get there:
+Be aware of one thing, and decide it knowingly rather than discover it: the
+paper reproduces the public leaderboard with the other twelve teams' real
+names, cites the competition URL, and states your rank and score. Anyone can
+resolve your team name in one click. That is **not** a TMLR violation — the
+double-blind rules bind reviewers, and the PDF carries no author identity — but
+it is a stronger de-anonymiser than an arXiv preprint. It is also unavoidable
+given what the paper is about.
 
-- the leaderboard row `9 | SuryaInBytes (this work)` now reads `9 | our entry`
-- the `Code:` line's GitHub URL is now an anonymised availability note
-- the author block is commented out of the typeset document
+**Supplementary.** 1.2 MB against a 100 MB cap, and a ZIP as the guide requires.
+The 26 submission files, the score log, the scripts that generated and analysed
+them, both figures, and a README explaining what each family of curves
+isolates. Anonymised — `LOG.md` says "our entry". No dataset content and no
+labels, which is what the competition's rules require.
 
-The supplementary ZIP is anonymised the same way: `LOG.md` says "our entry".
-The PDF has no document metadata. The other twelve teams are named only as the
-competition's own public leaderboard names them.
+**Dual submission.** TMLR prohibits overlap with anything published, accepted or
+under review at an archival peer-reviewed venue, and explicitly permits overlap
+with workshops and arXiv. The competition was a CVPR workshop challenge and
+non-archival; nothing here has been submitted elsewhere.
 
-**Audited three times.** The compiled PDF was read end to end against its own
-tables, and then against the code and the score log, before any of this was
-packaged. Ninety-odd corrections came out of it. The three that mattered:
+**Audited three times** — against the paper's own tables, then against the code
+and the score log, then against the corrections themselves. Roughly ninety
+defects fixed, including three that mattered: the code contradicted the paper's
+claim that the three engines are independent; the submission count was wrong in
+four places; and a six-frame timing gain was claimed that no table supports.
+`claude/precrash-audit-findings.md` in the project has the full record.
 
-- **The third engine is not a captioning model.** The code says so in its own
-  docstring — it thresholds the same grayscale frame-difference statistic the
-  motion engine uses, at 20 and at 10, and picks one of three fixed strings.
-  So the paper's claim of three independent modalities was false, two of the
-  three curves are functions of one signal, and the modality has three
-  reachable states across the whole corpus. That last fact is what explains
-  the ablation, where the prior alone posts an earlier crossover than the full
-  ensemble. Section 4.2, Figure 1, Table 10 and Section 5.6 are all corrected.
-- **Twenty-six submissions, not twenty-four, all on one day.** `scores.csv`
-  has 26 rows: 25 video-blind curves, in 21 distinct shapes, plus the
-  organisers' sample resubmitted. The old count appeared in four places.
-- **The six-frame timing gain is withdrawn.** No table in the paper measures
-  the compression stage on its own; Table 12 separates C6 from C7 by 1.2
-  frames and bundles the compression with the clamp. The structural objection
-  stands without the number.
-
-Plus: the metric definition — the formula the whole paper is about — was
-typeset as running text with escaped underscores and is now three display
-equations; four sentences broken by the Word-to-LaTeX conversion; three
-malformed equations; α, γ and σ each carrying two meanings; two tables calling
-a configuration "best performance" that their own numbers rank second; a
-promise that Section 5 reports metrics with the clamp disabled, which it does
-not; two cross-references to limitations Section 8 did not contain, now added;
-and a handful of arithmetic slips. All fixed in the LaTeX and in
-`paper/Precrash.docx` both, so the two forms agree.
-
-**Do not upload `latex/` as supplementary material.** `convert.py` in that
-directory contains the repository URL, and the directory is not part of the
-submission package. What you upload is `latex/main.pdf` and
-`tmlr_supplementary.zip`, nothing else.
-
-**Supplementary.** 1.2 MB, well inside the 100 MB cap, and a ZIP as the guide
-requires. It holds the 27 submission files, the score log, the scripts that
-generated and analysed them, and both figures, with a README explaining what
-each family of curves isolates. No part of the dataset and no label is in it —
-which is also what the competition's rules require.
-
-**Dual submission.** TMLR prohibits overlap with anything published, accepted,
-or under review at an archival peer-reviewed venue, but explicitly permits
-overlap with workshops and with arXiv. The competition was a CVPR workshop
-challenge and non-archival, and no paper on this work has been submitted
-anywhere else. Nothing here breaches the policy — but see C.1.
-
----
-
-## B. Before you submit
-
-**B.1 — Fix the affiliations.** Author 1 currently reads "Independent
-Researcher, Bengaluru" while authors 2 and 3 read "T. John Institute of
-Technology". Decide which is right for each of you and put the final list in
-`main.tex` (it is commented out and does not print during review, but it must
-be correct before camera-ready). **The author roster cannot be changed after
-submission, under any circumstances** — this is the one thing on the whole list
-that is genuinely irreversible, so settle it now.
-
-**B.2 — Confirm reference 23.** `singh2026metadata` (arXiv:2606.12047) has its
-given names unconfirmed; the `.bib` entry carries a `note` saying so. Open the
-arXiv abstract page, copy the full author list, and correct the entry. Then
-rebuild. This is the only unverified item left in the bibliography — the other
-31 were audited against their DOIs.
-
-**B.3 — Post to arXiv first, and do it today.** This is the item I would not
-delay. arXiv endorsement for cs.CV can take several days if you do not already
-have it, and the priority risk here is live: the second-placed team published
-on arXiv in June 2026, and a public write-up already notes that the weights are
-undisclosed. TMLR permits an arXiv preprint and instructs reviewers not to go
-looking for it, so posting does not compromise the double-blind review. Build
-the preprint version by swapping the style option in `main.tex`:
-
-```latex
-\usepackage[preprint]{tmlr}    % names and affiliations printed
-```
-
-and un-commenting the author block. Keep the anonymised `main.pdf` for
-OpenReview and the named one for arXiv — they are two different builds of the
-same source.
-
-**B.4 — Email the AUTOPILOT organisers.** A courtesy copy before you submit.
-The paper reports that their published formula does not reproduce their own
-scorer, and they should hear that from you rather than from a reviewer. It also
-gives them a chance to correct the record, which can only help the paper.
-
-**B.5 — Push the repository.** 20 commits are sitting local-only; the shell I
-work through has no GitHub credentials, so this one has to be you:
-
-```
-cd <your folder>\precrash-eval
-git push origin main
-```
-
----
-
-## C. On the OpenReview form
-
-TMLR's author guide requires a complete, active OpenReview profile for every
-author — affiliations, conflicts of interest and publication history all filled
-in — before the form will accept the submission. Check each co-author's profile
-now rather than at the deadline; an incomplete profile is a common cause of a
-submission being held.
-
-The form itself asks for:
-
-**C.1 Action editor recommendation.** You may name action editors you think
-suitable, and flag conflicts. Suggest editors who work on evaluation
-methodology or benchmark design rather than on accident anticipation — the
-paper's claim is about how a composite score behaves, and an AE who reads it as
-an anticipation paper will look for a method contribution the paper does not
-make and does not claim.
-
-**C.2 Human subjects / IRB.** Not applicable. The work involves no human
-subjects: it analyses a scoring function using curves generated from the frame
-index, on a corpus of dashcam clips the authors did not collect.
-
-**C.3 Funding.** State it if there is any; "none" is a valid answer.
-
-**C.4 Competing interests.** State any. Note that you were an entrant in the
-competition the paper analyses — that is disclosed in the paper itself
-(Section 5.1 and the compliance section), and disclosing it again here costs
-nothing and pre-empts the question.
-
-**C.5 Broader impact statement.** Required only if the work carries significant
-risk of harm. It does not, and none is included.
-
-**C.6 The attestations.** By submitting you confirm that every author is aware
-of the submission, that all of you take responsibility for the correctness and
-integrity of the work, that it is original, and that everyone who qualifies as
-an author is listed. TMLR's authorship criteria are all three of: substantial
-intellectual contribution, contribution to drafting or revising, and full
-responsibility for the published content. Make sure the list you submit
-satisfies all three for every name on it.
-
----
-
-## What a desk rejection would be for
-
-Action editors may reject without review for: being out of scope, being
-unreviewable for want of expertise, obvious poor quality, being unlikely to
-meet the acceptance criterion, or violating the format. The format and
-anonymity grounds are closed off by Part A. The one to think about is scope:
-TMLR's criterion is *are the claims supported by convincing evidence*, not
-*is this novel* — which suits this paper, since its evidence is 27 scored
-submissions against a live leaderboard and its claim is exactly what those
-submissions show. The single-benchmark limitation, which would be a real
-problem at a conference, is not a defect against that criterion, and Section 8
-already states it plainly.
+**Desk-rejection risk.** Assessed against all five grounds the policies give
+(out of scope, no reviewer expertise, obviously poor quality, unlikely to meet
+the criterion, format violation). None applies. TMLR's criterion is *are the
+claims supported by accurate, convincing and clear evidence* and *would some of
+TMLR's audience be interested* — not conference novelty. The single-benchmark
+limitation, which would be a real problem at a conference, is not a defect
+against that criterion, and Section 8 states it plainly.
