@@ -1,0 +1,85 @@
+% ---------------------------------------------------------------------------
+% The arXiv version: same body, same abstract, same bibliography as main.tex —
+% named instead of anonymous.
+%
+% Nothing is duplicated. body_clean.tex and abstract.tex refer to the two
+% identity-bearing strings through \entryname and \codeavail, which this file
+% sets openly and main.tex sets anonymously, so the two builds cannot drift
+% apart. Edit the paper in one place and both stay correct.
+%
+%   build:  pdflatex main_preprint && bibtex main_preprint
+%           && pdflatex main_preprint && pdflatex main_preprint
+%
+% BEFORE BUILDING: confirm the affiliations below. They are copied from the
+% original front matter and author 1's differs from authors 2 and 3's; that
+% question was never settled. Whatever you put here must match what you enter
+% on OpenReview, because the author list cannot change after submission.
+% ---------------------------------------------------------------------------
+\documentclass[10pt]{article}
+\usepackage[preprint]{tmlr}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{url}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\real}[1]{#1}
+
+\newcommand{\floatcap}[2]{%
+  \par\addvspace{0.7\baselineskip}%
+  \noindent{\small\textbf{#1:} #2}\par\addvspace{0.25\baselineskip}}
+
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\leq}}
+\DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
+\DeclareUnicodeCharacter{2032}{\ensuremath{{}^{\prime}}}
+\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
+\DeclareUnicodeCharacter{2009}{\,}
+\DeclareUnicodeCharacter{202F}{\,}
+\DeclareUnicodeCharacter{03C1}{\ensuremath{\rho}}
+\DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}
+\DeclareUnicodeCharacter{03B2}{\ensuremath{\beta}}
+\DeclareUnicodeCharacter{03B3}{\ensuremath{\gamma}}
+\DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
+\DeclareUnicodeCharacter{03B8}{\ensuremath{\theta}}
+\DeclareUnicodeCharacter{03B5}{\ensuremath{\epsilon}}
+
+% ---- the named forms of the two strings main.tex anonymises ---------------
+\newcommand{\entryname}{SuryaInBytes (this work)}
+\newcommand{\codeavail}{\noindent\textbf{Code and data:} All submission files,
+the score log, the analysis code and the scripts that produce both figures are
+available at \url{https://github.com/sudaroli1/precrash}.}
+
+\title{Unbounded Timing Terms Make a Composite Accident-Anticipation Score
+Video-Blind: Evidence from a Live Benchmark}
+
+% CONFIRM THESE BEFORE BUILDING — see the note at the top of this file.
+\author{\name Sudaroli Dhananjeyan \email oli.sudar@gmail.com \\
+  \addr Independent Researcher, Bengaluru, India
+  \AND
+  \name G. Surya \email iamsurya195@gmail.com \\
+  \addr T. John Institute of Technology, Bengaluru, India
+  \AND
+  \name Gomathi D \email gomathid354@gmail.com \\
+  \addr T. John Institute of Technology, Bengaluru, India}
+
+\def\month{09}
+\def\year{2026}
+
+\begin{document}
+\maketitle
+
+\input{abstract}
+\input{body_clean}
+
+\bibliographystyle{tmlr}
+\bibliography{references}
+
+\end{document}
