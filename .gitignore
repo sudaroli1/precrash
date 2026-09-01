@@ -12,3 +12,11 @@ data/Test/
 data/train/
 data/*.zip
 *.npz
+
+# LaTeX build products. main.pdf and main.bbl ARE committed: the PDF is the
+# submission file and the .bbl lets the paper build without a BibTeX run.
+latex/*.aux
+latex/*.blg
+latex/*.out
+latex/*.toc
+latex/*.log

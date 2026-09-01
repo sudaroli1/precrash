@@ -1,19 +1,81 @@
-\documentclass[11pt]{article}
-\input{preamble}
+% ---------------------------------------------------------------------------
+% TMLR submission. Anonymous: tmlr.sty prints "Anonymous authors / Paper under
+% double-blind review" whenever the `accepted` option is absent, so the author
+% block below is never typeset during review. Do not add the option until the
+% paper is accepted.
+%
+%   build:  pdflatex main && bibtex main && pdflatex main && pdflatex main
+% ---------------------------------------------------------------------------
+\documentclass{article}
+\usepackage{tmlr}
+% \usepackage[accepted]{tmlr}     % camera-ready
+% \usepackage[preprint]{tmlr}     % arXiv version, with names
 
-\title{\bfseries Unbounded Timing Terms Make a Composite
-Accident-Anticipation Score Video-Blind:\\Evidence from a Live Benchmark}
-\author{%
-  Sudaroli Dhananjeyan\thanks{Corresponding author.
-  ORCID 0000-0001-8270-6223.} \\ Independent Researcher, Bengaluru, India
-  \and G.\ Surya \\ T.\ John Institute of Technology
-  \and Gomathi D. \\ T.\ John Institute of Technology}
-\date{}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{microtype}
+\usepackage{url}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\real}[1]{#1}
+\providecommand{\href}[2]{#2\footnote{\url{#1}}}
+
+% Table and figure captions. The tables are longtables produced by the
+% conversion, so their captions sit above them as their own paragraph rather
+% than inside a float; this sets them in caption type and keeps the numbers,
+% which the running text refers to by hand.
+\newcommand{\floatcap}[2]{%
+  \par\addvspace{0.7\baselineskip}%
+  \noindent{\small\textbf{#1:} #2}\par\addvspace{0.25\baselineskip}}
+
+% Characters that survive the conversion from the working document. Declared
+% rather than switched to xelatex, so the build matches OpenReview's.
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\leq}}
+\DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
+\DeclareUnicodeCharacter{2032}{\ensuremath{{}^{\prime}}}
+\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
+\DeclareUnicodeCharacter{2009}{\,}
+\DeclareUnicodeCharacter{202F}{\,}
+\DeclareUnicodeCharacter{03C1}{\ensuremath{\rho}}
+\DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}
+\DeclareUnicodeCharacter{03B2}{\ensuremath{\beta}}
+\DeclareUnicodeCharacter{03B3}{\ensuremath{\gamma}}
+\DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
+\DeclareUnicodeCharacter{03B8}{\ensuremath{\theta}}
+\DeclareUnicodeCharacter{03B5}{\ensuremath{\epsilon}}
+
+\title{Unbounded Timing Terms Make a Composite Accident-Anticipation Score
+Video-Blind: Evidence from a Live Benchmark}
+
+% Typeset only with the `accepted` or `preprint` option.
+\author{\name Author One \email one@example.edu \\
+  \addr Affiliation
+  \AND
+  \name Author Two \email two@example.edu \\
+  \addr Affiliation
+  \AND
+  \name Author Three \email three@example.edu \\
+  \addr Affiliation}
+
+\def\month{09}
+\def\year{2026}
+\def\openreview{\url{https://openreview.net/forum?id=XXXXXXXXXX}}
 
 \begin{document}
 \maketitle
 
 \input{abstract}
 \input{body_clean}
+
+\bibliographystyle{tmlr}
+\bibliography{references}
 
 \end{document}

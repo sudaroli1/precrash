@@ -1,0 +1,265 @@
+\begin{thebibliography}{32}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[{AUTOPILOT-COG}(2026)]{autopilot2026}
+{AUTOPILOT-COG}.
+\newblock Zero-shot accident anticipation, 2026.
+\newblock URL \url{https://kaggle.com/competitions/zero-shot-taa}.
+\newblock Kaggle competition.
+
+\bibitem[Bao et~al.(2020)Bao, Yu, and Kong]{bao2020ccd}
+Wentao Bao, Qi~Yu, and Yu~Kong.
+\newblock Uncertainty-based traffic accident anticipation with spatio-temporal
+  relational learning.
+\newblock In \emph{Proceedings of the 28th ACM International Conference on
+  Multimedia}, pp.\  2682--2690, 2020.
+\newblock \doi{10.1145/3394171.3413827}.
+
+\bibitem[Caselli et~al.(2026)Caselli, Trinci, Bianconcini, Magistri, Taccari,
+  Sambo, and Bagdanov]{caselli2026flara}
+Lorenzo Caselli, Tomaso Trinci, Tommaso Bianconcini, Simone Magistri, Leonardo
+  Taccari, Francesco Sambo, and Andrew~D. Bagdanov.
+\newblock {FLaRA}: Predicting future latent representations for accident
+  anticipation.
+\newblock \emph{arXiv preprint arXiv:2606.14380}, 2026.
+
+\bibitem[Chan et~al.(2016)Chan, Chen, Xiang, and Sun]{chan2016dad}
+Fu-Hsiang Chan, Yu-Ting Chen, Yu~Xiang, and Min Sun.
+\newblock Anticipating accidents in dashcam videos.
+\newblock In \emph{Computer Vision -- ACCV 2016}, volume 10114 of \emph{Lecture
+  Notes in Computer Science}, pp.\  136--153. Springer, 2016.
+
+\bibitem[Chen et~al.(2024)Chen, Wu, Wang, Su, Chen, Xing, Zhong, Zhang, Zhu,
+  Lu, Li, Luo, Lu, Qiao, and Dai]{chen2024internvl}
+Zhe Chen, Jiannan Wu, Wenhai Wang, Weijie Su, Guo Chen, Sen Xing, Muyan Zhong,
+  Qinglong Zhang, Xizhou Zhu, Lewei Lu, Bin Li, Ping Luo, Tong Lu, Yu~Qiao, and
+  Jifeng Dai.
+\newblock {InternVL}: Scaling up vision foundation models and aligning for
+  generic visual-linguistic tasks.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition (CVPR)}, pp.\  24185--24198, 2024.
+
+\bibitem[Fang et~al.(2024)Fang, Li, Zhou, Xiao, Yu, Lv, Xue, and
+  Chua]{fang2024mmau}
+Jianwu Fang, Lei-Lei Li, Junfei Zhou, Junbin Xiao, Hongkai Yu, Chen Lv, Jianru
+  Xue, and Tat-Seng Chua.
+\newblock Abductive ego-view accident video understanding for safe driving
+  perception.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition (CVPR)}, pp.\  22030--22040, 2024.
+
+\bibitem[Ferrari~Dacrema et~al.(2019)Ferrari~Dacrema, Cremonesi, and
+  Jannach]{ferraridacrema2019progress}
+Maurizio Ferrari~Dacrema, Paolo Cremonesi, and Dietmar Jannach.
+\newblock Are we really making much progress? a worrying analysis of recent
+  neural recommendation approaches.
+\newblock In \emph{Proceedings of the 13th ACM Conference on Recommender
+  Systems (RecSys)}, pp.\  101--109, 2019.
+\newblock \doi{10.1145/3298689.3347058}.
+
+\bibitem[Goldshmidt et~al.(2025)Goldshmidt, Scott, Niccolini, Zhu, Moura, and
+  Zvitia]{goldshmidt2025badas}
+Roni Goldshmidt, Hemi Scott, Lorenzo Niccolini, Shizhan Zhu, Daniel Moura, and
+  Oren Zvitia.
+\newblock {BADAS}: Context-aware collision prediction using real-world dashcam
+  data.
+\newblock \emph{arXiv preprint arXiv:2510.14876}, 2025.
+
+\bibitem[Gururangan et~al.(2018)Gururangan, Swayamdipta, Levy, Schwartz,
+  Bowman, and Smith]{gururangan2018artifacts}
+Suchin Gururangan, Swabha Swayamdipta, Omer Levy, Roy Schwartz, Samuel~R.
+  Bowman, and Noah~A. Smith.
+\newblock Annotation artifacts in natural language inference data.
+\newblock In \emph{Proceedings of NAACL-HLT 2018, Volume 2 (Short Papers)},
+  pp.\  107--112, 2018.
+\newblock \doi{10.18653/v1/N18-2017}.
+
+\bibitem[Kandacharam et~al.(2025)Kandacharam, Rajathilagam, and
+  Vasudevan]{kandacharam2025fusion}
+Sanjay Kandacharam, B.~Rajathilagam, and Shriram~K. Vasudevan.
+\newblock Fusion framework for accident anticipation and incident detection in
+  dashcam videos.
+\newblock \emph{SN Computer Science}, 6\penalty0 (5):\penalty0 548, 2025.
+\newblock \doi{10.1007/s42979-025-04085-z}.
+
+\bibitem[Karim et~al.(2022)Karim, Li, Qin, and Yin]{karim2022dsta}
+Muhammad~Monjurul Karim, Yu~Li, Ruwen Qin, and Zhaozheng Yin.
+\newblock A dynamic spatial-temporal attention network for early anticipation
+  of traffic accidents.
+\newblock \emph{IEEE Transactions on Intelligent Transportation Systems},
+  23\penalty0 (7):\penalty0 9590--9600, 2022.
+\newblock \doi{10.1109/TITS.2022.3155613}.
+
+\bibitem[Korkut et~al.(2026)Korkut, Bravo~Sarmiento, Kim, and
+  Akata]{korkut2026blind}
+Sena Korkut, Miguel~Angel Bravo~Sarmiento, Sungjun Kim, and Zeynep Akata.
+\newblock From accuracy to visual dependence: Auditing and filtering modality
+  collapse in traffic {VideoQA}.
+\newblock In \emph{1st Workshop on Combining Theory and Benchmarks (CTB@ICML)},
+  2026.
+\newblock arXiv:2606.30220.
+
+\bibitem[Liao et~al.(2025)Liao, Rao, Sun, Wang, Chang, Li, Xu, and
+  Li]{liao2025cot}
+Haicheng Liao, Bin Rao, Hanlin Sun, Chengyue Wang, Qian Chang, Shengbo~Eben Li,
+  Chengzhong Xu, and Zhenning Li.
+\newblock Chain-of-thought guided multimodal large language models for
+  scene-aware accident anticipation in autonomous driving.
+\newblock \emph{IEEE Transactions on Intelligent Transportation Systems},
+  26\penalty0 (11):\penalty0 19371--19380, 2025.
+\newblock \doi{10.1109/TITS.2025.3597411}.
+
+\bibitem[Liu et~al.(2026)Liu, Hu, Jiang, Wan, and Ma]{liu2026sctnet}
+Hao Liu, Xin Hu, Yu~Jiang, Tao Wan, and Wei Ma.
+\newblock {SCTNet}: Structured and causality-guided spatiotemporal diffusion
+  network for unsupervised traffic accident detection.
+\newblock \emph{Information Processing \& Management}, 63\penalty0
+  (4):\penalty0 104598, 2026.
+\newblock \doi{10.1016/j.ipm.2025.104598}.
+
+\bibitem[Liu et~al.(2023)Liu, Li, Wu, and Lee]{liu2023llava}
+Haotian Liu, Chunyuan Li, Qingyang Wu, and Yong~Jae Lee.
+\newblock Visual instruction tuning.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~36, 2023.
+
+\bibitem[Moura et~al.(2025)Moura, Zhu, and Zvitia]{moura2025nexar}
+Daniel Moura, Shizhan Zhu, and Oren Zvitia.
+\newblock Nexar dashcam collision prediction dataset and challenge.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition Workshops (CVPRW)}, pp.\  2608--2616, 2025.
+
+\bibitem[Pjetri et~al.(2025)Pjetri, Abbondandolo, de~Andrade, Caprasecca,
+  Sambo, and Bagdanov]{pjetri2025nondecreasing}
+Aurel Pjetri, Alessio Abbondandolo, Douglas~Coimbra de~Andrade, Stefano
+  Caprasecca, Francesco Sambo, and Andrew~D. Bagdanov.
+\newblock Self-supervised road accident anticipation with non-decreasing
+  danger.
+\newblock In \emph{Computer Vision -- ECCV 2024 Workshops}, volume 15629 of
+  \emph{Lecture Notes in Computer Science}, pp.\  65--79. Springer, 2025.
+\newblock \doi{10.1007/978-3-031-91767-7_5}.
+
+\bibitem[Poliak et~al.(2018)Poliak, Naradowsky, Haldar, Rudinger, and
+  Van~Durme]{poliak2018hypothesis}
+Adam Poliak, Jason Naradowsky, Aparajita Haldar, Rachel Rudinger, and Benjamin
+  Van~Durme.
+\newblock Hypothesis only baselines in natural language inference.
+\newblock In \emph{Proceedings of the 7th Joint Conference on Lexical and
+  Computational Semantics (*SEM)}, pp.\  180--191, 2018.
+\newblock \doi{10.18653/v1/S18-2023}.
+
+\bibitem[Radford et~al.(2021)Radford, Kim, Hallacy, Ramesh, Goh, Agarwal,
+  Sastry, Askell, Mishkin, Clark, Krueger, and Sutskever]{radford2021clip}
+Alec Radford, Jong~Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh,
+  Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark,
+  Gretchen Krueger, and Ilya Sutskever.
+\newblock Learning transferable visual models from natural language
+  supervision.
+\newblock In \emph{Proceedings of the 38th International Conference on Machine
+  Learning}, volume 139 of \emph{PMLR}, pp.\  8748--8763, 2021.
+
+\bibitem[Saha et~al.(2026)Saha, Mannan, Rashid, Naswan, and
+  Tahmid]{saha2026zeroshot}
+Dipto Saha, S.~M.~Abdullah Mannan, Md~Refat Rashid, Rafi Naswan, and Ahmed
+  Tahmid.
+\newblock Zero-shot traffic accident detection via a coarse-to-fine
+  {VLM}-tracking pipeline.
+\newblock \emph{arXiv preprint arXiv:2608.08867}, 2026.
+
+\bibitem[Singh et~al.(2026)Singh, Pal, Biswas, and Chandran]{singh2026metadata}
+Singh, Pal, Biswas, and Chandran.
+\newblock Metadata-aware multi-prompt reasoning for zero-shot accident
+  understanding.
+\newblock \emph{arXiv preprint arXiv:2606.12047}, 2026.
+\newblock Given names to be confirmed before camera-ready.
+
+\bibitem[Teed \& Deng(2020)Teed and Deng]{teed2020raft}
+Zachary Teed and Jia Deng.
+\newblock {RAFT}: Recurrent all-pairs field transforms for optical flow.
+\newblock In \emph{Computer Vision -- ECCV 2020}, volume 12347 of \emph{Lecture
+  Notes in Computer Science}, pp.\  402--419. Springer, 2020.
+\newblock \doi{10.1007/978-3-030-58536-5_24}.
+
+\bibitem[Thakur \& Talele(2026)Thakur and Talele]{thakur2026modular}
+Amey Thakur and Sarvesh Talele.
+\newblock A modular zero-shot pipeline for accident detection, localization,
+  and classification in traffic surveillance video.
+\newblock \emph{arXiv preprint arXiv:2604.09685}, 2026.
+
+\bibitem[Torralba \& Efros(2011)Torralba and Efros]{torralba2011bias}
+Antonio Torralba and Alexei~A. Efros.
+\newblock Unbiased look at dataset bias.
+\newblock In \emph{Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition (CVPR)}, pp.\  1521--1528, 2011.
+\newblock \doi{10.1109/CVPR.2011.5995347}.
+
+\bibitem[{World Health Organization}(2023)]{who2023}
+{World Health Organization}.
+\newblock Road traffic injuries, 2023.
+\newblock URL
+  \url{https://www.who.int/news-room/fact-sheets/detail/road-traffic-injuries}.
+\newblock WHO Fact Sheet, 13 December 2023.
+
+\bibitem[Yao et~al.(2019)Yao, Xu, Wang, Crandall, and
+  Atkins]{yao2019unsupervised}
+Yu~Yao, Mingze Xu, Yuchen Wang, David~J. Crandall, and Ella~M. Atkins.
+\newblock Unsupervised traffic accident detection in first-person videos.
+\newblock In \emph{Proceedings of the IEEE/RSJ International Conference on
+  Intelligent Robots and Systems (IROS)}, pp.\  273--280, 2019.
+
+\bibitem[Zhang et~al.(2025{\natexlab{a}})Zhang, Wang, Liao, Guan, Li, Xie, and
+  Rao]{zhang2025camera}
+Jiaxun Zhang, Chengyue Wang, Haicheng Liao, Yanchen Guan, Zhenning Li, Yumu
+  Xie, and Bin Rao.
+\newblock Eyes on the road, mind beyond vision: Context-aware multi-modal
+  enhanced risk anticipation.
+\newblock In \emph{Proceedings of the 33rd ACM International Conference on
+  Multimedia}, 2025{\natexlab{a}}.
+\newblock \doi{10.1145/3746027.3755378}.
+
+\bibitem[Zhang et~al.(2025{\natexlab{b}})Zhang, Wang, Zhang, Bian, Feng, and
+  Ozbay]{zhang2025seeunsafe}
+Ruixuan Zhang, Beichen Wang, Juexiao Zhang, Zilin Bian, Chen Feng, and Kaan
+  Ozbay.
+\newblock When language and vision meet road safety: Leveraging multimodal
+  large language models for video-based traffic accident analysis.
+\newblock \emph{Accident Analysis \& Prevention}, 219:\penalty0 108077,
+  2025{\natexlab{b}}.
+\newblock \doi{10.1016/j.aap.2025.108077}.
+
+\bibitem[Zhang et~al.(2025{\natexlab{c}})Zhang, Zhou, Lin, Yang, and
+  Zheng]{zhang2025review}
+Yi~Zhang, Wenye Zhou, Ruonan Lin, Xin Yang, and Hao Zheng.
+\newblock Deep learning advances in vision-based traffic accident anticipation:
+  A comprehensive review of methods, datasets, and future directions.
+\newblock \emph{arXiv preprint arXiv:2505.07611}, 2025{\natexlab{c}}.
+
+\bibitem[Zhao et~al.(2025)Zhao, Zou, Mao, Xiao, Huang, Yang, Li, Li, Wu, and
+  Lin]{zhao2025top}
+Tianhao Zhao, Yiyang Zou, Zihao Mao, Peilun Xiao, Yulin Huang, Hongda Yang,
+  Yuxuan Li, Qun Li, Guobin Wu, and Yutian Lin.
+\newblock Accident anticipation via temporal occurrence prediction.
+\newblock \emph{arXiv preprint arXiv:2510.22260}, 2025.
+
+\bibitem[Zhong et~al.(2025)Zhong, Yan, Zhu, Gan, and Shen]{zhong2025early}
+Yuanhong Zhong, Ge~Yan, Ruyue Zhu, Ping Gan, and Xuerui Shen.
+\newblock Early traffic accident anticipation via feature consistency
+  representation and soft label regression.
+\newblock \emph{ACM Transactions on Multimedia Computing, Communications, and
+  Applications}, 21, 2025.
+\newblock \doi{10.1145/3767737}.
+
+\bibitem[Zou et~al.(2026)Zou, Zhao, Xiao, Jin, Qi, Li, Liang, Qian, Lai, Lin,
+  Li, and Wu]{zou2026riskprop}
+Yiyang Zou, Tianhao Zhao, Peilun Xiao, Hao Jin, Lu~Qi, Yuxuan Li, Lei Liang,
+  Yi~Qian, Chen Lai, Yutian Lin, Zhenning Li, and Yi~Wu.
+\newblock {RiskProp}: Collision-anchored self-supervised risk propagation for
+  early accident anticipation.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition (CVPR)}, 2026.
+
+\end{thebibliography}
