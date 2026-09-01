@@ -6,7 +6,7 @@
 %
 %   build:  pdflatex main && bibtex main && pdflatex main && pdflatex main
 % ---------------------------------------------------------------------------
-\documentclass{article}
+\documentclass[10pt]{article}
 \usepackage{tmlr}
 % \usepackage[accepted]{tmlr}     % camera-ready
 % \usepackage[preprint]{tmlr}     % arXiv version, with names
@@ -17,13 +17,11 @@
 \usepackage{calc}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb}
-\usepackage{microtype}
 \usepackage{url}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \providecommand{\real}[1]{#1}
-\providecommand{\href}[2]{#2\footnote{\url{#1}}}
 
 % Table and figure captions. The tables are longtables produced by the
 % conversion, so their captions sit above them as their own paragraph rather
