@@ -50,6 +50,17 @@
 \DeclareUnicodeCharacter{03B8}{\ensuremath{\theta}}
 \DeclareUnicodeCharacter{03B5}{\ensuremath{\epsilon}}
 
+% ---------------------------------------------------------------------------
+% The two places the paper would otherwise name us. Both builds share one body
+% file, so the anonymous and the named versions cannot drift apart: this file
+% sets them anonymously, main_preprint.tex sets them openly.
+% ---------------------------------------------------------------------------
+\newcommand{\entryname}{\emph{our entry}}
+\newcommand{\codeavail}{\noindent\textbf{Code and data:} All submission
+files, the score log, the analysis code and the scripts that produce both
+figures are provided as anonymised supplementary material, and will be released
+publicly on acceptance.}
+
 \title{Unbounded Timing Terms Make a Composite Accident-Anticipation Score
 Video-Blind: Evidence from a Live Benchmark}
 
