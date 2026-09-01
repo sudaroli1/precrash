@@ -1,0 +1,64 @@
+% ---------------------------------------------------------------------------
+% Preamble for the standalone build. Swap the documentclass line for the
+% venue's own class when submitting:
+%   TMLR   \documentclass{article} + \usepackage{tmlr}
+%   IEEE   \documentclass[journal]{IEEEtran}
+% Everything below is class-agnostic.
+% ---------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage{lmodern}   % not present in this TeX install
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{ragged2e}
+\usepackage{caption}
+\usepackage{url}
+\providecommand{\href}[2]{#2\footnote{\url{#1}}}
+\usepackage[expansion=false]{microtype}
+
+\setlength{\parskip}{0.55em}
+\setlength{\parindent}{0pt}
+\captionsetup{font=small,labelfont=bf}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\renewcommand{\arraystretch}{1.15}
+
+% This TeX installation has no Unicode-aware font, so the characters that
+% survive the docx conversion are declared explicitly. Switch to xelatex or
+% lualatex and these become unnecessary.
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\leq}}
+\DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
+\DeclareUnicodeCharacter{2032}{\ensuremath{{}^{\prime}}}
+\DeclareUnicodeCharacter{03C1}{\ensuremath{\rho}}
+\DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}
+\DeclareUnicodeCharacter{03B2}{\ensuremath{\beta}}
+\DeclareUnicodeCharacter{03B3}{\ensuremath{\gamma}}
+\DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
+\DeclareUnicodeCharacter{03B8}{\ensuremath{\theta}}
+\DeclareUnicodeCharacter{03B5}{\ensuremath{\epsilon}}
+\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
+\DeclareUnicodeCharacter{2261}{\ensuremath{\equiv}}
+\DeclareUnicodeCharacter{2044}{/}
+\DeclareUnicodeCharacter{1D9C}{\textsuperscript{c}}
+\DeclareUnicodeCharacter{2080}{\ensuremath{_0}}
+\DeclareUnicodeCharacter{2081}{\ensuremath{_1}}
+\DeclareUnicodeCharacter{209C}{\ensuremath{_t}}
+\DeclareUnicodeCharacter{2090}{\ensuremath{_a}}
+\DeclareUnicodeCharacter{1D62}{\ensuremath{_i}}
+\DeclareUnicodeCharacter{02D9}{\ensuremath{\cdot}}
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+
+% pandoc's table column widths use \real, which comes from calc-
+% style packages pandoc assumes. Define it if the class has not.
+\makeatletter
+\providecommand{\real}[1]{#1}
+\makeatother
+
+\usepackage{amssymb}  % \checkmark
+\DeclareUnicodeCharacter{2009}{\,}
+\DeclareUnicodeCharacter{202F}{\,}
