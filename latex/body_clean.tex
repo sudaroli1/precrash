@@ -20,9 +20,9 @@ The contributions of this work are as follows.
 \item
   A black-box decomposition. Video-blind probes, built so that unknown terms cancel under differencing, separate a metric whose weights are undisclosed and whose labels are withheld --- recovering the discrimination floor, both timing terms, the slope in the crossing frame, and the accident-onset distribution.
 \item
-  Evidence that the published definition does not reproduce the scorer. Three curves crossing at the same frame, with identical values at the crossing, score 0.091 apart; under the stated formula they must be equal. The score cannot be computed from the published definition even given the labels.
+  Evidence that the published definition does not reproduce the scorer. Four curves crossing at the same frame, none of which dips below it afterwards, score 0.091 apart; under the stated formula they must be equal. The score cannot be computed from the published definition even given the labels.
 \item
-  A case study in which we are the subject, and a six-point protocol. Our own entry scores below the constant and we report it. The protocol's first item --- report a video-blind control with every result --- costs an afternoon and would have caught this.
+  A case study in which we are the subject, and a seven-point protocol. Our own entry scores below the constant and we report it. The protocol's first item --- report a video-blind control with every result --- costs an afternoon and would have caught this.
 \end{itemize}
 
 One point of scope, because this paper prints a number beside other teams' number. We make no claim about any other submission or published method: we did not re-run anyone's system, and could not have evaluated it if we had, because the labels are withheld from every entrant. Where a leaderboard score is numerically identical to a control's, we state that arithmetic fact and draw one inference --- the metric assigns the two submissions the same value. A whole family of curves receives it, which is precisely the property under examination.
@@ -83,7 +83,7 @@ We are equally explicit about what is not new. Monotonicity constraints on risk 
 \section{The Benchmark and its Metric}
 
 \subsection{The competition}
-The measurements in this paper were made on Zero-shot Accident Anticipation, the public competition hosted on Kaggle by \citet{autopilot2026}. It ran from 17 February to 15 April 2026 and drew 59 entrants, 20 participants and 13 teams across 194 submissions. Late submission remains open and is scored against the same data splits, which is how the experiments of Section 5 were run after the closing date. Every figure in this section was read from the competition's Overview, Evaluation, Data and Leaderboard pages on 31 August 2026.
+The measurements in this paper were made on Zero-shot Accident Anticipation, the public competition hosted on Kaggle by \citet{autopilot2026}. It ran from 17 February to 15 April 2026 and drew 59 entrants, of whom 20 went on to submit, forming 13 teams between them, across 194 submissions. Late submission remains open and is scored against the same data splits, which is how the experiments of Section 5 were run after the closing date. Every figure in this section was read from the competition's Overview, Evaluation, Data and Leaderboard pages on 31 August 2026.
 
 Two properties make it a suitable instrument for this study. The organisers hold the labels and compute every score, so nothing reported here depends on our own implementation of a metric. And a submission is a plain list of numbers per clip, so it need not contain a model at all --- which is what makes a video-blind control submittable in the first place.
 
@@ -98,23 +98,23 @@ One consequence deserves emphasis, because the rest of this paper turns on it. A
 A second consequence is worth recording without overstating it. The captions describe outcomes. Seventy-nine distinct captions cover the 1,417 clips, the most frequent being ``lead vehicle stops'' (146 clips), ``a vehicle controls loss'' (144) and ``ego-car controls loss'' (133). They state what happens, and they are supplied at inference time, so a method conditioned on them has access to the outcome it is being asked to anticipate. The system described in this section does not use them; it manufactures its own text anchors from a motion statistic. We identify the hazard and do not quantify it.
 
 \subsection{The metric, as published}
-The evaluation page defines the score as a weighted average of four quantities:
+The evaluation page defines the score as a weighted sum of four quantities:
 
-score = w\_AP · AP + w\_AUC · AUC + w\_TTA · TTA@0.5 + w\_STTA · STTA@0.5
+\[\text{score} = w_{\text{AP}}\,\text{AP} + w_{\text{AUC}}\,\text{AUC} + w_{\text{TTA}}\,\text{TTA@0.5} + w_{\text{STTA}}\,\text{STTA@0.5}\]
 
 with the four weights stated to be fixed by the organisers and not disclosed. Positives are accident clips and negatives are normal driving clips; the area under the curve is given in its rank formulation. The two timing terms are defined at a risk threshold of 0.5:
 
-TTA@0.5 = max \{ t\_ai − t\_a \textbar{} p\_t \textgreater{} 0.5, 0 ≤ t\_a ≤ t\_ai \}
+\[\text{TTA@0.5} = \max\left\{ t_{ai} - t_{a} \ \middle|\ p_{t} > 0.5,\ 0 \leq t_{a} \leq t_{ai} \right\}\]
 
-STTA@0.5 = max \{ t\_ai − t\_a′ \textbar{} p\_t \textgreater{} 0.5 for all t in [t\_a′, t\_ai] \}
+\[\text{STTA@0.5} = \max\left\{ t_{ai} - t'_{a} \ \middle|\ p_{t} > 0.5 \ \text{ for all } t \in [t'_{a},\,t_{ai}] \right\}\]
 
-where t\_ai is the accident start frame within the 150-frame clip and t\_a is the first frame at which the risk score exceeds the threshold. STTA additionally requires the score to remain above the threshold continuously from t\_a′ to t\_ai.
+where \(t_{ai}\) is the accident start frame within the 150-frame clip and \(t_{a}\) the first frame at which the risk score exceeds the threshold. STTA additionally requires the score to remain above the threshold continuously from \(t'_{a}\) to \(t_{ai}\).
 
 Three observations follow from these definitions alone, before any measurement is made.
 
-First, AP and AUC are bounded on the unit interval, while TTA and STTA are counted in frames and bounded only by t\_ai, and hence by how the corpus was windowed. The four terms are not commensurable, and their sum inherits the scale of the larger pair.
+First, AP and AUC are bounded on the unit interval, while TTA and STTA are counted in frames and bounded only by \(t_{ai}\), and hence by how the corpus was windowed. The four terms are not commensurable, and their sum inherits the scale of the larger pair.
 
-Second, both timing terms are maximised by the same trivial submission. A risk score that exceeds 0.5 at frame 0 and never falls has t\_a = 0 and satisfies the continuity condition on every clip, so it attains TTA = STTA = t\_ai, the largest value each clip admits. No submission of any kind can exceed it on either term; a submission can only match it, and then compete on AP and AUC.
+Second, both timing terms are maximised by the same trivial submission. A risk score that exceeds 0.5 at frame 0 and never falls has \(t_{a}\) = 0 and satisfies the continuity condition on every clip, so it attains TTA = STTA = \(t_{ai}\), the largest value each clip admits. No submission of any kind can exceed it on either term; a submission can only match it, and then compete on AP and AUC.
 
 Third, neither timing term reads the magnitude of the score, only whether it stands above 0.5. A submission that is barely committed and one that is certain receive identical timing credit, so the metric offers no incentive to calibrate.
 
@@ -127,11 +127,11 @@ Pre-crash systems differ from reactive ones in that the prediction must precede 
 
 \subsection{Problem Statement}
 
-The considered problem is anticipating accidents without any training data and it is expected to generalize well only with pretrained knowledge. The formal definition of the problem is as follows:
+The considered problem is anticipating accidents without any training data, using pretrained knowledge alone. The formal definition of the problem is as follows:
 
-Let the 5 second dashcam video sequence be defined as a temporally ordered set of frames \(V_{s} = \{ f_{1},f_{2},\ldots,f_{m}\}\) and the dimension of each frame denotes the RGB observation at time t as \(f_{t} \in \mathbb{R}^{H \times W \times 3}\). The accident anticipation problem thus denotes a learning predictive mapping that predicts the risk score for each frame. The learning predictive mapping is formally denoted as mentioned in equation (1)
+Let the 5 second dashcam video sequence be defined as a temporally ordered set of frames \(V_{s} = \{ f_{1},f_{2},\ldots,f_{m}\}\) with \(m = 150\) for every clip in this corpus, and each frame the RGB observation at time \(t\), \(f_{t} \in \mathbb{R}^{H \times W \times 3}\), where \(H\) and \(W\) are the frame height and width. The anticipation problem is then a predictive mapping that assigns a risk score to every frame of the clip. The learning predictive mapping is formally denoted as mentioned in equation (1)
 
-\[g\ :\ V_{s} \longrightarrow \rho_{t} \in \lbrack 0,1\rbrack\ldots\ldots\ldots.(1)\]
+\[g\ :\ V_{s} \longrightarrow \left( \rho_{1},\ldots,\rho_{m} \right) \in \lbrack 0,1\rbrack^{m}\ldots\ldots\ldots.(1)\]
 
 Here \(\rho_{t}\) is the predicted probability of an accident at frame \(t\), computed without observing one. The risk score should begin near 0 and rise toward 1 before the collision, and the earlier it crosses 0.5 the better the official score. That last clause is not a design preference but a literal description of the metric, and it is this paper's subject: Section 5 shows that a score crossing at frame 0 and never falling collects almost all of what the metric awards.
 
@@ -149,7 +149,7 @@ This problem statement is specifically difficult to solve for the following reas
 
 \subsection{Overall System Architecture}
 
-PreCrash is modular and decoupled. Three pretrained engines --- a vision--language semantic engine, a motion engine and a text-anchored prior --- run independently, sharing no weights or activations, and are combined only at a late fusion layer. Each is matched to its own representational domain, so no single model carries the whole burden of reasoning about appearance, motion and semantics at once, and any engine can be replaced without disturbing the others. That separation is also what makes the per-modality failure analysis of Section 5.6.1 possible.
+The system is modular in implementation. Three scoring engines --- a vision--language semantic engine, a motion engine and a text-anchored temporal prior --- produce per-frame curves independently, sharing no weights or activations, and are combined only at a late fusion layer, so any one can be replaced without disturbing the others. They are not, however, three independent views of the scene, and an earlier version of this work said they were. The text-anchored prior is a three-level quantisation of the same grayscale frame-difference statistic the motion engine uses, as the subsection on it below sets out, so two of the three curves are functions of one signal. We state it here because it is the correction that explains the ablation of Section 5.6.1.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -157,7 +157,7 @@ PreCrash is modular and decoupled. Three pretrained engines --- a vision--langua
   \emph{System Architecture overview:}
 \end{enumerate}
 
-The system takes a 150-frame clip, dispatches it to the three engines in parallel with no inter-stream communication, and combines their per-frame curves in a six-stage pipeline: frame loading, semantic scoring, motion scoring, caption prior, ensemble, and post-processing (Figure 1).
+The system takes a 150-frame clip, dispatches it to the three engines in parallel with no inter-stream communication, and combines their per-frame curves in a six-stage pipeline: frame loading, semantic scoring, motion scoring, temporal prior, ensemble, and post-processing (Figure 1).
 
 \includegraphics[width=6.26806in,height=4.69869in]{media/image1.png}
 
@@ -186,7 +186,7 @@ The three engines were chosen by trial rather than by training, since no trainin
   \emph{CLIP ViT-L/14:}
 \end{enumerate}
 
-Visual scoring asks whether a frame resembles danger --- which requires reading the scene semantically rather than as pixels. CLIP does this at zero shot because it was pretrained on 400 million image--text pairs and can therefore compare a frame against a danger prompt with no task-specific training. ViT-L/14 was chosen over the smaller variants for its finer spatial detail. Convolutional backbones were rejected because they cannot score a frame against a text prompt without accident-specific training, object detectors because they locate objects rather than assess risk, and the larger instruction-tuned models because their per-frame decoding cost exceeded the compute available.
+Visual scoring asks whether a frame resembles danger --- which requires reading the scene semantically rather than as pixels. CLIP does this zero-shot because it was pretrained on 400 million image--text pairs and can therefore compare a frame against a danger prompt with no task-specific training. ViT-L/14 was chosen over the smaller variants for its finer spatial detail. Convolutional backbones were rejected because they cannot score a frame against a text prompt without accident-specific training, object detectors because they locate objects rather than assess risk, and the larger instruction-tuned models because their per-frame decoding cost exceeded the compute available.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -197,16 +197,16 @@ Visual scoring asks whether a frame resembles danger --- which requires reading 
 
 Motion asks a different question: are objects moving as normal physics would predict, or not? Accidents are generally preceded by kinematic abnormality --- a pedestrian stepping out, a sharp deceleration, an unexpected object. The RAFT estimator of \citet{teed2020raft} is the more accurate way to capture this, but it did not fit the compute budget available, so a frame-difference proxy was used instead. The trade-off was never measured: an earlier version of this work asserted that frame differencing retains about 90\% of RAFT's sensitivity at about 1\% of its cost, and that figure was an estimate with no ablation behind it. It is withdrawn. Frame difference is computed as follows.
 
-\[flow(t) = mean\left( \left| frame(t) - frame(t - 1) \right| \right)\ldots\ldots\ldots..(2)\]
+\[d(t) = \operatorname{mean}\left( \left| f_{t} - f_{t-1} \right| \right)\ldots\ldots\ldots..(2)\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{2}
 \item
-  \emph{Caption NLP Prior:}
+  \emph{Text-Anchored Temporal Prior:}
 \end{enumerate}
 
-Vision and motion between them still do not answer what is happening. A text prior adds that: captions translate the scene into language, which can be compared against high-risk action patterns, and sentence encoders trained on large image--text corpora carry enough of that structure to reason about danger without task-specific training. Table 1 records how the encoder was chosen.
+The third engine was intended to answer what is happening rather than what is present or what is moving, by translating the scene into language and comparing it against high-risk action patterns. It does not do that, and the description is corrected here rather than the behaviour, so that the reported numbers remain reproducible. As implemented, it computes the mean grayscale inter-frame difference over the last third of the clip --- the same statistic the motion engine uses --- thresholds that scalar at 20 and at 10, and selects one of three fixed strings written into the source. The selected string is embedded with a sentence encoder and compared against two fixed text anchors, and a sigmoid over the frame index is parameterised by the two similarities. No frame is captioned, no image--text model is involved, and the encoder never sees anything but one of those three strings. The modality therefore has three reachable states across the whole corpus. Table 1 records how the encoder was chosen; Section 5.6.1 records what that choice was worth.
 
 \floatcap{Table 1}{Sentence encoders compared by average crossover frame --- the locally computable proxy, not accuracy. Read with the caveat below.}
 \begin{longtable}[]{@{}
@@ -227,11 +227,11 @@ Vision and motion between them still do not answer what is happening. A text pri
 \endlastfoot
 \textbf{all-MiniLM-L6-v2 \checkmark } & \textbf{21.7 frames} & Earliest crossover of the four \\
 multi-qa-mpnet-base-cos-v1 & 22.4 frames & Worse --- later crossover than MiniLM \\
-all-mpnet-base-v2 & 23.0 frames & Worse --- larger model, lower performance \\
+all-mpnet-base-v2 & 23.0 frames & Later crossover than the two above it \\
 all-roberta-large-v1 & 24.7 frames & Latest crossover of the four \\
 \end{longtable}
 
-Table 1 needs a caveat that only became clear later, and it is the reason this paper exists. The column on which those four encoders were compared is the average crossover frame: the mean index at which the ensemble's risk score first exceeds 0.5. That quantity was chosen because it is the only thing computable locally on a corpus that publishes no labels (Section 3.3). It is not accuracy, and the selection it drove cannot be described as choosing the most accurate encoder. Worse, it improves monotonically as the crossing moves earlier, and it is minimised absolutely --- to frame 0 --- by a constant risk score of 0.51 that reads no pixels at all. The selection recorded in Table 1 was therefore made against a criterion that a degenerate submission optimises perfectly. We keep the table because it is an honest record of how the choice was made, and because Section 5 measures what that criterion is worth. The stated explanation for the ordering --- that smaller sentence encoders suit these short, domain-specific captions better than large general-purpose ones --- remains plausible, but this experiment does not establish it.
+Table 1 needs a caveat that only became clear later, and it is the reason this paper exists. The column on which those four encoders were compared is the average crossover frame: the mean index at which a risk score first exceeds 0.5. Which configuration produced it we can no longer establish from our records --- the selected value, 21.7, is exactly the prior-alone figure of Tables 10 and 12, where the full ensemble reads 22.7, so the column is most likely the prior on its own rather than the ensemble. That quantity was chosen because it is the only thing computable locally on a corpus that publishes no labels (Section 3.3). It is not accuracy, and the selection it drove cannot be described as choosing the most accurate encoder. Worse, it improves monotonically as the crossing moves earlier, and it is minimised absolutely --- to frame 0 --- by a constant risk score of 0.51 that reads no pixels at all. The selection recorded in Table 1 was therefore made against a criterion that a degenerate submission optimises perfectly. We keep the table because it is an honest record of how the choice was made, and because Section 5 measures what that criterion is worth. The stated explanation for the ordering --- that smaller sentence encoders suit these short, domain-specific captions better than large general-purpose ones --- does not survive the correction above either: the four encoders were not compared on captions, but on which of three fixed strings the clip had been assigned, so what the column separates is four embeddings of the same three sentences.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -240,7 +240,7 @@ Table 1 needs a caveat that only became clear later, and it is the reason this p
   \emph{Ensembled Model:}
 \end{enumerate}
 
-Each engine alone is blind to what the others see. The semantic score reads appearance without temporal context, so a foggy frame can look dangerous in ordinary driving and early frames receive moderate rather than near-zero scores. The motion proxy cannot separate ordinary traffic movement from accident movement, and is high at the start of clips where the camera itself is moving. The caption prior cannot see the video at all, so identically worded captions receive identical trajectories. Ensembling is intended to let each engine cover the others'{} blind spot: the semantic score supplies what is in the scene, the motion proxy whether it is moving abnormally, and the caption prior when in the clip risk should rise.
+Each engine alone is blind to what the others see. The semantic score reads appearance without temporal context, so a foggy frame can look dangerous in ordinary driving and early frames receive moderate rather than near-zero scores. The motion proxy cannot separate ordinary traffic movement from accident movement, and is high at the start of clips where the camera itself is moving. The temporal prior does not see the video at all, and has three reachable states, so every clip in the same motion bucket receives the same curve. Ensembling was intended to let each engine cover the others'{} blind spot: the semantic score supplying what is in the scene, the motion proxy whether it is moving abnormally, and the prior when in the clip risk should rise. It does not achieve the third of those, because the prior is a quantisation of the motion proxy rather than an independent reading of the clip.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -251,44 +251,44 @@ Each engine alone is blind to what the others see. The semantic score reads appe
 
 All 1,417 clips pass through the pipeline of Figure 1. Each clip, standardised to 150 frames bounded by its start and end frames, is fed to the three engines, which compute their curves in parallel.
 
-The CLIP ViT-L/14 encoder of \citet{radford2021clip} takes the frame as input and encode that frame so as to identify the dangerous and safe scene. This is carried out with the computation of the cosine similarity between the frame embedding and hand-crafted text anchors. This similarity value thus aids in the identification of the danger affinity score for each frame as mentioned in equation (3)
+The CLIP ViT-L/14 encoder of \citet{radford2021clip} embeds each frame, and the frame's danger affinity is the difference between its cosine similarity to a hand-written danger prompt and to a safe prompt, passed through a logistic, as in equation (3).
 
-\[{p\_}_{clip(t)} = \sigma\left( \cos\left( \varphi\left( e_{t} \right),f_{\text{danger}} \right) - \cos\left( \varphi\left( e_{t} \right),f_{\text{safe}} \right) \right)\ldots\ldots\ldots\ldots\ldots\ldots.(3)\]
+\[p_{\text{clip}}(t) = \sigma\left( \cos\left( \varphi(f_{t}),\tau_{\text{danger}} \right) - \cos\left( \varphi(f_{t}),\tau_{\text{safe}} \right) \right)\ldots\ldots\ldots\ldots\ldots\ldots.(3)\]
 
-Where \(\varphi\left( e_{t} \right)\) denotes the visual encoder and \(\sigma\) is the logistic function.
+where \(\varphi\) is the CLIP image encoder and \(\varphi(f_{t})\) the embedding of frame \(t\); \(\tau_{\text{danger}}\) and \(\tau_{\text{safe}}\) are the embeddings of the two text prompts; and \(\sigma\) is the logistic function.
 
-The sudden changes in the scene and appearance of any form of kinematics is extracted from the frame using the optical flow estimation that basically finds the inter-frame pixel difference between the consecutive frames as shown in equation (4)
+Kinematic change is extracted as the mean absolute pixel difference between consecutive frames --- not by optical flow, which was rejected for the compute budget --- min--max normalised across the clip, as in equation (4).
 
-\[{p\_}_{flow(t)} = \frac{{|\left| e_{t} - e_{t - 1} \right||}_{1} - \min_{\alpha}{|\left| e_{\alpha} - e_{\alpha - 1} \right||}_{1}}{\max_{\alpha}{||e_{\alpha} - e_{\alpha - 1}}|| - \min_{\alpha}{|\left| e_{\alpha} - e_{\alpha - 1} \right||}_{1}}\ldots\ldots\ldots\ldots..(4)\]
+\[p_{\text{flow}}(t) = \frac{\left\| f_{t} - f_{t-1} \right\|_{1} - \min_{u}\left\| f_{u} - f_{u-1} \right\|_{1}}{\max_{u}\left\| f_{u} - f_{u-1} \right\|_{1} - \min_{u}\left\| f_{u} - f_{u-1} \right\|_{1}}\ldots\ldots\ldots\ldots..(4)\]
 
-NLP captioning model generates the zero-shot text caption for each frame. This model performs the scoring against sudden onset of danger and gradual onset of danger. Thus, the final score is estimated using the temporal offset and relative score trajectory as mentioned in equation (5)
+where \(u\) ranges over the frames of the clip, so the minimum and maximum are taken over that clip alone. The temporal prior scores its selected string against a sudden-onset anchor and a gradual-onset anchor, and the two similarities parameterise a sigmoid over the frame index, as in equation (5).
 
-\[{p\_}_{caption(t)} = \sigma\left( \rho_{1}D_{\text{sudden}}(t) + \rho_{2}D_{\text{gradual}}(t) - t_{0} \right)\ldots\ldots\ldots\ldots..(5)\]
+\[p_{\text{prior}}(t) = \sigma\left( c_{1}D_{\text{sudden}} + c_{2}D_{\text{gradual}} + t - t_{0} \right)\ldots\ldots\ldots\ldots..(5)\]
 
-Where \(\rho_{1}\) and \(\rho_{2}\) are scaling constants and \(t_{0}\) denotes the temporal offset.
+where \(D_{\text{sudden}}\) and \(D_{\text{gradual}}\) are the cosine similarities of the selected string to the two fixed anchors. Both are constants for a given clip, because the string is: the frame index \(t\) is the only term that varies, so the prior contributes a sigmoid whose position is set by which of three strings the clip was assigned. \(c_{1}\) and \(c_{2}\) are scaling constants and \(t_{0}\) is a temporal offset in frames.
 
-Then all the feature extracted from three models are combined to a unified trajectory p\_final(t) using the 5 stages as mentioned below:
+The three curves are then combined into a single trajectory \(p_{\text{final}}(t)\) in the five stages below.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  The raw ensembled scores from all the three models are linearly combined as a convex combination as shown in equation (6)
+  The three curves are combined as a convex combination, as in equation (6).
 \end{enumerate}
 
-\[{p\_}_{raw(t)} = 0.55\text{\,}p_{\text{\_}\text{clip}}(t) + 0.25\text{\,}p_{\text{\_}\text{flow}}(t) + 0.20\text{\,}p_{\text{\_}\text{caption}}(t)\ldots\ldots\ldots(6)\]
+\[p_{\text{raw}}(t) = w_{\text{clip}}\,p_{\text{clip}}(t) + w_{\text{flow}}\,p_{\text{flow}}(t) + w_{\text{prior}}\,p_{\text{prior}}(t)\ldots\ldots\ldots(6)\]
 
-The varied weights are exhibited due to the variation with the power of the models.
+The entered configuration used \(w_{\text{clip}} = 0.55\), \(w_{\text{flow}} = 0.25\) and \(w_{\text{prior}} = 0.20\). Those values were not chosen a priori; they were searched over the evaluation corpus, which Section 4.3 records as a limitation. The released configuration weights the three equally.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{1}
 \item
-  The raw frame is then convolved with a 1D Gaussian kernel for reducing the frame-level noise that are caused due to the inter-frame appearance variation. Thus, the smoothened frames are outputted after the equation (7)
+  The combined curve is convolved with a one-dimensional Gaussian kernel to suppress frame-level noise caused by inter-frame appearance variation, as in equation (7).
 \end{enumerate}
 
-\[p_{\__{smooth}}(t) = \left( G_{\sigma}*p_{raw} \right)(t)\ldots\ldots\ldots\ldots\ldots\ldots\ldots(7)\]
+\[p_{\text{smooth}}(t) = \left( G_{h} * p_{\text{raw}} \right)(t)\ldots\ldots\ldots\ldots\ldots\ldots\ldots(7)\]
 
-The Gaussian kernel suppresses frame-to-frame noise arising from inter-frame appearance variation, so that a single bright, blurred or occluded frame cannot by itself trigger a threshold crossing. It does not act on average precision or on the area under the ROC curve, which are computed from clip-level scores by the organisers; an earlier version of this sentence said otherwise and was wrong.
+Here \(G_{h}\) is a Gaussian kernel of bandwidth \(h\); the symbol \(\sigma\) is reserved throughout for the logistic function. The kernel suppresses frame-to-frame noise, so that a single bright, blurred or occluded frame cannot by itself trigger a threshold crossing. It does not act on average precision or on the area under the ROC curve, which are computed from clip-level scores by the organisers; an earlier version of this sentence said otherwise and was wrong.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -297,7 +297,7 @@ The Gaussian kernel suppresses frame-to-frame noise arising from inter-frame app
   The power transformation with exponent \(\gamma = 1.8\ \)is applied as mentioned in equation (8)
 \end{enumerate}
 
-\[{p\_}_{norm(t)} = {p\_ smooth(t)}^{\gamma}\ldots\ldots\ldots\ldots(8)\]
+\[p_{\text{norm}}(t) = p_{\text{smooth}}(t)^{\,\gamma}\ldots\ldots\ldots\ldots(8)\]
 
 Since \(\gamma > 1\), with \(\gamma\) searched over \(\lbrack 1.0,2.5\rbrack\), this operation is a monotone contrast stretch: scores below 0.5 are suppressed toward zero while scores above 0.5 are amplified toward one, increasing the separation between the positive and negative score distributions. The exponent was selected over a grid in steps of 0.1. It could not have been selected by maximising average precision, as an earlier version of this text stated, because average precision is not computable on this corpus by an entrant (Section 3.3). The grid was scored against the crossover-frame proxy, with the consequences discussed under Table 1.
 
@@ -305,7 +305,7 @@ Since \(\gamma > 1\), with \(\gamma\) searched over \(\lbrack 1.0,2.5\rbrack\), 
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{3}
 \item
-  Let \(t^{*} = \min\{ t:p_{\text{norm}}(t) \geq \theta\}\)denote the first frame at which the score crosses the decision threshold \(\theta = 0.5\). The monotone clamping rule is defined as:
+  Let \(t^{*} = \min\{ t:p_{\text{norm}}(t) \geq \theta\}\) denote the first frame at which the score crosses the decision threshold \(\theta = 0.5\). The monotone clamping rule is defined as:
 \end{enumerate}
 
 \begin{quote}
@@ -317,7 +317,7 @@ p_{\text{norm}}(s) & s \leq t^{*} \\
 \end{matrix}\]
 \end{quote}
 
-with \(\epsilon = 0.01\). This enforces a hard causal constraint: once the score crosses the alarm boundary, it cannot fall back below it. The constraint is motivated by the irreversibility assumption --- in the target domain, risk accumulates monotonically once triggered --- and it also, by construction, forces the exact condition that the official Stable Time-to-Accident metric tests. STTA@0.5 requires the risk score to remain above 0.5 continuously from the alarm to the accident; the clamp makes falling below 0.5 impossible once the score has crossed. Any subsequent report of STTA compliance therefore measures that the clamp executed, and nothing about the video. We retain the stage, and Section 5 reports every metric with it disabled as well as enabled. Note also that the metric's name is Stable Time-to-Accident; an earlier version of this text expanded STTA as Score-Triggered Time-to-Action, which is not what the benchmark defines.
+with \(\epsilon = 0.01\). This enforces a hard causal constraint: once the score crosses the alarm boundary, it cannot fall back below it. The constraint is motivated by the irreversibility assumption --- in the target domain, risk accumulates monotonically once triggered --- and it also, by construction, forces the exact condition that the official Stable Time-to-Accident metric tests. STTA@0.5 requires the risk score to remain above 0.5 continuously from the alarm to the accident; the clamp makes falling below 0.5 impossible once the score has crossed. Any subsequent report of STTA compliance therefore measures that the clamp executed, and nothing about the video. We retain the stage. Section 5 does not report the leaderboard score of a run with it disabled --- we did not make that submission, and say so rather than imply otherwise --- which is exactly the omission item 5 of the protocol in Section 7 asks others not to repeat. Note also that the metric's name is Stable Time-to-Accident; an earlier version of this text expanded STTA as Score-Triggered Time-to-Action, which is not what the benchmark defines.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -327,15 +327,15 @@ with \(\epsilon = 0.01\). This enforces a hard causal constraint: once the score
 \end{enumerate}
 
 \[\begin{matrix}
- & p_{\text{final}}(t) = {interp}{\text{\,}\left( p_{\text{clamp}},\text{\:\,}\frac{t}{\alpha} \right)},\alpha = 1.3\ldots\ldots. & \ldots\ldots.(10) & 
+ & p_{\text{final}}(t) = \text{interp}\left( p_{\text{clamp}},\ \alpha t \right),\ \alpha = 1.3 & \ldots\ldots\ldots\ldots(10) & 
 \end{matrix}
 \]
 
-where \(\text{interp}\) denotes linear interpolation onto the original frame grid. This stage requires a correction and a warning. As implemented, the resampling evaluates the curve at index alpha times t and emits it at index t, so the score reported for frame t is the score computed from frame 1.3t --- a frame that has not yet been observed. Equation (10) as printed reads t divided by alpha; the implementation, and the reported shift of the crossover from about frame 28 to about frame 22, both correspond to alpha times t, and the equation should be corrected accordingly. This is the origin of the reported mean gain of six frames in time-to-accident: the six frames are read from the future. The operation cannot run in a deployed system, where frame 1.3t does not exist at time t, and every time-to-accident figure produced with alpha not equal to 1 is therefore unreportable. The released configuration sets alpha to 1.0, disabling the stage. It is documented here because it is one of the mechanisms Section 6 identifies, and because we introduced it ourselves. Finally, the output is clipped to the open interval \((0.001,\ 0.999)\) to ensure numerical stability in downstream log-loss evaluation.
+where \(\text{interp}\) denotes linear interpolation onto the original frame grid. This stage requires a correction and a warning. As implemented, the resampling evaluates the curve at index alpha times t and emits it at index t, so the score reported for frame t is the score computed from frame 1.3t --- a frame that has not yet been observed. Equation (10) above states the operation as implemented. An earlier version of this text printed it as t divided by alpha, which matches neither the code nor the direction of the shift the stage was reported to produce. An earlier version of this work attributed a mean gain of six frames in time-to-accident to this stage. That figure is withdrawn: no table in this paper measures the stage on its own. Table 12 separates C6 from C7 by 1.2 frames and bundles the compression with the clamp, so what the resampling bought is not identified anywhere in our records. The objection does not depend on the magnitude --- whatever it bought was read from a frame that had not arrived. The operation cannot run in a deployed system, where frame 1.3t does not exist at time t, and every time-to-accident figure produced with alpha not equal to 1 is therefore unreportable. The released configuration sets alpha to 1.0, disabling the stage. It is documented here because it is one of the mechanisms Section 6 identifies, and because we introduced it ourselves. Finally, the output is clipped to the open interval \((0.001,\ 0.999)\) to ensure numerical stability in downstream log-loss evaluation.
 
 \subsection{Implementation and Hardware}
 
-The zero-shot inference pipeline was implemented in \textbf{Python 3.10} with \textbf{PyTorch}, executed on an \textbf{NVIDIA T4 GPU} to leverage parallelised tensor processing and mixed-precision inference. The ensemble architecture integrates three independently operating, pre-trained modality engines with no shared weights or activation pathways between them, thereby preserving the modular interpretability of each cognitive signal.
+The zero-shot inference pipeline was implemented in \textbf{Python 3.10} with \textbf{PyTorch}, executed on an \textbf{NVIDIA T4 GPU} to leverage parallelised tensor processing and mixed-precision inference. The three pretrained engines run as separate processes with no shared weights or activation pathways, though two of the three read the same frame-difference statistic (Section 4.2).
 
 The three modality curves are combined by the fixed weights of Equation (6), with the visual signal given the dominant share. Those weights were chosen by searching over the evaluation corpus, which is a form of tuning on the test set and is recorded as a limitation in Section 8; the released configuration uses equal weights, chosen a priori, and Section 5 reports the leaderboard score of the entry that used the searched ones.
 
@@ -358,14 +358,14 @@ GPU Environment & NVIDIA T4 (16 GB VRAM) --- mixed precision inference \\
 CLIP Model & OpenAI CLIP ViT-L/14 \\
 NLP Encoder & all-MiniLM-L6-v2 (SentenceTransformer) \\
 Motion Estimation & Frame-difference proxy (grayscale latent space) \\
-Fusion Weights & α\,=\,0.55 (CLIP), β\,=\,0.25 (Flow), γ\,=\,0.20 (NLP) \\
+Fusion Weights & \(w_{\text{clip}}\,{=}\,0.55\), \(w_{\text{flow}}\,{=}\,0.25\), \(w_{\text{prior}}\,{=}\,0.20\) \\
 Evaluation Corpus & MM-AU dataset --- 1,417 clips, 150 frames @ 30 FPS \\
 Training Data Used & None (strict zero-shot inference) \\
 \end{longtable}
 
 \subsection{Video-Blind Control Family}
 
-A video-blind submission is one whose risk curve is a function of the frame index alone: identical for every clip, computed without opening a single frame. We use a family rather than a single curve, because one flattering curve invites the objection that the comparison was chosen to flatter it. The family comprises a constant 0.51 and a constant 0.99; a linear ramp from 0.000 to 1.000; logistic curves centred at frames 60, 75, 90 and 105; and step functions rising from 0.49 to 0.51 at frames 0, 10, 25, 50, 75, 100, 125 and 140. Each is a single list of 150 numbers, repeated across all 1,417 clips.
+A video-blind submission is one whose risk curve is a function of the frame index alone: identical for every clip, computed without opening a single frame. We use a family rather than a single curve, because one flattering curve invites the objection that the comparison was chosen to flatter it. The family comprises a constant 0.51 and a constant 0.99; a curve held at 0.49 throughout, which never crosses; a linear ramp from 0.000 to 1.000; logistic curves centred at frames 60, 75, 90 and 105; step functions rising from 0.49 to 0.51 at frames 0, 10, 25, 50, 75, 100, 125 and 140, and a calibration step at frame 76; a curve that crosses at frame 0 and drops back, and one that crosses and dips across frames 50 to 59; and the two graded curves of Section 5.4. That is twenty-one distinct shapes, submitted as twenty-five files: four were sent twice, once in the control family and again in the probe or diagnostic family, and the repeats agree to within 3 × 10\textsuperscript{-5}, which is a check on the scoring service and not only on our bookkeeping. Each is a single list of 150 numbers, repeated across all 1,417 clips.
 
 \subsection{Probes that Isolate the Terms of the Metric}
 
@@ -540,9 +540,9 @@ The line was then asked to predict curves it had not seen. Three logistic curves
 
 \floatcap{Figure 2}{The official score is a straight line in the frame at which the alarm fires. Points are video-blind submissions scored by the organisers; the fit is over crossings up to frame 100. A constant crosses at frame 0.}
 \subsection{What the published metric definition does not explain}
-One result does not fit, and we report it rather than smooth it. A linear ramp crosses the threshold at frame 75, exactly as three other curves do, and scores 0.037 lower than they do. That gap is 2.24 frames of slope, which is not an integer, so it cannot be a crossing-frame effect. We therefore submitted a diagnostic family that holds the crossing frame at 75 and varies only the shape of the curve away from it.
+One result does not fit, and we report it rather than smooth it. A linear ramp crosses the threshold at frame 75, exactly as a step function does, and scores 0.037 lower than the step. That gap is 2.24 frames of slope, which is not an integer, so it cannot be a crossing-frame effect. We therefore submitted a diagnostic family that holds the crossing frame at 75 and varies only the shape of the curve away from it.
 
-\floatcap{Table 8}{Four curves that all first exceed 0.5 at frame 75, with identical values at frames 74 and 75 and no subsequent dip, plus a one-frame calibration step.}
+\floatcap{Table 8}{Four curves that all first exceed 0.5 at frame 75 and never fall below it afterwards, plus a one-frame calibration step. The three step-like curves hold identical values at frames 74 and 75.}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3889}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3056}}
@@ -566,20 +566,20 @@ graded run-out (0.49, then 0.51 → 0.99) & 1.03871 & −0.06574 \\
 step at frame 76 (one-frame calibration) & 1.08779 & −0.01666 = 1/60.0 \\
 \end{longtable}
 
-The four curves at the head of Table 8 have identical values at frames 74 and 75, cross at the same frame, and never fall back afterwards. Under the metric as published they must score identically: the two timing terms are functions of threshold crossings alone, and video-blind curves are identical across clips, so the discrimination terms cannot separate them either. They span 0.09093, which is 5.5 frames of slope. Grading the run-up downward gains 0.02519; grading the run-out upward loses 0.06574.
+The four curves at the head of Table 8 cross the threshold at the same frame and never fall back afterwards, and the three step-like ones hold identical values at frames 74 and 75. Under the metric as published they must score identically: the two timing terms are functions of threshold crossings alone, and video-blind curves are identical across clips, so the discrimination terms cannot separate them either. They span 0.09093, which is 5.5 frames of slope. Grading the run-up downward gains 0.02519; grading the run-out upward loses 0.06574.
 
 We do not have an explanation, and we state the two candidates rather than choose between them. Either the discrimination terms are not invariant to curve shape among video-blind submissions --- which would weaken the cancellation argument of Section 4, though it is hard to reconcile with a step at frame 140 and a flat 0.49 scoring identically despite very different frame orderings --- or the timing terms read something beyond the first crossing that the three agreeing curves share and the ramp does not.
 
 Either way, one conclusion is available without resolving it, and it is a reportable finding in its own right: the benchmark's published formula does not reproduce its scorer. An entrant cannot compute this competition's score from its stated definition even given the labels. The headline result is unaffected, because the constant and the floor are both flat curves whose difference is measured directly; what carries a caveat is the split of the timing total and any claim that the linear fit is exact for arbitrary curves. It is exact for step-like curves and approximate otherwise.
 
 \subsection{A property of the withheld ground truth, recovered}
-For a step at frame k, both timing terms equal max(t\_ai − k, 0) on each contributing clip, so the score above the floor is c · E[max(t\_ai − k, 0)] with c the sum of the two timing weights. Differentiating, the slope at k is −c · P(t\_ai \textgreater{} k): the slope measures the survival function of the accident-onset distribution, scaled. The leaderboard is therefore reporting, one submission at a time, the shape of an annotation no entrant has seen.
+For a step at frame k, both timing terms equal max(\(t_{ai}\) − k, 0) on each contributing clip, so the score above the floor is c · E[max(\(t_{ai}\) − k, 0)] with c the sum of the two timing weights. Differentiating, the slope at k is −c · P(\(t_{ai}\) \textgreater{} k): the slope measures the survival function of the accident-onset distribution, scaled. The leaderboard is therefore reporting, one submission at a time, the shape of an annotation no entrant has seen.
 
 The initial segment estimates c at 0.016667, which is 1/60.00 to five figures. The ratio of the slope over frames 75 to 100 to that initial slope is 0.99894, so at most about 0.11\% of contributing clips have their onset at or before frame 100 --- a small number, not zero, and we do not claim zero. A step at frame 140 scores the same as a curve that never crosses, which bounds the mean excess beyond frame 140 below 3 × 10\textsuperscript{-4} frames; that bounds a mean, not a support, and permits a few late clips invisible at five decimals. Dividing the timing total by c gives a mean onset of 120.1 frames, or 120.3 using the fitted rather than the initial slope --- about four seconds into a five-second clip.
 
 This explains mechanically why the constant does so well on this corpus. Because the accident is always late in the window, an alarm at frame 0 is credited with roughly 120 frames of anticipation on every clip.
 
-Two caveats belong with it. Under the model the magnitude of the slope must be non-increasing in k, because a survival function cannot rise; it is not, the segment from frame 25 to 50 being steeper than the segment from 10 to 25 by 6.3 × 10\textsuperscript{-5}, roughly ninety times what five-decimal rounding permits. The straight line is very good but not exact, and we suspect the same second-order effect that produces the discrepancy in Section 5.4. Separately, when k exceeds t\_ai the maximum in the published definition is taken over an empty set and is undefined; we assume the scorer takes it as zero, and that assumption is load-bearing for the region beyond frame 100.
+Two caveats belong with it. Under the model the magnitude of the slope must be non-increasing in k, because a survival function cannot rise; it is not, the segment from frame 25 to 50 being steeper than the segment from 10 to 25 by 6.3 × 10\textsuperscript{-5}, roughly ninety times what five-decimal rounding permits. The straight line is very good but not exact, and we suspect the same second-order effect that produces the discrepancy in Section 5.4. Separately, when k exceeds \(t_{ai}\) the maximum in the published definition is taken over an empty set and is undefined; we assume the scorer takes it as zero, and that assumption is load-bearing for the region beyond frame 100.
 
 What we deliberately do not do is separate the weights from the metric values. Every quantity above is a product of a weight and a metric. Note in particular that the ratio of the timing total to the slope is the mean onset conditional on the clips that contribute, and that the positive rate cancels out of that ratio identically, so this measurement says nothing whatever about what fraction of the corpus contains an accident, and we make no such claim.
 
@@ -589,7 +589,7 @@ What follows is the evaluation we conducted before any submission was scored. It
 \subsubsection{What the proxy reported}
 Across the full corpus of 1,417 clips the ensemble produced a mean crossover frame of 22.7, and 21.1 over the best-fifty subset discussed below. We reported these as predictive capability; they are not. We also reported an early-frame false-alarm rate, which was a mistake --- a false alarm is an alarm on a clip containing no accident, and this corpus does not say which clips those are. What was actually observed is that initial-frame risk scores began below 0.05 on every clip: a statement about where the curve starts rather than about whether starting there was correct, and a real property of the curve worth recording.
 
-\floatcap{Table 9}{Overall Zero-Shot Anticipation Performance on MM-AU (N\,=\,1,417 clips)}
+\floatcap{Table 9}{Curve-shape statistics of the ensemble over the 1,417-clip corpus. Not anticipation results: read with the framing above.}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3889}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3056}}
@@ -615,7 +615,7 @@ STTA Compliance Rate & 100\% & 100\% \\
 Training Data Required & None & None \\
 \end{longtable}
 
-The modality ablation of Table 10 compares single-modality configurations against the full ensemble on the same proxy. Its orderings are informative about how the three signals behave and about their failure modes: the vision--language score reads appearance without temporal context and drifts high on foggy frames, the motion proxy cannot separate ordinary traffic motion from accident motion, and the caption prior cannot see the video at all, assigning identical trajectories to identically worded captions. The ensemble does resolve those three blind spots against one another. What the table does not establish is superiority in anticipation, because the quantity being compared is the one a constant minimises.
+The modality ablation of Table 10 compares single-modality configurations against the full ensemble on the same proxy. Its orderings are informative about how the three signals behave and about their failure modes: the vision--language score reads appearance without temporal context and drifts high on foggy frames, the motion proxy cannot separate ordinary traffic motion from accident motion, and the temporal prior cannot see the video at all, assigning identical trajectories to every clip that falls in the same motion bucket. The ensemble does resolve those three blind spots against one another. What the table does not establish is superiority in anticipation, because the quantity being compared is the one a constant minimises --- and the table makes that concrete, since the temporal prior alone posts an earlier mean crossover, 21.7 against 22.7, than the full ensemble does. That is not evidence that the prior anticipates better. It has three reachable states across the corpus, so it emits nearly the same curve everywhere, and a nearly constant curve is well matched to a benchmark whose events sit at a nearly constant position.
 
 \floatcap{Table 10}{Modality Ablation Study --- Mean Crossover Frame and Failure Analysis}
 \begin{longtable}[]{@{}
@@ -639,16 +639,16 @@ The modality ablation of Table 10 compares single-modality configurations agains
 \endlastfoot
 CLIP Only & 26--28 & +3.3 to +5.3 & Temporal blindness; moderate risk inflation on safe high-density traffic frames (p\,≈\,0.38--0.42) \\
 Optical Flow Only & 28--32 & +5.3 to +9.3 & Semantic blindness; cannot distinguish normal intersection traffic motion from imminent collision dynamics \\
-NLP Prior Only & \textasciitilde21.7 & −1.0 & Temporal ceiling; identical t\textsubscript{0} values for clips with similar captions --- no per-clip visual personalisation \\
-CLIP + Flow (No NLP) & \textasciitilde24.1 & +1.4 & Improved kinematics but risk curves oscillate; STTA compliance degraded without NLP temporal anchoring \\
-CLIP + NLP (No Flow) & \textasciitilde23.5 & +0.8 & Better semantic context but delayed detection for physically sudden events (e.g., pedestrian intrusion) \\
-\textbf{Full Ensemble (Proposed)} & \textbf{22.7} & \textbf{---} & \textbf{Best performance; all modality blind spots mutually compensated} \\
+NLP Prior Only & $\approx$21.7 & −1.0 & Three reachable states for the whole corpus, so clips in the same motion bucket receive identical curves; no per-clip visual detail at all \\
+CLIP + Flow (No NLP) & $\approx$24.1 & +1.4 & Improved kinematics but risk curves oscillate; STTA compliance degraded without NLP temporal anchoring \\
+CLIP + NLP (No Flow) & $\approx$23.5 & +0.8 & Better semantic context but delayed detection for physically sudden events (e.g., pedestrian intrusion) \\
+\textbf{Full Ensemble (Proposed)} & \textbf{22.7} & \textbf{---} & \textbf{The three blind spots compensate one another; the crossover frame is nonetheless later than the prior alone} \\
 \end{longtable}
 
 \subsubsection{The selected subsets}
 Two further analyses select the fifty and then the twenty-five clips with the earliest crossings. Both are statements about the selection rather than about the method: choosing the best fifty of 1,417 by the quantity being reported guarantees that the reported quantity looks good, and the same procedure applied to any system, a random one included, would produce a flattering subset. Within the best twenty-five, every sequence began at p(1) = 0.001 despite crossing as early as frame 7, and mean peak risk reached 0.9858 --- though the score cannot fall below the threshold once it has crossed, so the absence of late degradation is largely the clamp rather than the ensemble. The anticipation margin we reported for this subset, and compared against human reaction times and automatic emergency braking latency, cannot bear that comparison: it is measured to the end of the clip rather than to a collision, and computed over a best-of-1,417 selection. We offered these cases as proof that a zero-shot ensemble rivals supervised models. They are not. The leaderboard, which does compare entrants under a common scorer, placed this system ninth of thirteen and below a constant.
 
-\floatcap{Table 11}{Quantitative Metrics of the Top 25 Anticipatory Trajectories}
+\floatcap{Table 11}{The twenty-five clips whose curves cross 0.5 earliest. A selection by the quantity reported, not a ranking of anticipation: read with the note below.}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0784}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2822}}
@@ -704,9 +704,9 @@ Two further analyses select the fifty and then the twenty-five clips with the ea
 \emph{Table 11, note: the seconds column is the interval from the crossover frame to the end of the clip at 30 FPS. It is not a time-to-accident: this corpus annotates no collision frame (Section 3.3), and the figure is inflated by the interval Section 5.5 estimates at about a second. Initial risk vectors are read after the power transform and the Gaussian filter.}
 
 \subsubsection{The seven configurations}
-Table 12 compares seven pipeline configurations. The ordering from C1 to C7 shows that each stage moves the crossover frame earlier, and read against Section 5.1 that is all it shows, because moving the crossover frame earlier is precisely what a constant 0.51 does perfectly. Two stages deserve particular note in that light. The monotone clamp forces the condition the stable-timing metric tests, so the compliance column records that the clamp executed. And the temporal compression responsible for the final improvement, between C6 and C7, reads a frame that has not yet arrived (Section 4).
+Table 12 compares seven pipeline configurations. Each post-processing stage added to the raw ensemble moves the crossover frame earlier, from C4 at 25.4 to C7 at 22.7; the single-modality rows C1 to C3 are not steps in that sequence and do not order monotonically with it. Read against Section 5.1 that is all the table shows, because moving the crossover frame earlier is precisely what a constant 0.51 does perfectly --- and C3, the three-state temporal prior alone, already beats the full pipeline on it at 21.7, for the reason Section 5.6.1 gives. Two stages deserve particular note. The monotone clamp forces the condition the stable-timing metric tests, so the compliance column records that the clamp executed. And the C6-to-C7 step bundles the clamp with the temporal compression, which reads a frame that has not yet arrived (Section 4.2), so neither the 1.2 frames between them nor the compliance flag beside them is attributable to a single stage.
 
-\floatcap{Table 12}{Seven-Configuration Performance Comparison}
+\floatcap{Table 12}{Seven pipeline configurations, compared on mean crossover frame --- a statistic of curve shape, not performance.}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1320}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3855}}
@@ -729,17 +729,17 @@ Table 12 compares seven pipeline configurations. The ordering from C1 to C7 show
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-C1 & CLIP only (no ensemble, no post-processing) & \textasciitilde27.2 & No & Temporal blindness; oscillatory risk \\
-C2 & Optical Flow only & \textasciitilde30.1 & No & Semantic blindness; late reaction \\
-C3 & NLP Prior only & \textasciitilde21.7 & Partial & No visual personalisation per clip \\
-C4 & Raw Ensemble (CLIP + Flow + NLP, no post-processing) & \textasciitilde25.4 & No & Noisy baseline; early frames inflated \\
-C5 & Ensemble + Gaussian Smoothing only & \textasciitilde24.8 & No & Reduced noise; STTA still violated \\
-C6 & Ensemble + Smoothing + Power Curve & \textasciitilde23.9 & Partial & Better separation; some oscillation remains \\
-C7 (Proposed) & Full Pipeline: Ensemble + Smoothing + Power Curve + Temporal Compression + Clamping & 22.7 & Yes & Best performance; full STTA compliance \\
+C1 & CLIP only (no ensemble, no post-processing) & $\approx$27.2 & No & Temporal blindness; oscillatory risk \\
+C2 & Optical Flow only & $\approx$30.1 & No & Semantic blindness; late reaction \\
+C3 & NLP Prior only & $\approx$21.7 & Partial & No visual personalisation per clip \\
+C4 & Raw Ensemble (CLIP + Flow + NLP, no post-processing) & $\approx$25.4 & No & Noisy baseline; early frames inflated \\
+C5 & Ensemble + Gaussian Smoothing only & $\approx$24.8 & No & Reduced noise; STTA still violated \\
+C6 & Ensemble + Smoothing + Power Curve & $\approx$23.9 & Partial & Better separation; some oscillation remains \\
+C7 (Proposed) & Full Pipeline: Ensemble + Smoothing + Power Curve + Temporal Compression + Clamping & 22.7 & Yes & Earliest crossover of the ensembled configurations; STTA compliance by construction \\
 \end{longtable}
 
 \subsection{Discussion}
-The results in this section admit one reading and it is not the one we expected when we ran them. The 4.23-second average warning horizon reported in earlier versions of this work is not a warning horizon. It is the interval from the crossover frame to the end of the clip, on a corpus that annotates no collision, averaged over a selected subset; Section 5.5 places the accident about a second before the window ends, so the figure overstates any real anticipation by roughly that much before the selection effect is counted. Comparing it against crossover frames reported for supervised models on other corpora, as we did, compares two quantities that are not the same measurement.
+The results in this section admit one reading and it is not the one we expected when we ran them. The 4.24-second average warning horizon reported in earlier versions of this work is not a warning horizon. It is the interval from the crossover frame to the end of the clip, on a corpus that annotates no collision; Section 5.5 places the accident about a second before the window ends, so the figure overstates any real anticipation by roughly that much. The 4.30-second figure beside it in Table 9 is worse still, being the same quantity over the fifty clips selected for having crossed earliest. Comparing it against crossover frames reported for supervised models on other corpora, as we did, compares two quantities that are not the same measurement.
 
 Second, the 100\% stable-anticipation compliance rate we reported is not a result at all. The metric requires the risk score to stay above the threshold from the alarm until the accident; Stage 4 of the post-processing makes falling below the threshold impossible once the score has crossed. The figure therefore records that the clamp executed. This is the clearest instance in our own work of the general mechanism Section 6 identifies: a post-hoc operation that enforces a metric's definition renders that metric vacuous. It is worth being precise about what remains true. Raw vision--language risk scores do oscillate, the clamp does remove the oscillation, and a system that alarms and then retracts is genuinely worse for a driver than one that does not. The clamp is a reasonable engineering choice. What it cannot do is serve as evidence under a metric that tests for the property it imposes.
 
@@ -765,7 +765,7 @@ Two further mechanisms compound this, and both are visible in our own pipeline r
 
 Metric-enforcing post-processing. An operation that clamps the risk score above the threshold, followed by a report of stable-anticipation compliance, has measured only that the clamp executed. Stated generally: a post-hoc operation that enforces a metric's definition renders that metric vacuous. Our pipeline does this at Stage 4, and an earlier version of this work reported 100\% compliance as a result.
 
-Non-causal timing gain. An operation that resamples the score curve so that frame t reports a value computed from a later frame buys time-to-accident from the future. Our Stage 5 did this at α = 1.3, and the six-frame gain it produced cannot be obtained by any system running in real time. The released configuration disables it.
+Non-causal timing gain. An operation that resamples the score curve so that frame t reports a value computed from a later frame buys time-to-accident from the future. Our Stage 5 did this at a compression factor of 1.3, and whatever earliness it bought cannot be obtained by any system running in real time. The released configuration disables it.
 
 A third, milder mechanism is selection: reporting the mean anticipation time of the best fifty clips out of 1,417 is a statement about the selection rather than about the method. Section 5.6 does this, and says so.
 
@@ -773,7 +773,7 @@ A third, milder mechanism is selection: reporting the mean anticipation time of 
 
 Each item below is traced to a mechanism in Section 6. The first is the one we would keep if we could keep only one.
 
-\begin{itemize}
+\begin{enumerate}
 \item
   Report a video-blind control with every anticipation result. Compute the full metric on a constant above threshold, a linear ramp and a mid-clip step, and place those rows in the results table. This costs an afternoon and it is diagnostic: if the control lands within noise of the method, the metric is not measuring the method. We propose it become as reflexive as reporting a majority-class baseline in classification.
 \item
@@ -785,8 +785,8 @@ Each item below is traced to a mechanism in Section 6. The first is the one we w
 \item
   Report metrics with post-processing disabled as well as enabled. If a number moves when a clamp is removed, the clamp was part of the measurement. If a number moves when a resampling stage is removed, check whether that stage reads a frame that has not yet arrived.
 \item
-  Publish the score of a released control alongside the leaderboard. A benchmark's organisers can do in an afternoon what took us twenty-four submissions: score a video-blind family and publish the numbers as a permanent floor on the leaderboard page. An entrant would then see at a glance how much of their score they earned.
-\end{itemize}
+  Publish the score of a released control alongside the leaderboard. A benchmark's organisers can do in an afternoon what took us twenty-five submissions: score a video-blind family and publish the numbers as a permanent floor on the leaderboard page. An entrant would then see at a glance how much of their score they earned.
+\end{enumerate}
 
 A seventh applies specifically to competitions that withhold labels. Publish the metric weights, and publish the scorer. Withholding labels is legitimate and prevents overfitting. Withholding the weights does not prevent the metric being exploited --- this paper exploited it comprehensively without them --- while it does prevent the sanity check that would have surfaced the problem before the competition opened. And as Section 5.4 shows, the published formula here does not reproduce the scorer's behaviour, so a released scorer is not a courtesy but a precondition for anyone reproducing the results.
 
@@ -796,9 +796,11 @@ One benchmark. We demonstrate on a single competition with thirteen teams, so th
 
 We cannot separate the weights from the metric values. Every decomposed quantity is a product of a weight and a metric. Reporting the products is sufficient for the argument, since the products determine the ranking, but we cannot state what average precision the corpus's base rate implies.
 
-One discrepancy in the crossing-frame model is open. A linear ramp scores 0.037 below three curves that cross at the same frame (Section 5.4), and the segment slopes are not monotone as the model requires (Section 5.5). We report both rather than fit around them. Neither the headline result nor the timing total depends on the resolution --- both are measured between flat curves --- but the split of the timing total between the two terms, and the interpretation of the fit as exact, do.
+One discrepancy in the crossover-frame model is open. A linear ramp scores 0.037 below a step function that crosses at the same frame, and 0.029 above another curve that does (Section 5.4), and the segment slopes are not monotone as the model requires (Section 5.5). We report both rather than fit around them. Neither the headline result nor the timing total depends on the resolution --- both are measured between flat curves --- but the split of the timing total between the two terms, and the interpretation of the fit as exact, do.
 
-We do not demonstrate the corrected protocol on a labelled corpus. Items 2 to 5 of Section 7 are derived from the mechanisms rather than shown end to end, because this corpus publishes no labels. Demonstrating them requires a benchmark with released annotations, for which the corpora of \citet{chan2016dad} and \citet{bao2020ccd} are the obvious candidates, and we state that as future work rather than claim it here.
+Two admissions about our own system belong here, because Sections 4.3 and 5.7 point at them. The fusion weights of 0.55, 0.25 and 0.20 were chosen by searching over the evaluation corpus. That is tuning on the test set, and it sits badly with a zero-shot claim; the released configuration therefore weights the three engines equally, chosen a priori, and the leaderboard score we report is the entry that used the searched ones. And the claim that a training-free system can be pointed at a new road environment without retraining is untested here, because we evaluated on one corpus and never on a second.
+
+We do not demonstrate the corrected protocol on a labelled corpus. The protocol's recommendations on bounding and conditioning the earliness term, on stating a timing metric's reference point, on reporting discrimination beside it and on reporting metrics with post-processing disabled are derived from the mechanisms rather than shown end to end, because this corpus publishes no labels. Demonstrating them requires a benchmark with released annotations, for which the corpora of \citet{chan2016dad} and \citet{bao2020ccd} are the obvious candidates, and we state that as future work rather than claim it here.
 
 The control is a sufficient, not a necessary, condition. A metric on which a video-blind control scores poorly is not thereby sound. Our control detects this particular failure mode and we claim nothing beyond it.
 
@@ -812,16 +814,16 @@ The venue is a community competition with an undisclosed custom metric, not a lo
 
 A composite score that adds an unbounded earliness term to bounded discrimination terms does not measure what its name suggests. On a live accident-anticipation benchmark the earliness terms are worth 5.70 times what discrimination contributes to a submission that reads nothing; they are maximised exactly by a constant; and that constant scores within 0.14874 of the winning entry, matching the eighth-placed team at the precision the leaderboard displays. Our own entry, a training-free ensemble, placed ninth of thirteen and scores below it.
 
-The method that established this is as portable as the finding. Twenty-four submissions, not one of which opened a video frame, were enough to recover the score's slope to a sixtieth of a point per frame of delay, to bound the support and mean of an accident-onset distribution no entrant has seen, and to establish that the benchmark's published formula does not reproduce its own scorer. A leaderboard that accepts arbitrary submissions is an instrument, and any benchmark that accepts one can be measured from outside in this way.
+The method that established this is as portable as the finding. Twenty-five submissions, not one of which opened a video frame, were enough to recover the score's slope to a sixtieth of a point per frame of delay, to bound the support and mean of an accident-onset distribution no entrant has seen, and to establish that the benchmark's published formula does not reproduce its own scorer. A leaderboard that accepts arbitrary submissions is an instrument, and any benchmark that accepts one can be measured from outside in this way.
 
 Three things are consequently cheap that were not. A video-blind control costs a single submission and settles in an afternoon whether a reported score is measuring a method or a metric; we would like it to become as routine as a majority-class baseline in classification. Probe submissions turn a leaderboard into a means of auditing a scorer whose code is closed, without labels and without the weights. And an earliness term that is bounded per clip and conditioned on a fixed operating point of the discrimination metric, rather than summed raw, gives the field a composite it can compare across corpora. Demonstrating that corrected protocol end to end on a benchmark that publishes its annotations --- where the discrimination half can actually be computed, and where the question of what a bounded earliness term costs a real method can finally be answered --- is the natural next study, and it is the one we intend.
 
 \section*{Compliance and Data Availability}
 
-All submissions reported here were made through the competition's own late-submission facility, which the organisers left open after the closing date and which scores against the same private split. Twenty-four submissions were made in total, across two days, against a stated limit of one hundred per day.
+All submissions reported here were made through the competition's own late-submission facility, which the organisers left open after the closing date and which scores against the same private split. Twenty-six submissions were made in total, all on 31 August 2026, against a stated limit of one hundred per day: twenty-five video-blind curves we generated, and the organisers' own sample submission resubmitted verbatim as a control on the submission path.
 
 The competition's rules restrict the dataset to academic and non-commercial use, prohibit its redistribution, require that submissions be the entrant's own work, and reserve the right to disqualify unethical behaviour, of which the examples given are manual labelling of test data and multi-account cheating. None of these applies to the work reported here. Every probe is a curve we generated from a closed-form expression in the frame index; none was derived from, or informed by, any label. No rule addresses analysis of the scoring function, and none prohibits it. We redistribute no part of the dataset. As the rules require of any publication using the data or the competition's results, we cite the corpus \citep{fang2024mmau} and the competition \citep{autopilot2026}.
 
 Regarding the leaderboard: we report only scores that the competition publishes on its own public standings page, and we attribute nothing about any team's method, code or intent. Where a team's score coincides with a control's, we state the arithmetic and draw the single inference set out in Section 1. Teams are identified only as the competition itself identifies them.
 
-The submission files, the code that generated them, the complete score log and the scripts that produce both figures are released. Nothing in the release contains any part of the competition's data or any label.
+The submission files, the code that generated them, the complete score log and the scripts that produce both figures accompany this submission as anonymised supplementary material, and will be released publicly on acceptance. Nothing in them contains any part of the competition's data or any label.
