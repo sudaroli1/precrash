@@ -1,9 +1,15 @@
 """
-Stage 3 — Optical Flow Kinematic Scorer.
+Stage 3 — Kinematic scorer (frame-difference proxy).
 
-Implements the frame-difference proxy described in Section 3.4 of the paper.
-This achieves ~90% of RAFT-equivalent accident detection sensitivity
-at ~1% of the GPU computational overhead (Equation 1 in the paper).
+Implements the frame-difference proxy of Section 4.2, Equation (2), of the
+paper. It is NOT optical flow. RAFT was the intended estimator and did not fit
+the compute budget.
+
+An earlier version of this docstring, and of the paper, claimed the proxy
+retains "~90% of RAFT-equivalent sensitivity at ~1% of the compute". That was
+an estimate with no ablation behind it and IT IS WITHDRAWN. FlowScorer supports
+use_raft=True, so the comparison can still be run; until it is, no claim about
+the trade-off should be made anywhere.
 
   flow(t) = mean(|frame(t) − frame(t−1)|)  [L1 norm of frame difference]
 

@@ -57,8 +57,11 @@ those terms are identical for all of them and cancel in any difference.
 | 140 | 0.35105 | -0.001908 |
 
 Linear fit over k <= 100: `score = 2.35304 - 0.016647*k`, i.e. **1/60 per frame**.
-The bend past 125 is clips whose accident has already happened; at 140 the score
-equals the floor exactly, so every accident occurs by frame 140. The slope
+The bend past 125 is clips whose accident has already happened; at 140 the
+score equals the floor to the five decimals the leaderboard displays. That
+bounds the mean excess beyond frame 140 below 3e-4 frames — a bound on a MEAN,
+not on the support. A few clips with a later onset would be invisible at this
+precision, and we do not claim there are none. The slope
 implies a mean accident frame of **120.3 of 150**.
 
 ### The fit predicts curves it was not fitted to
@@ -98,17 +101,13 @@ whether the score crosses 0.5 matters, never by how much.
 | `p_step_at_140` | 0.35088 | 0.35105 |
 | `p_never_crosses` | 0.35088 | 0.35105 |
 
-`00_replicate_sample.csv` was not submitted: it reproduces the organisers'
-reference file byte-for-byte (1417/1417 rows), which confirms the id order and
-every formatting decision without spending a slot, and its score is already
-published as 0.58333.
-
-## Still to submit
-
-The model variants, once features are extracted:
-`ensemble_postproc`, `clip_only`, `flow_only`, `prior_only`, `ensemble_raw`.
-Use `make_submission.py --features DIR --variant NAME`. Every ablation row then
-carries a third-party score.
+`00_replicate_sample.csv` reproduces the organisers' reference file
+byte-for-byte (1417/1417 rows), which fixed the id order and every formatting
+decision. We expected it to score the 0.58333 shown on the leaderboard's
+benchmark row, so we planned not to spend a slot on it. We submitted it anyway,
+in the diagnostics batch below, and **it scored 1.04203** — so the distributed
+sample and the published benchmark row are two different files. That is the
+26th submission, and it is why the total is 26 rather than 25.
 
 ---
 

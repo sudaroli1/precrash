@@ -18,6 +18,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb}
 \usepackage{url}
+\usepackage{needspace}   % keeps a caption with the table it names
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -28,7 +29,8 @@
 % than inside a float; this sets them in caption type and keeps the numbers,
 % which the running text refers to by hand.
 \newcommand{\floatcap}[2]{%
-  \par\addvspace{0.7\baselineskip}%
+  \par\Needspace*{0.16\textheight}%
+  \addvspace{0.7\baselineskip}%
   \noindent{\small\textbf{#1:} #2}\par\addvspace{0.25\baselineskip}}
 
 % Characters that survive the conversion from the working document. Declared

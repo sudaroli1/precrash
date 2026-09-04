@@ -13,10 +13,11 @@ data/train/
 data/*.zip
 *.npz
 
-# LaTeX build products. main.pdf and main.bbl ARE committed: the PDF is the
-# submission file and the .bbl lets the paper build without a BibTeX run.
-latex/*.aux
-latex/*.blg
-latex/*.out
-latex/*.toc
-latex/*.log
+# Working copies of the manuscript that predate the corrections.
+# These still assert the withdrawn claims (the 90%/RAFT figure, the six-frame
+# gain, three independent engines, an NLP captioning model) and must never be
+# committed: paper/Precrash.docx is the current manuscript.
+paper/cur.md
+paper/orig.md
+paper/unp*/
+paper/*.bak
