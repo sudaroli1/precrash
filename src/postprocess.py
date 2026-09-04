@@ -100,8 +100,18 @@ class PostProcessor:
     def _temporal_compress(self, p: np.ndarray) -> np.ndarray:
         """
         Stage 3: Compress time axis by factor α=1.3 via linear interpolation.
-        Equation 8: p_final(t) = interp( p_clamp(t/α), α=1.3 )
-        Shifts the risk curve earlier, yielding ~6-frame mean TTA gain.
+        Equation (10) of the paper: p_final(t) = interp( p_norm, α·t ).
+
+        Note what that means, and note that it runs BEFORE the clamp: the
+        value emitted at frame t is the value the curve took at frame 1.3t —
+        a frame that has not been observed at time t. The stage is non-causal
+        and cannot run in a deployed system.
+
+        An earlier version of this docstring wrote the operand as t/α, which
+        matches neither this code nor the direction of the shift, and claimed
+        a ~6-frame mean TTA gain. That figure IS WITHDRAWN: no table in the
+        paper measures this stage on its own. The released configuration sets
+        alpha=1.0, disabling it.
         """
         T = len(p)
         t_orig = np.arange(T, dtype=np.float64)

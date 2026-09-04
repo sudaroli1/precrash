@@ -5,13 +5,13 @@ This replaces evaluate_mmau.py, which globbed a directory of videos, loaded no
 labels, and computed every metric from the model's own output curve. Everything
 here is measured against ground truth.
 
-It also runs the ablation grid the paper needs, including the one control that
-decides whether there is a paper at all: a FIXED PRIOR that ignores the video
-entirely and emits the same curve for every clip. Your Table 3 and Table 9 both
-show the NLP prior — which by your own description cannot see the video —
-beating the full ensemble. If a video-blind curve also wins here, on AP and AUC
-against real labels, then the ensemble is not the contribution and the paper
-needs the critique framing instead.
+It also runs the ablation grid, including the control the whole paper turns
+on: a FIXED PRIOR that ignores the video entirely and emits the same curve for
+every clip. Tables 10 and 12 of the paper show the text-anchored prior — which
+cannot see the video, and has three reachable states across the corpus —
+posting an earlier mean crossover than the full ensemble. That is what the
+paper's critique framing rests on. This script is how the same question would
+be asked on a corpus that publishes labels, where AP and AUC are computable.
 
 USAGE
 -----

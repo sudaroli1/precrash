@@ -62,7 +62,7 @@ video:
 
 flow:
   use_raft: false
-  # The "~90% of RAFT sensitivity at 1% compute" claim in the paper cites an
-  # ablation that does not exist. FlowScorer already supports use_raft=True —
-  # run extract_features.py once with --use_raft and once without, compare AP,
-  # and either report the real number or delete the claim.
+  # The "~90% of RAFT sensitivity at 1% compute" claim has been withdrawn from
+  # the paper: it cited an ablation that does not exist. FlowScorer supports
+  # use_raft=True, so the number can still be obtained — run
+  # extract_features.py once with --use_raft and once without and compare.

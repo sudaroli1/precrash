@@ -25,7 +25,7 @@ The contributions of this work are as follows.
   A case study in which we are the subject, and a seven-point protocol. Our own entry scores below the constant and we report it. The protocol's first item --- report a video-blind control with every result --- costs an afternoon and would have caught this.
 \end{itemize}
 
-One point of scope, because this paper prints a number beside other teams' number. We make no claim about any other submission or published method: we did not re-run anyone's system, and could not have evaluated it if we had, because the labels are withheld from every entrant. Where a leaderboard score is numerically identical to a control's, we state that arithmetic fact and draw one inference --- the metric assigns the two submissions the same value. A whole family of curves receives it, which is precisely the property under examination.
+One point of scope, because this paper prints a number beside other teams' numbers. We make no claim about any other submission or published method: we did not re-run anyone's system, and could not have evaluated it if we had, because the labels are withheld from every entrant. Where a leaderboard score is numerically identical to a control's, we state that arithmetic fact and draw one inference --- the metric assigns the two submissions the same value. A whole family of curves receives it, which is precisely the property under examination.
 
 Section 2 reviews the field's evaluation practice, Section 3 states the benchmark and its metric, and Section 4 describes the system, the controls and the probes. Section 5 reports the measurements, Section 6 analyses why the composition fails, and Sections 7 to 9 give the protocol, the limitations and the conclusion.
 
@@ -104,7 +104,7 @@ The evaluation page defines the score as a weighted sum of four quantities:
 
 with the four weights stated to be fixed by the organisers and not disclosed. Positives are accident clips and negatives are normal driving clips; the area under the curve is given in its rank formulation. The two timing terms are defined at a risk threshold of 0.5:
 
-\[\text{TTA@0.5} = \max\left\{ t_{ai} - t_{a} \ \middle|\ p_{t} > 0.5,\ 0 \leq t_{a} \leq t_{ai} \right\}\]
+\[\text{TTA@0.5} = \max\left\{ t_{ai} - t_{a} \ \middle|\ p_{t_{a}} > 0.5,\ 0 \leq t_{a} \leq t_{ai} \right\}\]
 
 \[\text{STTA@0.5} = \max\left\{ t_{ai} - t'_{a} \ \middle|\ p_{t} > 0.5 \ \text{ for all } t \in [t'_{a},\,t_{ai}] \right\}\]
 
@@ -129,13 +129,13 @@ Pre-crash systems differ from reactive ones in that the prediction must precede 
 
 The considered problem is anticipating accidents without any training data, using pretrained knowledge alone. The formal definition of the problem is as follows:
 
-Let the 5 second dashcam video sequence be defined as a temporally ordered set of frames \(V_{s} = \{ f_{1},f_{2},\ldots,f_{m}\}\) with \(m = 150\) for every clip in this corpus, and each frame the RGB observation at time \(t\), \(f_{t} \in \mathbb{R}^{H \times W \times 3}\), where \(H\) and \(W\) are the frame height and width. The anticipation problem is then a predictive mapping that assigns a risk score to every frame of the clip. The learning predictive mapping is formally denoted as mentioned in equation (1)
+Let the 5 second dashcam video sequence be defined as a temporally ordered set of frames \(V_{s} = \{ f_{1},f_{2},\ldots,f_{m}\}\) with \(m = 150\) for every clip in this corpus, and each frame the RGB observation at time \(t\), \(f_{t} \in \mathbb{R}^{H \times W \times 3}\), where \(H\) and \(W\) are the frame height and width. The anticipation problem is then a predictive mapping that assigns a risk score to every frame of the clip, as in equation (1).
 
-\[g\ :\ V_{s} \longrightarrow \left( \rho_{1},\ldots,\rho_{m} \right) \in \lbrack 0,1\rbrack^{m}\ldots\ldots\ldots.(1)\]
+\[g\ :\ V_{s} \longrightarrow \left( p_{1},\ldots,p_{m} \right) \in \lbrack 0,1\rbrack^{m}\ldots\ldots\ldots.(1)\]
 
-Here \(\rho_{t}\) is the predicted probability of an accident at frame \(t\), computed without observing one. The risk score should begin near 0 and rise toward 1 before the collision, and the earlier it crosses 0.5 the better the official score. That last clause is not a design preference but a literal description of the metric, and it is this paper's subject: Section 5 shows that a score crossing at frame 0 and never falling collects almost all of what the metric awards.
+Here \(p_{t}\) is the predicted probability of an accident at frame \(t\), computed without observing one; it is the same quantity the metric of Section 3.4 reads, and the quantity every later equation post-processes. The risk score should begin near 0 and rise toward 1 before the collision, and the earlier it crosses 0.5 the better the official score. That last clause is not a design preference but a literal description of the metric, and it is this paper's subject: Section 5 shows that a score crossing at frame 0 and never falling collects almost all of what the metric awards.
 
-This problem statement is specifically difficult to solve for the following reasons:
+This problem is specifically difficult for the following reasons:
 
 1.~~~~ As there are no training data, it becomes impossible to fine-tune the model.
 
@@ -181,7 +181,7 @@ Each clip arrives as 150 JPEG frames at 30 frames per second, five seconds long,
 The three engines were chosen by trial rather than by training, since no training data exists. The reason for each is given below.
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
+\def\labelenumi{3.\arabic{enumi}}
 \item
   \emph{CLIP ViT-L/14:}
 \end{enumerate}
@@ -189,7 +189,7 @@ The three engines were chosen by trial rather than by training, since no trainin
 Visual scoring asks whether a frame resembles danger --- which requires reading the scene semantically rather than as pixels. CLIP does this zero-shot because it was pretrained on 400 million image--text pairs and can therefore compare a frame against a danger prompt with no task-specific training. ViT-L/14 was chosen over the smaller variants for its finer spatial detail. Convolutional backbones were rejected because they cannot score a frame against a text prompt without accident-specific training, object detectors because they locate objects rather than assess risk, and the larger instruction-tuned models because their per-frame decoding cost exceeded the compute available.
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
+\def\labelenumi{3.\arabic{enumi}}
 \setcounter{enumi}{1}
 \item
   \emph{Optical Flow:}
@@ -200,7 +200,7 @@ Motion asks a different question: are objects moving as normal physics would pre
 \[d(t) = \operatorname{mean}\left( \left| f_{t} - f_{t-1} \right| \right)\ldots\ldots\ldots..(2)\]
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
+\def\labelenumi{3.\arabic{enumi}}
 \setcounter{enumi}{2}
 \item
   \emph{Text-Anchored Temporal Prior:}
@@ -327,11 +327,11 @@ with \(\epsilon = 0.01\). This enforces a hard causal constraint: once the score
 \end{enumerate}
 
 \[\begin{matrix}
- & p_{\text{final}}(t) = \text{interp}\left( p_{\text{clamp}},\ \alpha t \right),\ \alpha = 1.3 & \ldots\ldots\ldots\ldots(10) & 
+ & p_{\text{final}}(t) = \text{interp}\left( p_{\text{norm}},\ \alpha t \right),\ \alpha = 1.3 & \ldots\ldots\ldots\ldots(10) & 
 \end{matrix}
 \]
 
-where \(\text{interp}\) denotes linear interpolation onto the original frame grid. This stage requires a correction and a warning. As implemented, the resampling evaluates the curve at index alpha times t and emits it at index t, so the score reported for frame t is the score computed from frame 1.3t --- a frame that has not yet been observed. Equation (10) above states the operation as implemented. An earlier version of this text printed it as t divided by alpha, which matches neither the code nor the direction of the shift the stage was reported to produce. An earlier version of this work attributed a mean gain of six frames in time-to-accident to this stage. That figure is withdrawn: no table in this paper measures the stage on its own. Table 12 separates C6 from C7 by 1.2 frames and bundles the compression with the clamp, so what the resampling bought is not identified anywhere in our records. The objection does not depend on the magnitude --- whatever it bought was read from a frame that had not arrived. The operation cannot run in a deployed system, where frame 1.3t does not exist at time t, and every time-to-accident figure produced with alpha not equal to 1 is therefore unreportable. The released configuration sets alpha to 1.0, disabling the stage. It is documented here because it is one of the mechanisms Section 6 identifies, and because we introduced it ourselves. Finally, the output is clipped to the open interval \((0.001,\ 0.999)\) to ensure numerical stability in downstream log-loss evaluation.
+where \(\text{interp}\) denotes linear interpolation onto the original frame grid. This stage requires a correction and a warning. As implemented, the resampling evaluates the curve at index alpha times t and emits it at index t, so the score reported for frame t is the score computed from frame 1.3t --- a frame that has not yet been observed. Equation (10) above states the operation as implemented. An earlier version of this text printed it as t divided by alpha, which matches neither the code nor the direction of the shift the stage was reported to produce. Two further corrections belong with it. The released code applies this stage before the monotone clamp of Equation (9) rather than after it, so the clamp acts on the compressed curve and not the reverse; the two orderings do not agree in general, and the implemented one is the one stated here. Equation (10) is written on p\textsubscript{norm} accordingly, and the stages are numbered in the order this section presents them rather than the order the code runs them. An earlier version of this work attributed a mean gain of six frames in time-to-accident to this stage. That figure is withdrawn: no table in this paper measures the stage on its own. Table 12 separates C6 from C7 by 1.2 frames and bundles the compression with the clamp, so what the resampling bought is not identified anywhere in our records. The objection does not depend on the magnitude --- whatever it bought was read from a frame that had not arrived. The operation cannot run in a deployed system, where frame 1.3t does not exist at time t, and every time-to-accident figure produced with alpha not equal to 1 is therefore unreportable. The released configuration sets alpha to 1.0, disabling the stage. It is documented here because it is one of the mechanisms Section 6 identifies, and because we introduced it ourselves. Finally, the output is clipped to the open interval \((0.001,\ 0.999)\) to ensure numerical stability in downstream log-loss evaluation.
 
 \subsection{Implementation and Hardware}
 
@@ -443,7 +443,7 @@ A constant risk score of 0.51 scores 2.35291. That equals the eighth-placed team
 
 We quote the difference before the ratio deliberately. The metric is a weighted sum with no meaningful origin, so a ratio of two scores can be made to say almost anything by shifting the scale. The difference of 0.14874 and the decomposition below are scale-free; that the constant reaches 94.1\% of the winning score is a convenience, not evidence.
 
-One further row is worth stating plainly. The organisers'{} own sample submission, resubmitted byte for byte, scores 1.04203. The benchmark row displayed on the leaderboard scores 0.58333, so those two are not the same file, and the sample submission is not the origin of the published benchmark score.
+One further row is worth stating plainly. The organisers'{} own sample submission, resubmitted byte for byte, scores 1.04203. The benchmark row displayed on the leaderboard scores 0.58333, so those two are not the same file, and the sample submission is not the origin of the published benchmark score. It also coincides, to the five decimals the leaderboard displays, with the twelfth-placed entry in Table 3. We state the arithmetic and draw the same single inference as in Section 1 --- the metric assigns the two submissions the same value --- and nothing about any team's method.
 
 \subsection{Decomposing the score}
 Because every video-blind submission is identical across clips, all of them induce the same ordering over clips and earn the same average precision and the same area under the curve, which therefore cancel in any difference between two of them (Section 4). Differencing three probes separates the terms.
@@ -549,7 +549,7 @@ One result does not fit, and we report it rather than smooth it. A linear ramp c
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3056}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Curve, all crossing 0.5 at frame 75}
+\textbf{Curve}
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \textbf{Private score}
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -563,7 +563,7 @@ graded run-up (0 → 0.49, then 0.51) & 1.12964 & +0.02519 \\
 step (0.49 / 0.51) & 1.10445 & reference \\
 graded throughout (0.000 → 1.000) & 1.06725 & −0.03720 \\
 graded run-out (0.49, then 0.51 → 0.99) & 1.03871 & −0.06574 \\
-step at frame 76 (one-frame calibration) & 1.08779 & −0.01666 = 1/60.0 \\
+step at frame 76 (one-frame calibration) & 1.08779 & −0.01666, i.e.\ one sixtieth below \\
 \end{longtable}
 
 The four curves at the head of Table 8 cross the threshold at the same frame and never fall back afterwards, and the three step-like ones hold identical values at frames 74 and 75. Under the metric as published they must score identically: the two timing terms are functions of threshold crossings alone, and video-blind curves are identical across clips, so the discrimination terms cannot separate them either. They span 0.09093, which is 5.5 frames of slope. Grading the run-up downward gains 0.02519; grading the run-out upward loses 0.06574.
@@ -701,7 +701,7 @@ Two further analyses select the fifty and then the twenty-five clips with the ea
 25 & 13\_010982\_10\_160 & 11 & 4.63 & 0.0010 & 0.9899 \\
 \end{longtable}
 
-\emph{Table 11, note: the seconds column is the interval from the crossover frame to the end of the clip at 30 FPS. It is not a time-to-accident: this corpus annotates no collision frame (Section 3.3), and the figure is inflated by the interval Section 5.5 estimates at about a second. Initial risk vectors are read after the power transform and the Gaussian filter.}
+\floatcap{Table 11, note}{the seconds column is the interval from the crossover frame to the end of the clip at 30 FPS. It is not a time-to-accident: this corpus annotates no collision frame (Section 3.3), and the figure is inflated by the interval Section 5.5 estimates at about a second. Initial risk vectors are read after the power transform and the Gaussian filter.}
 
 \subsubsection{The seven configurations}
 Table 12 compares seven pipeline configurations. Each post-processing stage added to the raw ensemble moves the crossover frame earlier, from C4 at 25.4 to C7 at 22.7; the single-modality rows C1 to C3 are not steps in that sequence and do not order monotonically with it. Read against Section 5.1 that is all the table shows, because moving the crossover frame earlier is precisely what a constant 0.51 does perfectly --- and C3, the three-state temporal prior alone, already beats the full pipeline on it at 21.7, for the reason Section 5.6.1 gives. Two stages deserve particular note. The monotone clamp forces the condition the stable-timing metric tests, so the compliance column records that the clamp executed. And the C6-to-C7 step bundles the clamp with the temporal compression, which reads a frame that has not yet arrived (Section 4.2), so neither the 1.2 frames between them nor the compliance flag beside them is attributable to a single stage.
@@ -743,7 +743,7 @@ The results in this section admit one reading and it is not the one we expected 
 
 Second, the 100\% stable-anticipation compliance rate we reported is not a result at all. The metric requires the risk score to stay above the threshold from the alarm until the accident; Stage 4 of the post-processing makes falling below the threshold impossible once the score has crossed. The figure therefore records that the clamp executed. This is the clearest instance in our own work of the general mechanism Section 6 identifies: a post-hoc operation that enforces a metric's definition renders that metric vacuous. It is worth being precise about what remains true. Raw vision--language risk scores do oscillate, the clamp does remove the oscillation, and a system that alarms and then retracts is genuinely worse for a driver than one that does not. The clamp is a reasonable engineering choice. What it cannot do is serve as evidence under a metric that tests for the property it imposes.
 
-Third, the explainability afforded by the decoupled architecture is real and is independent of everything above. Because the three engines share no weights and are combined only at the fusion layer, any anticipation can be attributed to its constituent signals, and a failure can be localised to one of them. That is a property of the architecture, not a measured result, and we state it as such.
+Third, the explainability afforded by the decoupled architecture is real and is independent of everything above. Because the three engines share no weights and are combined only at the fusion layer, any score can be attributed to its constituent signals. Localising a failure is weaker than we first claimed: two of the three curves are functions of the same frame-difference statistic (Section 4.2), so a fault in that statistic appears in two of them at once and the decomposition separates two signals rather than three. This is in any case a property of the architecture, not a measured result, and we state it as such.
 
 Finally, the zero-shot operational mode --- no training data, no domain fine-tuning, no architecture modification --- does mean the system can be pointed at a new road environment without retraining. Two qualifications belong with that claim. The ensemble weights of 0.55, 0.25 and 0.20 were chosen by searching over the evaluation corpus, which is a form of tuning on the test set and sits awkwardly with the zero-shot claim; the released configuration therefore uses equal weights, chosen a priori. And deployability on new environments is untested here, because we evaluated on one corpus. Section 8 records both as limitations.
 

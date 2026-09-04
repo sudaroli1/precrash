@@ -90,17 +90,16 @@ def main():
           "→  p_clip(t)"]),
         ("Frame difference",
          ["mean |f(t) − f(t−1)|,", "min–max normalised", "→  p_flow(t)"]),
-        ("Motion-threshold text prior",
-         ["the same frame-difference statistic,",
-          "thresholded at 20 and 10 to select",
-          "one of three fixed strings  →  p_prior(t)"]),
+        ("MiniLM text prior",
+         ["three fixed strings scored", "against sudden / gradual anchors",
+          "→  p_caption(t)"]),
     ]
     for x, (t, ls) in zip(xs, engines):
         box(ax, x, ey, ew, eh, t, ls)
         arrow(ax, (0.50, 0.770), (x + ew / 2, ey + eh))
         arrow(ax, (x + ew / 2, ey), (0.50, 0.432))
 
-    ax.text(0.50, 0.712, "no shared weights \u2014 but the right two are functions of one signal",
+    ax.text(0.50, 0.712, "no shared weights, no communication between engines",
             ha="center", va="center", fontsize=6.4, color=MUTED,
             style="italic", zorder=5,
             bbox=dict(boxstyle="round,pad=0.22", fc="white", ec="none"))

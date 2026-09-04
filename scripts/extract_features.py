@@ -91,8 +91,9 @@ def parse_args():
     p.add_argument("--device", default="cuda")
     p.add_argument("--use_raft", action="store_true",
                    help="Use RAFT dense optical flow instead of the frame-difference proxy. "
-                        "Run once with and once without to substantiate the '90%% of RAFT at "
-                        "1%% compute' claim, which the paper asserts but never measured.")
+                        "The '90%% of RAFT at 1%% compute' claim was withdrawn from the paper "
+                        "because it was never measured. Running once with and once without is "
+                        "how it would be measured, if anyone wants the number.")
     p.add_argument("--limit", type=int, default=None, help="Extract only the first N clips (smoke test)")
     p.add_argument("--clip_batch", type=int, default=32,
                    help="Frames per CLIP forward pass. Affects throughput, and moves "
