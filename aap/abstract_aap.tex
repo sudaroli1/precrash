@@ -1,0 +1,12 @@
+\begin{abstract}
+Traffic-accident anticipation is increasingly scored by composite metrics that add an earliness term --- time-to-accident at a fixed risk threshold --- to discrimination terms such as average precision and area under the ROC curve. The composition fails structurally: the discrimination terms are bounded on the unit interval, the earliness terms scale with clip length, and the earliness terms are maximised by a constant risk score above the threshold --- a submission that, deployed, would warn continuously. We measure the consequence on a live benchmark of 1,417 dashcam clips and thirteen teams, whose labels are withheld and whose metric weights are undisclosed. A constant risk score of 0.51, which reads no pixels, scores 2.35291 on the private leaderboard: it matches the eighth-placed team at the precision the leaderboard displays, exceeds five of thirteen entries including our own, and falls 0.14874 short of the winner. Twenty-five such submissions, designed so that the undisclosed terms cancel when two are differenced, decompose the metric without any label: discrimination contributes 0.35105 and the two timing terms 2.00186, 5.70 times as much. The same probes recover a mean accident onset of 120.1 frames in a 150-frame clip, and establish a second result: four curves crossing the threshold at the same frame score 0.091 apart, a spread the published definition cannot produce, so the stated formula does not reproduce its own scorer. We close with a protocol whose central requirement is that every anticipation result be reported alongside a video-blind control, which costs one submission. Our own ninth-placed entry, which scores below the constant, is the case study.
+\end{abstract}
+
+\begin{keyword}
+Accident anticipation \sep
+Evaluation methodology \sep
+Benchmark design \sep
+Video-blind baseline \sep
+Time-to-accident \sep
+Collision warning systems
+\end{keyword}

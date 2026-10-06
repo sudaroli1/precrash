@@ -1,0 +1,96 @@
+% ---------------------------------------------------------------------------
+% Accident Analysis & Prevention submission.
+%
+% elsarticle with the `review' option: double-spaced and line-numbered, which
+% is what the guide asks for ("double-spaced text with consecutive line
+% numbering (essential for peer review)"). Author-year citations, since AAP
+% uses (name, year) in text.
+%
+% Highlights go in a SEPARATE file -- highlights.txt -- as the guide requires.
+%
+%   build:  pdflatex aap_main && bibtex aap_main
+%           && pdflatex aap_main && pdflatex aap_main
+% ---------------------------------------------------------------------------
+\documentclass[review,3p,authoryear]{elsarticle}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{url}
+\usepackage{needspace}
+\usepackage{setspace}
+\usepackage{lineno}
+
+% AAP: "double-spaced text with consecutive line numbering (essential for peer
+% review)". elsarticle's `review' option only sets a 1.5 baseline stretch and
+% loads no line-numbering package, so both are set here explicitly.
+\doublespacing
+\linenumbers
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\real}[1]{#1}
+
+% Tables are longtables from the conversion, so their captions sit above them
+% as their own paragraph. \Needspace keeps a caption with the rows it names.
+\newcommand{\floatcap}[2]{%
+  \par\Needspace*{0.16\textheight}%
+  \addvspace{0.7\baselineskip}%
+  \noindent{\small\textbf{#1:} #2}\par\addvspace{0.25\baselineskip}}
+
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\leq}}
+\DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
+\DeclareUnicodeCharacter{2032}{\ensuremath{{}^{\prime}}}
+\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
+\DeclareUnicodeCharacter{2009}{\,}
+\DeclareUnicodeCharacter{202F}{\,}
+\DeclareUnicodeCharacter{03C1}{\ensuremath{\rho}}
+\DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}
+\DeclareUnicodeCharacter{03B2}{\ensuremath{\beta}}
+\DeclareUnicodeCharacter{03B3}{\ensuremath{\gamma}}
+\DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
+\DeclareUnicodeCharacter{03B8}{\ensuremath{\theta}}
+\DeclareUnicodeCharacter{03B5}{\ensuremath{\epsilon}}
+
+% The leaderboard row and the code line: named here, since AAP review is not
+% anonymous.
+\newcommand{\entryname}{our entry}
+\newcommand{\codeavail}{}
+
+\journal{Accident Analysis \& Prevention}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Composite timing metrics do not measure warning capability: a video-blind
+constant matches the eighth of thirteen teams on a live accident-anticipation
+benchmark}
+
+% CONFIRM affiliations before submitting. Author 1 resigned from T. John
+% Institute of Technology in August 2026 and is now an independent researcher.
+\author[a]{Sudaroli Dhananjeyan\corref{cor1}}
+\ead{oli.sudar@gmail.com}
+\author[b]{Surya G}
+\author[b]{Gomathi D}
+
+\cortext[cor1]{Corresponding author.}
+\address[a]{Independent Researcher, Bengaluru, India}
+\address[b]{T. John Institute of Technology, Bengaluru, India}
+
+\input{abstract_aap}
+
+\end{frontmatter}
+
+\input{body_clean}
+
+\bibliographystyle{elsarticle-harv}
+\bibliography{references}
+
+\end{document}

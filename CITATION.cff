@@ -1,8 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this work, please cite the paper."
 title: >-
-  Unbounded Timing Terms Make a Composite Accident-Anticipation Score
-  Video-Blind: Evidence from a Live Benchmark
+  Composite timing metrics do not measure warning capability: a video-blind constant matches the eighth of thirteen teams on a live accident-anticipation benchmark
 abstract: >-
   A constant risk score that reads no pixels scores 2.35291 on the private
   leaderboard of a live accident-anticipation benchmark, matching the
@@ -11,14 +10,18 @@ abstract: >-
   outside the competition without access to any label, and establish that the
   benchmark's published formula does not reproduce its own scorer.
 authors:
-  # TODO before making this repository public: confirm the author list and the
-  # affiliations, and add ORCIDs. This file is what GitHub's "Cite this
-  # repository" button reads.
-  - family-names: PLACEHOLDER
-    given-names: PLACEHOLDER
+  - family-names: Dhananjeyan
+    given-names: Sudaroli
+    affiliation: "Independent Researcher, Bengaluru, India"
+  - family-names: G
+    given-names: Surya
+    affiliation: "T. John Institute of Technology, Bengaluru, India"
+  - family-names: D
+    given-names: Gomathi
+    affiliation: "T. John Institute of Technology, Bengaluru, India"
 repository-code: "https://github.com/sudaroli1/precrash"
 license: MIT
-date-released: "2026-09-01"
+date-released: "2026-09-09"
 keywords:
   - accident anticipation
   - evaluation methodology

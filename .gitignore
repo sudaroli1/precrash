@@ -21,3 +21,9 @@ paper/cur.md
 paper/orig.md
 paper/unp*/
 paper/*.bak
+
+# The Mendeley Data deposit is built from submissions/ and scripts/, which are
+# already here. The archival copy is doi:10.17632/yjvr5c7v3n.1 -- do not carry
+# a second one in git, where it would drift from the published version.
+precrash_data.zip
+nexar/out/extract.log

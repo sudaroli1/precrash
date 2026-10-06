@@ -1,0 +1,7 @@
+Highlights
+
+A constant risk score reading no pixels matched the 8th of 13 benchmark teams
+Timing terms were worth 5.70 times discrimination to a video-blind submission
+The metric's maximiser is a warning that never turns off, on every drive
+Probe submissions recovered the metric's parts without labels or weights
+Report a video-blind control with every anticipation result; it costs one run
