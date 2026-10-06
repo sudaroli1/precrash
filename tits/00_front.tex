@@ -1,0 +1,55 @@
+\title{Composite Timing Metrics Do Not Measure Warning Capability:
+A Video-Blind Constant Matches the Eighth of Thirteen Teams, and the
+Corrected Protocol Needs Correcting}
+
+\author{Sudaroli~Dhananjeyan,
+        Surya~G,
+        and~Gomathi~D%
+\thanks{S. Dhananjeyan is an Independent Researcher, Bengaluru, India
+(e-mail: oli.sudar@gmail.com).}%
+\thanks{S. G and G. D are with T. John Institute of Technology, Bengaluru,
+India.}%
+\thanks{Code, all submission files and the returned scores are available at
+\url{https://github.com/sudaroli1/precrash}. The measurement data are archived
+at \href{https://doi.org/10.17632/yjvr5c7v3n.1}{doi:10.17632/yjvr5c7v3n.1}.}}
+
+\markboth{IEEE Transactions on Intelligent Transportation Systems}%
+{Dhananjeyan \MakeLowercase{\textit{et al.}}: Composite Timing Metrics Do Not Measure Warning Capability}
+
+\maketitle
+
+\begin{abstract}
+Traffic-accident anticipation is increasingly scored by composite metrics that
+add an earliness term --- time-to-accident at a fixed risk threshold --- to
+discrimination terms such as average precision and area under the ROC curve.
+The composition fails structurally: the discrimination terms are bounded on the
+unit interval, the earliness terms scale with clip length, and the earliness
+terms are maximised by a constant risk score above the threshold --- a
+submission that, deployed, would warn continuously. We measure the consequence
+twice. On a live benchmark of 1{,}417 dashcam clips and thirteen teams, whose
+labels are withheld and whose metric weights are undisclosed, a constant risk
+score of $0.51$ that reads no pixels scores $2.35291$: it matches the
+eighth-placed team at the precision the leaderboard displays and exceeds five of
+thirteen entries including our own. Twenty-five such submissions, designed so
+the undisclosed terms cancel under differencing, decompose the metric without
+any label: discrimination contributes $0.35105$ and the two timing terms
+$2.00186$, $5.70$ times as much. The same probes establish that four curves
+crossing the threshold at the same frame score $0.091$ apart, a spread the
+published definition cannot produce, so the stated formula does not reproduce
+its own scorer. We then validate a corrected protocol on an independent corpus
+of 1{,}500 annotated clips, half containing no collision. The pathology
+reproduces --- a constant takes 99.9\% of the available earliness at exactly
+chance discrimination --- and the cost it hides becomes measurable: such a
+warning alarms for 60 minutes in every hour of ordinary driving. The protocol
+behaves as predicted but is then beaten by a control that reads only the video
+file's header, because clip-level conditioning cannot see a curve that is flat
+within a clip. We replace it with a frame-level statistic, coverage of the
+annotated actionable window against alarm duty cycle, under which the
+video-blind family scores zero and a sighted model does not. Our own
+ninth-placed entry, which scores below the constant, is the case study.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Accident anticipation, evaluation methodology, benchmark design, video-blind
+baseline, time-to-accident, collision warning systems.
+\end{IEEEkeywords}

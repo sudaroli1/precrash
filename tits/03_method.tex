@@ -1,0 +1,124 @@
+\section{The Benchmark, the Controls and the Probes}
+\label{sec:method}
+
+This section describes the benchmark whose metric is under examination and the
+two families of submission with which we measured it. Neither family reads a
+video frame.
+
+\subsection{The competition}
+\label{sec:competition}
+
+Measurements were made on Zero-shot Accident Anticipation, a public competition
+hosted on Kaggle~\cite{autopilot2026}. It ran from 17 February to 15 April
+2026, drawing 59 entrants of whom 20 submitted, forming 13 teams across 194
+submissions. Late submission remains open and is scored against the same
+splits, which is how the experiments of Section~\ref{sec:leaderboard} were run
+after the closing date. Every figure quoted here was read from the
+competition's own pages on 31 August 2026.
+
+Two properties make it a suitable instrument. The organisers hold the labels
+and compute every score, so nothing reported here depends on our own
+implementation of a metric. And a submission is a plain list of numbers per
+clip, so it need not contain a model at all --- which is what makes a
+video-blind control submittable.
+
+The corpus is a curated 1{,}417-clip subset of MM-AU~\cite{fang2024mmau}, every
+clip exactly 150 frames at 30\,fps. The published test file carries an
+identifier, a video identifier, a start and end frame, and a caption. There is
+no label, no accident time and no alert time.
+
+One consequence deserves emphasis, because the rest of this paper turns on it.
+Average precision, area under the ROC curve, a false-positive rate, and any
+time-to-accident measured to a true onset are \emph{not computable by any
+entrant}. An entrant wanting to measure progress locally must substitute
+something, and the only quantities computable from a submission alone are
+properties of the risk curve's own shape --- the frame at which it crosses the
+threshold, whether it falls back, how steeply it rises. We did exactly this,
+and Section~\ref{sec:leaderboard} measures what that proxy was worth. A second
+consequence we identify without quantifying: the 79 distinct captions describe
+outcomes (``lead vehicle stops'', 146 clips; ``a vehicle controls loss'', 144),
+and they are supplied at inference time, so a method conditioned on them has
+access to the outcome it is asked to anticipate.
+
+\subsection{The metric, as published}
+\label{sec:metric}
+
+The evaluation page defines the score as a weighted sum of four quantities,
+\begin{equation}
+\text{score} = w_{\text{AP}}\text{AP} + w_{\text{AUC}}\text{AUC}
+ + w_{\text{TTA}}\text{TTA@0.5} + w_{\text{STTA}}\text{STTA@0.5}
+\end{equation}
+with the weights fixed by the organisers and not disclosed. Positives are
+accident clips, negatives ordinary driving. The timing terms are read at a risk
+threshold of $0.5$:
+\begin{align}
+\text{TTA@0.5} &= \max\{\, t_{ai} - t_a \mid p_{t_a} > 0.5,\ 0 \le t_a \le t_{ai} \,\} \\
+\text{STTA@0.5} &= \max\{\, t_{ai} - t'_a \mid p_t > 0.5\ \forall\, t \in [t'_a, t_{ai}] \,\}
+\end{align}
+where $t_{ai}$ is the accident start frame and $t_a$ the first frame at which
+the risk score exceeds the threshold. STTA additionally requires the score to
+remain above the threshold continuously from $t'_a$ to $t_{ai}$.
+
+Three observations follow from these definitions alone, before any measurement.
+
+\emph{First}, AP and AUC are bounded on the unit interval, while TTA and STTA
+are counted in frames and bounded only by $t_{ai}$ --- hence by how the corpus
+was windowed. The four terms are not commensurable, and their sum inherits the
+scale of the larger pair.
+
+\emph{Second}, both timing terms are maximised by the same trivial submission.
+A risk score exceeding $0.5$ at frame~0 and never falling has $t_a = 0$ and
+satisfies the continuity condition on every clip, attaining
+$\text{TTA} = \text{STTA} = t_{ai}$, the largest value each clip admits. No
+submission can exceed it; one can only match it, and then compete on AP and
+AUC.
+
+\emph{Third}, neither timing term reads the magnitude of the score, only
+whether it stands above $0.5$. A submission that is barely committed and one
+that is certain receive identical timing credit, so the metric offers no
+incentive to calibrate.
+
+\subsection{Video-blind controls}
+\label{sec:controls}
+
+A video-blind submission is one whose risk curve is a function of the frame
+index alone: identical for every clip, computed without opening a frame. We use
+a family rather than a single curve, because one flattering curve invites the
+objection that the comparison was chosen to flatter it. The family comprises
+constants at $0.51$ and $0.99$; a curve held at $0.49$, which never crosses; a
+linear ramp; logistic curves centred at frames 60, 75, 90 and 105; step
+functions rising from $0.49$ to $0.51$ at frames 0, 10, 25, 50, 75, 100, 125
+and 140, plus a calibration step at frame 76; a curve that crosses at frame~0
+then drops back, and one that crosses and dips across frames 50--59; and two
+graded curves. That is 21 distinct shapes submitted as 25 files --- four were
+sent twice, and the repeats agree to within $3\times10^{-5}$, which is a check
+on the scoring service and not only on our bookkeeping.
+
+Before spending a submission slot we regenerated the organisers' sample file
+from its own parsed values and compared it byte for byte against the
+distributed file: identical. A scoring anomaly therefore cannot be attributed
+to our file writer.
+
+\subsection{Probes that isolate the terms}
+\label{sec:probes}
+
+The decomposition rests on one observation. Every video-blind submission is
+identical across clips, so --- provided the scorer reduces each curve to one
+clip-level score by any deterministic function of that curve --- every member
+of the family produces an all-way tie among clips, and therefore earns
+identical AP and identical AUC. Whatever those terms are worth, they are worth
+the same to all of them, and \emph{they cancel exactly in any difference
+between two members}.
+
+That turns the leaderboard into an instrument. Three probes suffice. A curve
+held at $0.49$ never crosses, so both timing terms are zero and its score is
+the discrimination floor alone. A curve at $0.51$ in frame~0 and $0.49$
+thereafter crosses once and then falls, earning the time-to-accident term but
+forfeiting the stable one. A constant $0.51$ earns both. Differencing the three
+gives each term separately. A fourth probe, holding $0.51$ throughout except
+for a dip across frames 50--59, moves the stable term's reference point while
+leaving the first crossing untouched, and serves as a consistency check.
+
+The step family measures the score's dependence on the crossing frame directly,
+giving a second and independent route to the same quantity. Two routes to one
+number is what makes the result safe to report.

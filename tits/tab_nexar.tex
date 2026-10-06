@@ -1,0 +1,55 @@
+\begin{table}[t]
+\caption{The video-blind family scored on all 1,500 labelled Nexar clips,
+with earliness measured to the \emph{annotated} collision. A constant above
+threshold takes 99.9\% of the \SI{19.10}{\second} the corpus admits while
+scoring exactly chance on both discrimination terms.}
+\label{tab:nexar-blind}
+\centering
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+submission & AP & AUC & TTA@0.5 & STTA@0.5 \\
+ &  &  & (s) & (s) \\
+\midrule
+constant $0.51$ & 0.500 & 0.500 & 19.09 & 19.09 \\
+constant $0.99$ & 0.500 & 0.500 & 19.09 & 19.09 \\
+linear ramp $0\!\to\!1$ & 0.500 & 0.500 & 0.38 & 0.38 \\
+step at mid-clip & 0.500 & 0.500 & 0.38 & 0.38 \\
+crosses, dips, recovers & 0.500 & 0.500 & 19.09 & 13.10 \\
+crosses, then drops & 0.500 & 0.500 & 19.09 & 0.01 \\
+never crosses ($0.49$) & 0.500 & 0.500 & 0.00 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table*}[t]
+\caption{All submissions on the same 300 held-out clips. Under the published
+metric (columns 2--3) the only submission that discriminates earns
+\SI{0.04}{\second} of earliness and the one that reads nothing earns
+\SI{18.86}{\second}. Bounding leaves the constant at its maximum, exactly as
+Section~\ref{sec:protocol} predicts; conditioning removes it but is beaten by
+the metadata-only control. Only the frame-level statistic (last column) orders
+the submissions by what they can actually see.}
+\label{tab:nexar-held}
+\centering
+\begin{tabular}{@{}lcc cc cc@{}}
+\toprule
+& \multicolumn{2}{c}{published metric}
+& \multicolumn{2}{c}{corrected protocol}
+& \multicolumn{2}{c}{frame-level alarm} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+submission & AUC & TTA@0.5 (s) & bounded & conditioned & alarm & coverage \\
+ &  &  & @0.5 & @FPR 10\% & (min/h) & @duty 10\% \\
+\midrule
+constant $0.51$ & 0.500 & 18.86 & 1.000 & 0.000 & 60.0 & \textbf{0.000} \\
+linear ramp $0\!\to\!1$ & 0.500 & 0.30 & 0.019 & 0.000 & 20.5 & \textbf{0.000} \\
+step at mid-clip & 0.500 & 0.31 & 0.019 & 0.000 & 20.5 & \textbf{0.000} \\
+never crosses ($0.49$) & 0.500 & 0.00 & 0.000 & 0.000 & 0.0 & \textbf{0.000} \\
+metadata only\tnote{a} & 0.504 & 14.56 & 0.733 & 0.093 & 47.7 & \textbf{0.085} \\
+risk model (reads video) & 0.671 & 0.04 & 0.003 & 0.014 & 0.0 & \textbf{0.283} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\item[a] Given the video file's frame rate and duration. It never decodes a
+frame.
+\end{tablenotes}
+\end{table*}

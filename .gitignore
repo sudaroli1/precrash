@@ -27,3 +27,25 @@ paper/*.bak
 # a second one in git, where it would drift from the published version.
 precrash_data.zip
 nexar/out/extract.log
+
+# Competition data and labels are NOT redistributed. The paper states this in
+# its compliance section, and both the zero-shot-taa and Nexar competitions
+# prohibit redistribution, so these must never be committed again:
+#   data/test.csv       the organisers' metadata, including the captions, which
+#                       describe outcomes and therefore leak the answer
+#   data/nexar_*.csv    splits carrying Nexar's label/onset/alert columns
+#   nexar/out/manifest.csv  the same labels, resolved to frame indices
+# All of them are regenerated from the user's own copy of each dataset:
+# manifest.csv by nexar/prep.py, the splits by nexar/split.py (fixed seed).
+data/test.csv
+data/nexar_*.csv
+nexar/out/manifest.csv
+
+# Build leftovers
+tits/aap_latex_source/
+tits/*.aux
+tits/*.log
+tits/*.out
+tits/*.bbl
+tits/*.blg
+tits/new/

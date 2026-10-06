@@ -1,0 +1,94 @@
+\section{Introduction}
+\label{sec:intro}
+
+Road traffic injury kills approximately 1.19 million people a year by the World
+Health Organization's count~\cite{who2023}. Many of those deaths are
+foreseeable in the seconds before they occur, which is why systems that
+anticipate a collision --- rather than detect one after the fact --- are
+pursued as a countermeasure, and why a growing literature reports how early
+such systems can raise an alarm~\cite{zhang2025review}. Whether a reported
+anticipation result establishes that a system could actually warn a driver is a
+question about measurement, and it is the question this paper addresses.
+
+Anticipation is increasingly scored by a composite metric: a weighted sum of
+discrimination terms --- average precision (AP) and area under the ROC curve
+(AUC) --- and an earliness term, the interval between alarm and collision read
+at a fixed risk threshold. The composition is intuitive. An anticipator should
+separate accident clips from ordinary driving and should raise the alarm early,
+and summing terms that measure each seems a reasonable way to ask for both.
+
+It is not, and the reason is a difficulty of type rather than of tuning. AP and
+AUC are bounded on the unit interval; an earliness term counted in frames is
+bounded only by the length of the clip. Summing a bounded quantity with an
+unbounded one lets the unbounded one decide the ranking, and makes that ranking
+depend on how the corpus was windowed. Worse, an earliness term read at a
+threshold has a trivial global maximiser: a risk score that exceeds the
+threshold at frame~0 and never falls attains, on every clip, the largest value
+that clip admits. No method that reads the video can exceed it. A method can
+only match it, and then compete on the bounded half.
+
+That argument follows from the definitions alone. What has been missing is a
+measurement of what it costs in practice, and the measurement is awkward to
+obtain: the benchmarks using these metrics withhold their labels, and the
+competitions using them do not publish the weights.
+
+This paper supplies it twice over. On a live accident-anticipation benchmark
+--- 1{,}417 dashcam clips, thirteen teams, a scorer we never saw --- a constant
+risk score of $0.51$ that reads no pixels scores $2.35291$ against a winning
+$2.50165$, matching the eighth-placed team at the precision the leaderboard
+displays and exceeding five of thirteen entries. A family of submissions that
+likewise read nothing, designed so that the undisclosed terms cancel when two
+are differenced, then recovers the metric's parts from outside the competition:
+the timing terms are worth \textbf{5.70 times} what discrimination contributes
+to such a submission, and the score falls at almost exactly one sixtieth of a
+point for every frame of delay.
+
+Because that benchmark publishes no labels, it can show the metric being
+exploited but cannot show anything being fixed. We therefore repeat the
+measurement on an independent, fully annotated corpus of 1{,}500 clips, half of
+which contain no collision. There the pathology reappears --- a constant takes
+99.9\% of the available earliness at exactly chance discrimination --- and, for
+the first time, the cost of the behaviour it rewards becomes measurable: a
+warning that maximises this metric alarms for \textbf{60 minutes in every hour}
+of ordinary driving.
+
+The safety consequence is therefore not that the metric is untidy. The
+submission maximising its earliness half is a warning that never turns off.
+Whether a driver comes to trust a collision warning or to ignore it depends on
+when it arrives relative to what the driver expects~\cite{abe2006alarm}, and a
+warning that never stops carries no timing information at all. The metric
+awards that behaviour its maximum and cannot do otherwise, because its timing
+terms are defined only on clips where an accident occurs, so the burden such a
+system imposes on ordinary driving falls entirely on the discrimination half.
+
+We came to the question the awkward way: we built a training-free ensemble,
+entered it in that competition, and placed ninth of thirteen. The paper is not
+about that system --- it scores below the constant --- but it is what made the
+metric worth examining, and it appears here as the case study.
+
+\textbf{Contributions.} We report a measured demonstration on a live
+benchmark: a video-blind constant matches the eighth-placed private score and
+exceeds five of thirteen teams, our own included. We give a black-box
+decomposition, in which video-blind probes built so that unknown terms cancel
+under differencing separate a metric whose weights are undisclosed and whose
+labels are withheld, recovering the discrimination floor, both timing terms,
+the slope in the crossing frame and the accident-onset distribution. We show
+that the published definition does not reproduce the scorer: four curves
+crossing at the same frame, none dipping below it afterwards, score $0.091$
+apart, where the stated formula requires equality. We then validate the
+corrected protocol where ground truth exists; its predicted behaviour holds,
+but it is beaten by a control reading only the video file's header, so we
+replace its clip-level conditioning with a frame-level alarm statistic and show
+that this orders submissions by what they can see. Every leaderboard score was
+computed by the competition's scoring service against ground truth we do not
+have; derived quantities are our arithmetic on those scores and are marked as
+such.
+
+One point of scope, because this paper prints a number beside other teams'
+numbers. We make no claim about any other submission or published method: we
+did not re-run anyone's system, and could not have evaluated it if we had,
+because the labels are withheld from every entrant. Where a leaderboard score
+is numerically identical to a control's, we state that arithmetic fact and draw
+one inference --- the metric assigns the two submissions the same value. A
+whole family of curves receives it, which is precisely the property under
+examination.

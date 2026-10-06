@@ -1,0 +1,179 @@
+\section{Validation on a labelled corpus}
+\label{sec:nexar}
+
+The competition publishes no labels. That is what makes its metric exploitable
+from outside, and it is also what makes the corrected protocol of
+Section~\ref{sec:protocol} untestable there: every repair in it is stated in
+terms of quantities --- a false-positive rate, an annotated collision time, a
+fixed operating point --- that the benchmark does not expose. A protocol that
+cannot be run is a proposal, not a result.
+
+This section runs it, on a corpus that is independent of the competition and
+fully annotated: the Nexar collision-prediction training split of 1,500 dashcam
+clips, 750 of which contain a collision and 750 of which are ordinary driving.
+Every positive clip carries two annotations, a collision time $t_{\text{ev}}$
+and an alert time $t_{\text{al}}$ marking the earliest moment at which a driver
+could still have acted. Three things follow that the competition does not
+allow. Average precision and area under the curve become measured quantities
+rather than a floor recovered by differencing. Earliness is measured to the
+annotated collision rather than to the end of the window. And because half the
+corpus contains no collision at all, the cost a warning imposes on ordinary
+driving becomes a number rather than an argument.
+
+\subsection{Setup}
+
+The video-blind family of Section~\ref{sec:controls} is regenerated for clips
+that differ in length and frame rate: each curve is a closed-form expression in
+the frame index, and a generator is given only the clip's frame count and frame
+rate, so a curve that wanted a label could not read one. The published metric
+is implemented exactly as Section~\ref{sec:metric} states it, with
+$t_{ai}$ resolved to the annotated collision in each clip's own timebase.
+
+Against these we place a sighted baseline. It is deliberately modest and no
+claim here depends on its accuracy; its only job is to read pixels, so that the
+protocol has something sighted to separate from the blind. Five motion
+statistics are computed per frame at a fixed \SI{7.5}{\hertz} --- bulk and
+localised frame difference, frame difference restricted to the lower-centre of
+the image, luminance and its change --- and a logistic model over causal
+summaries of them predicts whether the current moment lies inside the annotated
+actionable window $[t_{\text{al}}, t_{\text{ev}}]$. The split is 600 clips for
+training and 300 held out, fixed before any modelling. Every feature at time
+$t$ is a function of samples at or before $t$; the property is asserted by
+perturbation rather than assumed, by requiring that altering the tail of a clip
+leave every earlier feature bit-identical.
+
+Two properties of the corpus are worth stating before any score, because both
+bear on the argument. Its clips carry \textbf{36 distinct frame rates} between
+\SI{23.6}{fps} and \SI{31.0}{fps}, so an earliness term counted in frames is
+summing quantities of different duration within a single dataset. And its
+collisions occur between \SI{3.03}{\second} and \SI{56.80}{\second} into their
+clips, an \textbf{18.7-fold spread} in the largest earliness any submission can
+collect. The scale objection of Section~\ref{sec:why}(a) does not require two
+differently windowed corpora to demonstrate; one is enough.
+
+\subsection{The metric behaves the same way, and the corpus leaks}
+
+Table~\ref{tab:nexar-blind} scores the video-blind family on all 1,500 clips. A
+constant risk score of $0.51$ collects \SI{19.09}{\second} of TTA@0.5 and
+\SI{19.09}{\second} of STTA@0.5 --- \textbf{99.9\% of the \SI{19.10}{\second}
+ceiling} the corpus admits --- while scoring exactly $0.500$ on both
+discrimination terms, which is what a constant must score. The result of
+Section~\ref{sec:leaderboard} is therefore not a property of one organiser's
+scorer. It follows from the composition, and it reappears wherever the
+composition is used.
+
+One finding here was not anticipated by the analysis of
+Section~\ref{sec:why} and could not have been made on the competition corpus.
+Clip duration alone separates collisions from ordinary driving at an AUC of
+$0.537$; frame count alone at $0.548$; and \textbf{the frame rate of the video
+file alone at $0.533$}. A submission that opens the container header, reads how
+fast the file was encoded, and never decodes a frame scores above chance.
+
+This is a property of how the corpus was assembled rather than of the metric,
+but it has a direct consequence for anyone evaluating on it: a discrimination
+score slightly above chance is not evidence that a method has seen anything.
+We therefore add a \emph{metadata-only} control --- a model given the file's
+frame rate and duration and nothing else --- to the protocol of
+Section~\ref{sec:protocol}, alongside the video-blind one. We did not know to
+ask for it before running this study, which is itself the argument for running
+controls rather than reasoning about them.
+
+\subsection{What each submission earns on held-out clips}
+
+Table~\ref{tab:nexar-held} scores everything on the same 300 held-out clips.
+Under the published metric the ordering is inverted with respect to what the
+metric is supposed to reward. The sighted model is the only submission that
+discriminates at all, at AUC $0.671$ against $0.500$ for every blind curve, and
+it earns \SI{0.045}{\second} of TTA. The constant, at chance discrimination,
+earns \SI{18.86}{\second}. \textbf{The composition pays blindness 424 times
+better than sight.}
+
+The mechanism is the one Section~\ref{sec:why}(c) identifies: neither timing
+term reads the magnitude of a score, only whether it stands above $0.5$. A
+model trained to be calibrated on a corpus where roughly one frame in fifty is
+inside an actionable window produces probabilities that rarely cross a
+threshold set at one half, and is penalised for it. A submission that is simply
+pinned above the threshold is not.
+
+\subsection{The protocol, tested and found insufficient}
+
+Section~\ref{sec:protocol} makes a specific and falsifiable prediction about
+its own two halves: bounding the earliness term normalises it into the unit
+interval but \emph{does not} remove the constant as maximiser, and only
+conditioning on a fixed operating point of the discrimination metric does.
+
+That prediction holds exactly. Under bounding alone the constant scores
+$1.0000$ --- it still takes the whole of the available anticipation, now
+expressed as a ratio. Conditioned at a false-positive rate of 10\% it scores
+$0.0000$, because there is no threshold at which it detects anything without
+detecting everything. Had the constant failed at the bounding step instead,
+either the implementation or the analysis of Section~\ref{sec:why} would have
+been wrong.
+
+The protocol does not survive the metadata-only control, and it fails under
+both readings of its own averaging rule. Read as written --- normalised
+earliness averaged over the positives a submission detects --- the
+metadata-only control scores a \textbf{perfect $1.0000$} against the sighted
+model's $0.0611$, while detecting 14 of 150 positives to the sighted model's
+35. Averaged instead over all positives, charging an undetected one zero, it
+scores $0.0933$ against $0.0143$. Either way the submission that reads the file
+header outscores the one that reads the road, under the protocol proposed to
+prevent exactly this.
+
+The reason is structural and we had not seen it. Conditioning uses a
+\emph{clip-level} discrimination metric, which asks whether a submission ranks
+collision clips above ordinary ones. It cannot ask whether the alarm, within a
+clip, is raised at a useful moment. A curve that is flat across a clip passes
+clip-level conditioning on whatever discrimination it has, and then collects
+maximal earliness on every clip it detects at all, because a flat curve above
+threshold has been above threshold since the first frame.
+
+The two readings above are the second defect. Averaging over detected
+positives only --- the natural reading of Section~\ref{sec:protocol}, item 2
+--- lets a submission buy a perfect score by detecting almost nothing, which is
+precisely what the metadata-only control did. Earliness that is never
+delivered, because the alarm was never raised, is not earliness; the statistic
+must be averaged over all positives. That repair is necessary and, as the
+figures above show, nowhere near sufficient.
+
+\subsection{The repair: measure the alarm, not the ranking}
+
+Both defects have the same root. The protocol conditions on a quantity computed
+per clip, while the thing a warning system does --- and the burden it imposes
+--- happens per frame. The repair is to measure the alarm itself. Partition
+every frame of the corpus into two populations:
+
+\begin{itemize}
+\item \textbf{actionable}: frames of a collision clip inside
+  $[t_{\text{al}}, t_{\text{ev}}]$, the interval the annotators mark as still
+  avoidable;
+\item \textbf{non-actionable}: every frame of every ordinary-driving clip, plus
+  frames of a collision clip before $t_{\text{al}}$.
+\end{itemize}
+
+Frames after the collision belong to neither: nothing is being anticipated
+there, and charging them would reward a curve for switching off after an event
+it cannot know has occurred. Then report two rates at a common threshold ---
+\emph{coverage}, the share of actionable time during which the alarm is raised,
+and \emph{duty cycle}, the share of non-actionable time during which it is
+raised --- and summarise by coverage at a capped duty cycle.
+
+Fig.~\ref{fig:woc} sweeps both over every threshold. The diagonal is the
+no-skill line, and the permanent alarm sits on it, at the top right corner: it
+covers every actionable moment and alarms through every other one. That corner
+is the point the published composite scores at its maximum.
+
+Table~\ref{tab:nexar-held} gives the summary. At a duty cycle capped at 10\%
+the entire video-blind family scores $0.0000$, the metadata-only control
+$0.0855$, and the sighted model $0.2833$. The ordering is finally the one the
+metric was meant to produce, and it is produced by asking a question the
+published composite never asks.
+
+The same partition answers in plain units the question Section~\ref{sec:why}
+could only pose. A constant above threshold alarms for \textbf{60 minutes in
+every hour} of ordinary driving. The linear ramp alarms for 20.5 minutes per
+hour, the metadata-only control for 47.7, and the sighted model for
+\SI{0.13}{\second}. None of this is visible to the published composite, whose
+timing terms are defined only on clips where a collision occurs, so the burden
+falls entirely on the discrimination half --- measured here at $0.500$ for
+every submission that pays it.

@@ -1,0 +1,41 @@
+% Stand-in for IEEEtran so the paper can be measured before the class file
+% arrives. Geometry chosen to approximate IEEEtran's text block; page counts
+% from this build are indicative, not exact.
+\documentclass[twocolumn,10pt]{article}
+\usepackage[letterpaper,top=0.75in,bottom=1.0in,left=0.625in,right=0.625in,columnsep=0.25in]{geometry}
+\usepackage{siunitx,booktabs,graphicx,amsmath,amssymb,threeparttable}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\newenvironment{IEEEkeywords}{\par\small\noindent\textbf{Index Terms}---}{\par}
+\renewcommand{\markboth}[2]{}
+
+\renewcommand{\abstractname}{Abstract}
+\begin{document}
+\twocolumn[\begin{@twocolumnfalse}
+\input{00_front}
+\end{@twocolumnfalse}]
+\input{01_intro}
+\input{02_background}
+\input{03_method}
+\input{tab_live}
+\input{04_results}
+\begin{figure}[t]\centering
+\includegraphics[width=\columnwidth]{media/image2.png}
+\caption{The official score is a straight line in the frame at which the alarm
+fires. Points are video-blind submissions scored by the organisers; the fit is
+over crossings up to frame 100. A constant crosses at frame 0.}
+\label{fig:linear}\end{figure}
+\input{sec_nexar}
+\input{tab_nexar}
+\begin{figure}[t]\centering
+\includegraphics[width=\columnwidth]{fig_woc.png}
+\caption{The warning operating characteristic: coverage of the annotated
+actionable window against duty cycle over all non-actionable time, swept over
+every threshold. The diagonal is the no-skill line. A permanent alarm sits on
+it, in the top right corner --- the point the published composite scores at its
+maximum.}
+\label{fig:woc}\end{figure}
+\input{05_discussion}
+\bibliographystyle{unsrt}
+\bibliography{references}
+\end{document}

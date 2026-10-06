@@ -1,0 +1,158 @@
+\section{Results on the Live Benchmark}
+\label{sec:leaderboard}
+
+Every score in this section was computed by the competition's scoring service
+against ground truth we do not hold. We implemented none of the four metrics.
+Quantities derived from those scores --- the decomposition, the fit, the ratios
+--- are our own arithmetic and are identified as such.
+
+\subsection{A video-blind constant on the official leaderboard}
+
+Table~\ref{tab:lb} reproduces the final private leaderboard as published, with
+the video-blind controls below the rule: submitted after the closing date and
+scored by the same service against the same private split. They are not
+leaderboard entries.
+
+A constant risk score of $0.51$ scores \textbf{2.35291}. That equals the
+eighth-placed team's score at the five decimals the leaderboard displays,
+exceeds five of the thirteen teams including our own, and falls $0.14874$ short
+of the winner. Per the scope stated in Section~\ref{sec:intro}, the only
+inference we draw from the coincidence at eighth place is that the metric
+assigns those two submissions the same value; a whole family of curves --- every
+curve above $0.5$ at frame~0 that never dips --- receives it, and we infer
+nothing about what any team submitted.
+
+We quote the difference before the ratio deliberately. The metric is a weighted
+sum with no meaningful origin, so a ratio of two scores can be made to say
+almost anything by shifting the scale. The difference of $0.14874$ and the
+decomposition below are scale-free; that the constant reaches 94.1\% of the
+winning score is a convenience, not evidence.
+
+One further row is worth stating plainly. The organisers' own sample
+submission, resubmitted byte for byte, scores $1.04203$, while the benchmark row
+displayed on the leaderboard scores $0.58333$ --- so those are not the same
+file, and the sample submission is not the origin of the published benchmark
+score.
+
+\subsection{Decomposing the score}
+
+Because every video-blind submission is identical across clips, all of them
+induce the same ordering over clips and earn the same AP and the same AUC,
+which therefore cancel in any difference between two of them
+(Section~\ref{sec:probes}). Differencing the probes separates the terms;
+Table~\ref{tab:decomp} gives both the probe scores and the components recovered
+from them.
+
+Read the ratio precisely. It compares the timing terms at their maximum against
+the discrimination terms at chance, not maximum against maximum. The maxima
+ratio is not identifiable from outside, because the weights are undisclosed,
+but it is bounded: the winner's discrimination terms are worth at least
+$0.14874 + 0.35105 = 0.49979$, giving a maxima ratio of at most $4.01$. Both
+framings say the same thing, and the measured statement is the safer one --- a
+submission that reads nothing collects $2.00186$, and the best discrimination
+anyone demonstrated on this benchmark added $0.14874$ to it.
+
+Two further readings follow. A constant at $0.51$ and a constant at $0.99$
+score identically, so the metric reads only whether the curve stands above the
+threshold and never by how much. And the dip probe scores $1.85347$ where the
+per-frame stable-timing coefficient predicts $1.79041$, so the additive split of
+the timing total into its two parts is close but not exact; we report the split
+with that tolerance attached. The total itself is measured directly between two
+flat curves and does not depend on the split.
+
+\subsection{The score is linear in the crossing frame}
+
+Over the region in which the alarm still precedes the accident in every clip,
+the score falls by $0.016647$ for each frame of delay --- one point per $60.1$
+frames, or $0.4994$ per second at 30\,fps (Fig.~\ref{fig:linear}). A dedicated
+one-frame experiment confirms the slope directly: a step at frame 75 scores
+$1.10445$ and a step at frame 76 scores $1.08779$, a difference of $0.01666$
+against $1/60 = 0.016667$.
+
+The line was then asked to predict curves it had not seen. Three logistic
+curves crossing at frames 60, 75 and 90 are predicted to within
+$6.4\times10^{-3}$, the closest to $6\times10^{-5}$. A fourth, crossing at frame
+105, lies beyond the fitted region where the curve has already begun to bend;
+the model is not expected to hold there and we report it rather than omit a
+held-out point that missed.
+
+\subsection{The published definition does not reproduce the scorer}
+\label{sec:anomaly}
+
+One result does not fit, and we report it rather than smooth it. A linear ramp
+crosses the threshold at frame 75, exactly as a step function does, and scores
+$0.037$ lower. That gap is $2.24$ frames of slope, not an integer, so it cannot
+be a crossing-frame effect. We therefore submitted a diagnostic family holding
+the crossing frame at 75 and varying only the shape away from it
+(Table~\ref{tab:anomaly}).
+
+The four curves at the head of that table cross at the same frame and never
+fall back, and the three step-like ones hold identical values at frames 74 and
+75. Under the metric as published they must score identically: both timing
+terms are functions of threshold crossings alone, and video-blind curves are
+identical across clips, so the discrimination terms cannot separate them
+either. They span $0.09093$, which is $5.5$ frames of slope.
+
+We do not have an explanation and state the two candidates rather than choose.
+Either the discrimination terms are not invariant to curve shape among
+video-blind submissions --- which would weaken the cancellation argument of
+Section~\ref{sec:probes}, though it is hard to reconcile with a step at frame
+140 and a flat $0.49$ scoring identically despite very different frame
+orderings --- or the timing terms read something beyond the first crossing that
+the three agreeing curves share and the ramp does not.
+
+Either way one conclusion is available without resolving it, and it is a
+finding in its own right: \textbf{the benchmark's published formula does not
+reproduce its scorer}. An entrant cannot compute this competition's score from
+its stated definition even given the labels. The headline result is unaffected,
+because the constant and the floor are both flat curves whose difference is
+measured directly; what carries a caveat is the split of the timing total.
+
+\subsection{A property of the withheld ground truth, recovered}
+
+For a step at frame $k$, both timing terms equal $\max(t_{ai} - k, 0)$ on each
+contributing clip, so the score above the floor is $c\,\mathbb{E}[\max(t_{ai} -
+k, 0)]$ with $c$ the sum of the two timing weights. Differentiating, the slope
+at $k$ is $-c\,P(t_{ai} > k)$: the slope measures the survival function of the
+accident-onset distribution, scaled. The leaderboard is therefore reporting, one
+submission at a time, the shape of an annotation no entrant has seen.
+
+The initial segment estimates $c$ at $0.016667$, and dividing the timing total
+by $c$ gives a mean onset of $120.1$ frames --- about four seconds into a
+five-second clip. This explains mechanically why the constant does so well
+here: because the accident is always late in the window, an alarm at frame~0 is
+credited with roughly 120 frames of anticipation on every clip.
+
+Two caveats belong with it. Under the model the magnitude of the slope must be
+non-increasing in $k$, because a survival function cannot rise; it is not, by
+roughly ninety times what five-decimal rounding permits, and we suspect the
+same second-order effect as in Section~\ref{sec:anomaly}. And when $k$ exceeds
+$t_{ai}$ the maximum in the published definition is taken over an empty set and
+is undefined; we assume the scorer takes it as zero. We deliberately do not
+separate the weights from the metric values: every quantity above is a product
+of the two, and the positive rate cancels identically out of the onset ratio,
+so this measurement says nothing about what fraction of the corpus contains an
+accident.
+
+\subsection{The case study: our own entry}
+\label{sec:casestudy}
+
+We reached this question by entering the competition, with a training-free
+ensemble combining CLIP-based semantic scoring, optical-flow motion energy and
+a third channel, fused by grid-searched weights with monotone clamping and
+temporal post-processing. It placed ninth of thirteen at $2.00585$ ---
+\emph{below the video-blind constant}. Auditing it against its released code
+rather than against our description of it found three defects of exactly the
+kind this paper is about. The third ``semantic'' channel is not a captioning
+model: it thresholds the same frame-difference statistic the motion channel
+uses and selects one of three fixed strings, so the ensemble has two
+independent inputs rather than three --- which is why that channel posts an
+\emph{earlier} mean crossover than the full ensemble. The monotone clamp forces
+precisely the condition STTA tests, so any report of STTA compliance measures
+that the clamp executed. And a temporal resampling stage evaluated the curve at
+index $\alpha t$ while emitting it at $t$, so the score reported for frame $t$
+was computed from a frame that had not yet arrived; a six-frame gain once
+attributed to it is withdrawn, and the released configuration disables the
+stage. No measurement above depends on this system. It is here because a
+critique of evaluation practice written by authors who had not audited their
+own entry would be worth less.

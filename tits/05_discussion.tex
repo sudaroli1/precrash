@@ -1,0 +1,182 @@
+\section{Why the Composition Fails}
+\label{sec:why}
+
+The scope of what follows is fixed before the argument rather than after it.
+This is an analysis of a metric's algebra, illustrated by measurements on two
+corpora. Properties (a) and (b) are consequences of the definitions quoted in
+Section~\ref{sec:metric} and hold wherever those definitions are used. Property
+(c) is a statement about what the algebra implies, not a survey finding.
+
+The defect is not a badly chosen weight. It is an error of type. Write the
+score as $B + U$, where $B$ is the weighted sum of AP and AUC and is bounded
+above by the sum of their weights, and $U$ is the weighted sum of the timing
+terms, bounded above by the sum of their weights times the mean accident onset
+--- a quantity that depends on how the corpus was windowed.
+
+\emph{(a) The unbounded term grows with clip length while the bounded one does
+not.} The ratio of their maxima scales linearly in the mean onset, so two
+groups adopting the same weights on corpora windowed differently are not using
+the same metric, though they report the same name. On the competition the
+maximum of $U$ is $2.00186$, measured; the maximum of $B$ is at least $0.49979$,
+giving a ratio of at most $4.01$, and against $B$ at chance the measured ratio
+is $5.70$. Section~\ref{sec:nexar} shows the effect does not even need two
+corpora: within one, collisions ranging from $3.03$ to $56.80$\,s give an
+18.7-fold spread in the earliness a single constant can collect.
+
+\emph{(b) The unbounded term has a constant as its global maximiser.} Any
+\emph{unconditioned} threshold-crossing earliness measure is maximised by
+crossing immediately and never returning. The maximiser reads no input, so the
+term it maximises can carry no information about the input. The qualifier is
+the seed of the remedy: an earliness measure that is conditioned --- evaluated
+at a fixed operating point of the discrimination metric, or penalised by the
+false-alarm rate --- is not maximised by a constant.
+
+\emph{(c) Consequently the separating power of the score lies in $B$.} To the
+extent that a submission crosses early and holds, its $U$ is at or near maximum
+and it is separated from other such submissions only by $B$. We cannot verify
+this for any particular entry, having no team's curves but our own, so we state
+it as what the algebra implies and not as an observation about anyone's system.
+
+Property (c) is why the failure is hard to notice from inside. A leaderboard of
+this shape still orders methods usefully, because $B$ still varies. What is
+invisible without a control is that the number attached to each of them is
+dominated by a term available for free, so the reported score --- the thing
+that goes into a table and gets compared across publications --- is mostly a
+constant.
+
+Two mechanisms compound this, and both are visible in our own pipeline rather
+than anyone else's. \emph{Metric-enforcing post-processing}: an operation that
+clamps the risk score above the threshold, followed by a report of
+stable-anticipation compliance, has measured only that the clamp executed.
+Stated generally, a post-hoc operation that enforces a metric's definition
+renders that metric vacuous. \emph{Non-causal timing gain}: an operation that
+resamples the curve so that frame $t$ reports a value computed from a later
+frame buys time-to-accident from the future, and whatever earliness it buys
+cannot be obtained by any system running in real time. A third and milder
+mechanism is selection --- reporting the mean anticipation of the best fifty
+clips of 1{,}417 is a statement about the selection, not the method.
+
+\subsection{What this costs safety research}
+
+Read as a system rather than as a curve, the maximiser of (b) is a device that
+alerts continuously, on every drive, whether or not anything is in front of the
+vehicle. Alarm timing is among the things that determine whether a driver
+trusts a forward collision warning and acts on it: warnings arriving when the
+driver does not expect them reduce that trust
+substantially~\cite{abe2006alarm}, and a warning that is always present is the
+limiting case. A composite whose earliness half is maximised by permanent alarm
+is therefore not merely uninformative about warning capability; on this
+dimension it is ordered the wrong way round. Section~\ref{sec:nexar} puts a
+number on the cost the metric cannot see: \SI{60}{\minute} of alarm in every
+hour of ordinary driving.
+
+A published anticipation figure therefore does not, on its own, establish that
+a system anticipates. A reader given only a composite score cannot tell how
+much was earned by the method and how much was available to any submission that
+crosses early --- and neither can the authors, unless a control was run.
+
+\section{A Corrected Protocol}
+\label{sec:protocol}
+
+Each item is traced to a mechanism above. The first is the one we would keep if
+we could keep only one. Items 1--6 were proposed before the validation of
+Section~\ref{sec:nexar}; items 7 and 8 exist \emph{because} of it, and are the
+substantive change this paper makes to its own recommendation.
+
+\begin{enumerate}
+\item \textbf{Report a video-blind control with every anticipation result.}
+  Compute the full metric on a constant above threshold, a linear ramp and a
+  mid-clip step, and put those rows in the results table. If the control lands
+  within noise of the method, the metric is not measuring the method. This
+  costs one evaluation run, and should be as reflexive as a majority-class
+  baseline in classification.
+\item \textbf{Bound the earliness term, and condition it.} Bounding ---
+  normalising per clip so achieved over achievable lies in $[0,1]$ --- stops
+  the term dominating the sum and stops it depending on the windowing. It does
+  \emph{not} remove the constant as maximiser, which still scores $1$ and still
+  gets it free; Section~\ref{sec:nexar} confirms this directly. Conditioning on
+  a fixed operating point is what removes the exploit. If only one is adopted,
+  adopt conditioning.
+\item \textbf{State the reference point of every timing metric}: the annotated
+  collision, or the end of the clip. Reporting the interval to the end of the
+  window under the name time-to-accident inflates every result by a
+  corpus-dependent constant.
+\item \textbf{Report discrimination alongside any timing metric}, never timing
+  alone, and state the ratio of positive to negative clips. Without negatives
+  there is no false-positive rate, and any rising curve achieves perfect
+  recall.
+\item \textbf{Report metrics with post-processing disabled as well as
+  enabled.} If a number moves when a clamp is removed, the clamp was part of
+  the measurement. If a number moves when a resampling stage is removed, check
+  whether that stage reads a frame that has not yet arrived.
+\item \textbf{Publish the score of a released control alongside the
+  leaderboard.} Organisers can do in an afternoon what took us twenty-five
+  submissions, and an entrant would then see at a glance how much of their
+  score they earned. For competitions that withhold labels, publish the weights
+  and the scorer too: withholding labels prevents overfitting, but withholding
+  the weights does not prevent the metric being exploited --- this paper
+  exploited it comprehensively without them --- while it does prevent the
+  sanity check that would have surfaced the problem before the competition
+  opened.
+\item \textbf{Average earliness over all positives, not over detected ones.}
+  Averaging only where the alarm fired lets a submission buy a perfect score by
+  detecting almost nothing; in Section~\ref{sec:nexar} a control scored a
+  perfect $1.0000$ on 14 positives of 150. Earliness never delivered is not
+  earliness.
+\item \textbf{Measure the alarm at frame level, not clip level.} Clip-level
+  conditioning cannot see that a curve is flat \emph{within} a clip, and in
+  Section~\ref{sec:nexar} a control reading only the video file's header beat a
+  model reading the road under items 1--6 alone. Report \emph{coverage} --- the
+  share of the annotated actionable window during which the alarm is raised ---
+  against \emph{duty cycle} --- the share of all non-actionable time during
+  which it is raised --- and summarise as coverage at a capped duty. Report a
+  \textbf{metadata-only control} beside the video-blind one, because corpus
+  metadata can itself carry the label.
+\end{enumerate}
+
+\section{Limitations}
+\label{sec:limits}
+
+The leaderboard measurements rest on one competition and one corpus, and the
+scorer is closed, so Section~\ref{sec:anomaly} records a discrepancy we could
+not resolve. The validation corpus is a second, independent dataset, but it is
+still one dataset, and its label leakage through file metadata
+(Section~\ref{sec:nexar}) is a property of that corpus whose prevalence
+elsewhere we have not measured. The sighted baseline is deliberately weak; it
+establishes that the repaired statistic separates sighted from blind, not where
+a strong method would fall on it. The actionable window we score against is the
+annotators' judgement, and a different annotation convention would move the
+coverage numbers though not the ordering. Finally, our claim about the absence
+of video-blind controls in the literature covers the works whose results tables
+we inspected directly, and is not a systematic audit.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+A composite that adds a bounded discrimination term to an unbounded earliness
+term does not measure warning capability. On a live benchmark a constant risk
+score reading no pixels matched the eighth of thirteen teams, and the timing
+terms were worth $5.70$ times what discrimination contributed to it. On an
+independent annotated corpus the same constant took 99.9\% of the available
+earliness at exactly chance discrimination, while the only submission that
+discriminated earned $0.045$ of $18.86$ seconds.
+
+Three things are consequently cheap that were not. A video-blind control costs
+one evaluation run and settles whether a reported score is measuring a method
+or a metric. Probe submissions turn a leaderboard into a means of auditing a
+closed scorer, without labels and without the weights. And an earliness term
+that is bounded, conditioned on a fixed operating point, and measured at frame
+level against the time the alarm spends raised gives the field a quantity that
+can be compared across corpora windowed differently.
+
+We would stress what the validation changed. The protocol we proposed was
+tested where ground truth exists, behaved exactly as predicted on the control
+it was designed against, and was then beaten by a control that never decodes a
+frame. A protocol that has not been run against adversarial controls is a
+hypothesis. What is at stake in getting this right is not tidiness: a warning
+system earns its place in a vehicle by alerting a driver early enough to act
+and seldom enough to be believed, and a metric whose earliness half is
+maximised by a permanent alarm cannot distinguish a system that does that from
+one that does nothing. Until anticipation results are reported beside a control
+that reads no video, a published warning horizon should be read as an upper
+bound on what the method might contribute, not as evidence of what it does.

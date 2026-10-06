@@ -1,0 +1,123 @@
+\section{Background}
+\label{sec:background}
+
+\subsection{Where the metrics come from}
+
+Vision-based accident anticipation was posed in its modern form by Chan
+\textit{et al.}~\cite{chan2016dad}, who introduced the Dashcam Accident Dataset
+together with the measure the field still reports: the interval between the
+first frame at which a risk score crosses a threshold and the annotated onset
+of the collision. Bao \textit{et al.}~\cite{bao2020ccd} contributed the Car
+Crash Dataset and an uncertainty-based formulation, and Karim \textit{et
+al.}~\cite{karim2022dsta} gave the reporting convention most subsequent work
+adopts: average precision, mean time-to-accident over thresholds, and
+time-to-accident at 80\% recall.
+
+It is worth stating plainly what that convention gets right, because this paper
+is about what happens when it is set aside. It reports a discrimination metric
+alongside every timing metric, and it reads timing \emph{at a fixed operating
+point} of the discrimination metric. A method therefore cannot buy
+time-to-accident by alarming indiscriminately: the recall constraint holds it
+to a fixed false-alarm behaviour before its timing is counted at all. The
+repair proposed in Section~\ref{sec:protocol} is in large part a return to that
+discipline.
+
+Architectures built on this foundation run from supervised convolutional and
+temporal models~\cite{chan2016dad, bao2020ccd, karim2022dsta} through
+self-supervised formulations that reduce the dependence on scarce collision
+labels~\cite{yao2019unsupervised, liu2026sctnet, zhong2025early}, to
+training-free pipelines pairing a vision--language
+model~\cite{radford2021clip} with a motion
+signal~\cite{thakur2026modular, saha2026zeroshot, singh2026metadata} --- though
+those target detection or classification and none reports a timing metric.
+
+Two lines of work deserve particular attention, because they anticipate part of
+this paper's subject. Pjetri \textit{et al.}~\cite{pjetri2025nondecreasing}
+train with an objective requiring the predicted danger score to be
+non-decreasing as the collision approaches, and Zou \textit{et
+al.}~\cite{zou2026riskprop} introduce an adaptive monotonic constraint loss with
+the same intent. Both are well-motivated responses to score oscillation and we
+criticise neither. But both illustrate the hazard examined here: a risk score
+constrained not to fall is, by construction, closer to the maximiser of a
+threshold-crossing timing metric than a score free to fall. The metric cannot
+separate the benefit of the constraint from the artefact of it, and neither
+paper reports a control that would.
+
+\subsection{From a convention to a single number}
+
+Competitions need something the convention of~\cite{karim2022dsta} does not
+supply: a total order over submissions. The natural way to obtain one is to sum
+the metrics, and that is what the benchmark studied here
+does~\cite{autopilot2026}, adding two threshold-crossing timing terms to
+average precision and area under the ROC curve.
+
+Summing is where the difficulty enters, and it is a difficulty of type rather
+than of tuning. Average precision and area under the curve are bounded on the
+unit interval; a time-to-accident measured in frames is bounded only by the
+length of the clip. Adding them makes the sum depend on how the corpus was
+windowed and lets the unbounded term decide the ranking.
+Section~\ref{sec:why} develops the argument; Sections~\ref{sec:leaderboard}
+and~\ref{sec:nexar} measure its magnitude.
+
+\subsection{The missing control}
+
+The check that exposes such a problem is a control that does not read the
+input, and its value has been established repeatedly elsewhere: dataset
+signatures strong enough to identify a photograph's
+source~\cite{torralba2011bias}; models given only half the input scoring far
+above chance on standard inference
+corpora~\cite{gururangan2018artifacts, poliak2018hypothesis}, after which
+partial-input baselines became standard practice; and tuned simple baselines
+matching most recently published neural
+recommenders~\cite{ferraridacrema2019progress}. In each case the control was
+cheap, and in each case nobody had run it.
+
+Accident anticipation has every precondition those episodes had. It reports a
+timing metric whose maximiser is trivial, it is moving toward composite
+single-number scores, and its newest benchmarks withhold labels --- so an
+entrant cannot compute the discrimination half at all and must develop against
+a locally computable proxy, the only candidate being the shape of one's own
+risk curve, which a constant maximises.
+
+The pathology has not gone unnoticed, but it has been noticed as an anomaly
+rather than isolated. Zhao \textit{et al.}~\cite{zhao2025top} observe that the
+standard calculation credits a false alarm in a safe scene with the interval to
+some later, causally unrelated collision. Goldshmidt \textit{et
+al.}~\cite{goldshmidt2025badas} report baselines making physically implausible
+predictions nine to ten seconds ahead. Most directly, Caselli \textit{et
+al.}~\cite{caselli2026flara} publish a table in which two established methods
+record areas under the curve of $45.5$ and $41.0$ --- below chance --- beside
+mean times-to-accident of $10.216$ and $10.263$ seconds. A method that cannot
+separate accident clips from ordinary ones is there credited with ten seconds
+of anticipation: this paper's argument, already legible in someone else's
+results table. None of these accounts isolates the effect, and none reports
+what a submission that reads nothing would score.
+
+The nearest methodological precedent lies in an adjacent task. Korkut
+\textit{et al.}~\cite{korkut2026blind} audit four traffic video
+question-answering benchmarks by running vision--language models blind, and find
+that removing the video consistently improves accuracy on one of them. That is
+a control of exactly the kind advocated here, applied to multiple-choice
+accuracy rather than to per-frame risk. We are not aware of an equivalent
+control reported for the timing and discrimination metrics used in
+anticipation, which is the gap this paper fills.
+
+We state the scope of that observation precisely: it covers the works cited
+here whose results tables we inspected directly. Four we consulted are behind
+paywalls we could not open, and we exclude them rather than assume. It is not a
+systematic audit of the field and we do not present it as one.
+
+\subsection{What is and is not new here}
+
+Monotonicity constraints on risk scores are prior
+work~\cite{pjetri2025nondecreasing, zou2026riskprop} and this paper claims
+none; so are training-free pipelines pairing a vision--language model with a
+motion signal~\cite{thakur2026modular}. Nor is the general idea that a
+benchmark can be satisfied by a degenerate submission new, and the suspicion
+that time-to-accident is inflatable has been voiced
+before~\cite{zhao2025top, goldshmidt2025badas, caselli2026flara}, as has a blind
+control on an adjacent traffic-video task~\cite{korkut2026blind}. What is new is
+the measurement of how far it goes on this class of metric, a probe methodology
+that decomposes such a score from outside the competition holding the labels,
+and an evaluation protocol that has been tested against adversarial controls,
+found insufficient, and repaired.
