@@ -2,8 +2,9 @@
 
 Code, submissions and score log for the paper
 
-> **Unbounded Timing Terms Make a Composite Accident-Anticipation Score
-> Video-Blind: Evidence from a Live Benchmark**
+> **Composite Timing Metrics Do Not Measure Warning Capability:
+> A Video-Blind Constant Matches the Eighth of Thirteen Teams, and the
+> Corrected Protocol Needs Correcting**
 
 ## The result, in one line
 
@@ -16,6 +17,13 @@ including our own entry, and falls 0.14874 short of the winner.
 ```python
 risk = [0.51] * 150
 ```
+
+The same thing happens on a corpus with published labels. On 1,500 annotated
+Nexar clips, half of which contain no collision, that constant takes **99.9% of
+the available earliness at exactly chance discrimination** — and, because half
+the corpus is ordinary driving, the cost it hides becomes measurable: such a
+warning alarms for **60 minutes in every hour** of normal driving. See
+[`nexar/`](nexar/).
 
 ## What the probes recovered
 
@@ -52,8 +60,12 @@ paper/        the working manuscript and the edit scripts that produced it
 scripts/      submission builders, probes, analysis, figure scripts
 src/          the ensemble that was entered, and the corrected metrics
 submissions/  every submitted file, and LOG.md with every score
-data/         manifests for the Nexar corpus. Not used by any result in the
-              paper; kept for the labelled-corpus study named as future work
+data/         small manifests only. The competition's own `test.csv` and
+              `sample_submission.csv` are NOT here -- see "What is not here"
+nexar/        the validation study on a labelled corpus: the metric
+              reproduced, the protocol tested, and the repair it needed
+aap/          the manuscript as submitted to Accident Analysis & Prevention
+tits/         the manuscript retargeted to IEEE T-ITS (current version)
 tests/        74 tests, no GPU needed: `pytest`
 ```
 
@@ -114,17 +126,36 @@ paper are in `latex/media/`.
 
 Submissions were made through the competition's own late-submission facility,
 within the stated limit of 100 per day. Every probe is a curve generated from a
-closed-form expression in the frame index; none was derived from any label. No
-part of the competition's data is redistributed here. The corpus and the
-competition are cited as the rules require. See the paper's compliance section.
+closed-form expression in the frame index; none was derived from any label. The
+corpus and the competition are cited as the rules require. See the paper's
+compliance section.
+
+### What is not here, and why
+
+Neither competition permits redistribution, so this repository contains none of
+either dataset:
+
+| not included | get it from |
+|---|---|
+| `data/test.csv` — the competition's clip metadata, **including the captions**, which describe outcomes | the [competition page](https://kaggle.com/competitions/zero-shot-taa) |
+| `data/sample_submission.csv` | the same page |
+| Nexar clips, and any file carrying its `target`, `time_of_event` or `time_of_alert` | the [Nexar challenge](https://www.kaggle.com/competitions/nexar-collision-prediction) |
+
+Nothing is lost by their absence. `nexar/prep.py` rebuilds the clip manifest
+from your own copy of the Nexar data and `nexar/split.py` redraws the
+train/test split from a fixed seed, reproducing the published split exactly ---
+verified by regenerating it and comparing all 1,500 rows.
 
 ## Corrections to earlier versions of this work
 
 Recorded here because the paper is partly a case study of its own authors:
 
 - A temporal-compression stage emitted at frame *t* the score computed from
-  frame 1.3*t* — a frame not yet observed. It produced the reported six-frame
-  gain in time-to-accident. `configs/honest.yaml` disables it.
+  frame 1.3*t* — a frame not yet observed. A six-frame gain in
+  time-to-accident was once attributed to it; **that figure is withdrawn**,
+  because no measurement here isolates that stage. The objection does not
+  depend on the magnitude: whatever it bought was read from a frame that had
+  not arrived. `configs/honest.yaml` disables it.
 - A monotone clamp forces the exact condition the stable-timing metric tests,
   so any compliance figure measures the clamp.
 - "90% of RAFT sensitivity at 1% of the compute" was never measured. Withdrawn.

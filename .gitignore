@@ -49,3 +49,4 @@ tits/*.out
 tits/*.bbl
 tits/*.blg
 tits/new/
+data/sample_submission.csv
